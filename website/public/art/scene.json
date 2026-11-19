@@ -1,0 +1,519 @@
+{
+ "canvas": {
+  "width": 320,
+  "height": 180
+ },
+ "note": "stars.png is a full 320x180 overlay (star positions listed for per-star fades); the other sprites are small and placed at x,y (top-left, art px).",
+ "horizon": 104,
+ "stars": {
+  "file": "stars.png",
+  "list": [
+   {
+    "x": 20,
+    "y": 10,
+    "plus": true
+   },
+   {
+    "x": 52,
+    "y": 24,
+    "plus": false
+   },
+   {
+    "x": 88,
+    "y": 8,
+    "plus": true
+   },
+   {
+    "x": 125,
+    "y": 20,
+    "plus": false
+   },
+   {
+    "x": 160,
+    "y": 6,
+    "plus": true
+   },
+   {
+    "x": 196,
+    "y": 26,
+    "plus": false
+   },
+   {
+    "x": 232,
+    "y": 12,
+    "plus": false
+   },
+   {
+    "x": 40,
+    "y": 38,
+    "plus": false
+   }
+  ]
+ },
+ "night": {
+  "clouds": [],
+  "animals": [
+   {
+    "testId": "thinker",
+    "file": "animal-thinker_night.png",
+    "x": 309,
+    "y": 109,
+    "w": 11,
+    "h": 5,
+    "frames": 1,
+    "kind": "still"
+   },
+   {
+    "testId": "dog-asleep",
+    "file": "animal-dog_asleep.png",
+    "x": 300,
+    "y": 152,
+    "w": 10,
+    "h": 7,
+    "frames": 2,
+    "kind": "idle",
+    "dur": 5,
+    "delay": -1,
+    "hold": 85
+   },
+   {
+    "testId": "owl",
+    "file": "animal-owl.png",
+    "x": 272,
+    "y": 73,
+    "w": 9,
+    "h": 11,
+    "frames": 2,
+    "kind": "blink",
+    "dur": 7,
+    "delay": -2,
+    "hold": 94
+   },
+   {
+    "testId": "firefly-1",
+    "file": "animal-firefly.png",
+    "x": 76,
+    "y": 146,
+    "w": 3,
+    "h": 3,
+    "frames": 1,
+    "kind": "blink",
+    "dur": 2.6,
+    "delay": -0.0,
+    "drift": 5,
+    "driftDur": 9
+   },
+   {
+    "testId": "firefly-2",
+    "file": "animal-firefly.png",
+    "x": 104,
+    "y": 138,
+    "w": 3,
+    "h": 3,
+    "frames": 1,
+    "kind": "blink",
+    "dur": 3.0,
+    "delay": -0.7,
+    "drift": -4,
+    "driftDur": 10
+   },
+   {
+    "testId": "firefly-3",
+    "file": "animal-firefly.png",
+    "x": 132,
+    "y": 124,
+    "w": 3,
+    "h": 3,
+    "frames": 1,
+    "kind": "blink",
+    "dur": 3.4,
+    "delay": -1.4,
+    "drift": 6,
+    "driftDur": 11
+   },
+   {
+    "testId": "firefly-4",
+    "file": "animal-firefly.png",
+    "x": 146,
+    "y": 166,
+    "w": 3,
+    "h": 3,
+    "frames": 1,
+    "kind": "blink",
+    "dur": 3.8,
+    "delay": -2.1,
+    "drift": -5,
+    "driftDur": 12
+   },
+   {
+    "testId": "firefly-5",
+    "file": "animal-firefly.png",
+    "x": 82,
+    "y": 126,
+    "w": 3,
+    "h": 3,
+    "frames": 1,
+    "kind": "blink",
+    "dur": 2.6,
+    "delay": -2.8,
+    "drift": 5,
+    "driftDur": 13
+   },
+   {
+    "testId": "firefly-6",
+    "file": "animal-firefly.png",
+    "x": 234,
+    "y": 100,
+    "w": 3,
+    "h": 3,
+    "frames": 1,
+    "kind": "blink",
+    "dur": 3.0,
+    "delay": -3.5,
+    "drift": -4,
+    "driftDur": 14
+   },
+   {
+    "testId": "firefly-7",
+    "file": "animal-firefly.png",
+    "x": 235,
+    "y": 122,
+    "w": 3,
+    "h": 3,
+    "frames": 1,
+    "kind": "blink",
+    "dur": 3.4,
+    "delay": -4.2,
+    "drift": 6,
+    "driftDur": 15
+   },
+   {
+    "testId": "firefly-8",
+    "file": "animal-firefly.png",
+    "x": 310,
+    "y": 92,
+    "w": 3,
+    "h": 3,
+    "frames": 1,
+    "kind": "blink",
+    "dur": 3.8,
+    "delay": -4.9,
+    "drift": -5,
+    "driftDur": 16
+   },
+   {
+    "testId": "bat-1",
+    "file": "animal-bat.png",
+    "x": 120,
+    "y": 44,
+    "w": 11,
+    "h": 6,
+    "frames": 2,
+    "kind": "flyer",
+    "dur": 16,
+    "delay": -3,
+    "bob": 8,
+    "flap": 0.3
+   },
+   {
+    "testId": "bat-2",
+    "file": "animal-bat.png",
+    "x": 210,
+    "y": 58,
+    "w": 11,
+    "h": 6,
+    "frames": 2,
+    "kind": "flyer",
+    "dur": 20,
+    "delay": -26,
+    "bob": 7,
+    "flap": 0.3
+   },
+   {
+    "testId": "deer-night",
+    "file": "animal-deer_night.png",
+    "x": 118,
+    "y": 137,
+    "w": 20,
+    "h": 18,
+    "frames": 2,
+    "kind": "idle",
+    "dur": 9,
+    "delay": -2,
+    "hold": 85
+   },
+   {
+    "testId": "fox",
+    "file": "animal-fox.png",
+    "x": 70,
+    "y": 146,
+    "w": 16,
+    "h": 9,
+    "frames": 2,
+    "kind": "idle",
+    "dur": 70,
+    "delay": -10,
+    "hold": 50,
+    "walk": 30,
+    "flap": 0.6
+   },
+   {
+    "testId": "frog-1",
+    "file": "animal-frog.png",
+    "x": 71,
+    "y": 157,
+    "w": 10,
+    "h": 8,
+    "frames": 2,
+    "kind": "idle",
+    "dur": 6,
+    "delay": -2,
+    "hold": 85
+   },
+   {
+    "testId": "toad",
+    "file": "animal-toad.png",
+    "x": 116,
+    "y": 162,
+    "w": 10,
+    "h": 8,
+    "frames": 2,
+    "kind": "idle",
+    "dur": 8,
+    "delay": -5,
+    "hold": 85
+   }
+  ]
+ },
+ "sunset": {
+  "clouds": [
+   {
+    "file": "cloud-a.png",
+    "x": 150,
+    "y": 30
+   }
+  ],
+  "birds": {
+   "file": "birds.png",
+   "x": 120,
+   "y": 22,
+   "w": 15,
+   "h": 5
+  },
+  "animals": [
+   {
+    "testId": "butterfly-1",
+    "file": "animal-monarch.png",
+    "x": 96,
+    "y": 134,
+    "w": 11,
+    "h": 7,
+    "frames": 2,
+    "kind": "flyer",
+    "dur": 26,
+    "delay": -6,
+    "bob": 6,
+    "flap": 0.25
+   },
+   {
+    "testId": "butterfly-2",
+    "file": "animal-monarch.png",
+    "x": 190,
+    "y": 112,
+    "w": 11,
+    "h": 7,
+    "frames": 2,
+    "kind": "flyer",
+    "dur": 23,
+    "delay": -30,
+    "bob": 6,
+    "flap": 0.25
+   },
+   {
+    "testId": "thinker",
+    "file": "animal-thinker.png",
+    "x": 308,
+    "y": 101,
+    "w": 12,
+    "h": 14,
+    "frames": 1,
+    "kind": "still"
+   },
+   {
+    "testId": "dog",
+    "file": "animal-dog.png",
+    "x": 300,
+    "y": 152,
+    "w": 12,
+    "h": 11,
+    "frames": 2,
+    "kind": "idle",
+    "dur": 4.5,
+    "delay": -1,
+    "hold": 85
+   },
+   {
+    "testId": "deer-doe",
+    "file": "animal-doe.png",
+    "x": 118,
+    "y": 137,
+    "w": 20,
+    "h": 18,
+    "frames": 2,
+    "kind": "idle",
+    "dur": 8.5,
+    "delay": -2,
+    "hold": 85
+   },
+   {
+    "testId": "deer-fawn",
+    "file": "animal-fawn.png",
+    "x": 140,
+    "y": 144,
+    "w": 14,
+    "h": 11,
+    "frames": 2,
+    "kind": "idle",
+    "dur": 7,
+    "delay": -5,
+    "hold": 85
+   },
+   {
+    "testId": "frog-1",
+    "file": "animal-frog.png",
+    "x": 71,
+    "y": 157,
+    "w": 10,
+    "h": 8,
+    "frames": 2,
+    "kind": "idle",
+    "dur": 6,
+    "delay": -1,
+    "hold": 85
+   },
+   {
+    "testId": "frog-2",
+    "file": "animal-frog.png",
+    "x": 98,
+    "y": 157,
+    "w": 10,
+    "h": 8,
+    "frames": 2,
+    "kind": "idle",
+    "dur": 5,
+    "delay": -3.2,
+    "hold": 85
+   },
+   {
+    "testId": "toad",
+    "file": "animal-toad.png",
+    "x": 116,
+    "y": 162,
+    "w": 10,
+    "h": 8,
+    "frames": 2,
+    "kind": "idle",
+    "dur": 9,
+    "delay": -4,
+    "hold": 85
+   },
+   {
+    "testId": "robin",
+    "file": "animal-robin.png",
+    "x": 253,
+    "y": 75,
+    "w": 9,
+    "h": 8,
+    "frames": 2,
+    "kind": "idle",
+    "dur": 4,
+    "delay": -2,
+    "hold": 85
+   },
+   {
+    "testId": "cardinal",
+    "file": "animal-cardinal.png",
+    "x": 302,
+    "y": 60,
+    "w": 9,
+    "h": 9,
+    "frames": 2,
+    "kind": "idle",
+    "dur": 5.5,
+    "delay": -3,
+    "hold": 85
+   },
+   {
+    "testId": "rabbit",
+    "file": "animal-rabbit.png",
+    "x": 240,
+    "y": 152,
+    "w": 10,
+    "h": 9,
+    "frames": 2,
+    "kind": "idle",
+    "dur": 7.5,
+    "delay": -6,
+    "hold": 85
+   },
+   {
+    "testId": "squirrel",
+    "file": "animal-squirrel.png",
+    "x": 289,
+    "y": 72,
+    "w": 11,
+    "h": 11,
+    "frames": 2,
+    "kind": "idle",
+    "dur": 4.5,
+    "delay": -0.5,
+    "hold": 85
+   }
+  ]
+ },
+ "keepOut": {
+  "x": 152,
+  "y": 79,
+  "w": 152,
+  "h": 74,
+  "boxes": [
+   {
+    "x": 152,
+    "y": 79,
+    "w": 80,
+    "h": 54
+   },
+   {
+    "x": 156,
+    "y": 138,
+    "w": 72,
+    "h": 15
+   },
+   {
+    "x": 239,
+    "y": 88,
+    "w": 65,
+    "h": 43
+   },
+   {
+    "x": 242,
+    "y": 132,
+    "w": 58,
+    "h": 14
+   }
+  ]
+ },
+ "snail": {
+  "file": "snail.png",
+  "x": 262,
+  "y": 76,
+  "w": 10,
+  "h": 8
+ },
+ "apple": {
+  "x": 297,
+  "y": 51,
+  "w": 6,
+  "h": 6
+ }
+}

@@ -1,0 +1,16 @@
+[
+  {"id": "tortoise-hare", "title": "The Tortoise and the Hare", "topic": "sample: fable", "source": "Aesop (public domain), retold",
+   "pages": [
+     "A hare loved to boast about his speed and laughed at a slow tortoise.",
+     "\"Race me,\" said the tortoise calmly. The hare grinned and agreed.",
+     "The hare dashed far ahead, then lay down for a nap. The tortoise kept walking.",
+     "The tortoise crossed the line first. Slow and steady wins the race."
+   ]},
+  {"id": "ant-grasshopper", "title": "The Ant and the Grasshopper", "topic": "sample: fable", "source": "Aesop (public domain), retold",
+   "pages": [
+     "All summer a grasshopper sang while an ant carried grain to her nest.",
+     "\"Why work so hard?\" asked the grasshopper. \"Winter is coming,\" said the ant.",
+     "Winter came. The grasshopper was cold and hungry, and begged the ant for food.",
+     "The ant shared a little, and he learned to prepare before the cold arrives."
+   ]}
+]

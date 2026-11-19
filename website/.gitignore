@@ -1,0 +1,8 @@
+node_modules/
+.next/
+public/pyodide/
+test-results/
+next-env.d.ts
+*.tsbuildinfo
+.next-p5/
+out/

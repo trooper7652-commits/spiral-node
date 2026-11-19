@@ -1,0 +1,35 @@
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s1) var(--s3);
+  padding: var(--s1) var(--s2);
+  background: var(--olive-deep);
+  --focus: var(--olive-bright);
+  color: var(--paper);
+}
+.wordmark {
+  font-family: var(--font-display), monospace;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--paper);
+  text-decoration: none;
+}
+.nav { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s1) var(--s3); }
+.nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--paper);
+  font-family: var(--font-display), monospace;
+  font-size: 16px;
+}
+.nav a.cta {
+  padding: 0 var(--s2);
+  background: var(--orange);
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: var(--shadow-hard);
+}

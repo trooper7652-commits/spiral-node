@@ -1,0 +1,7 @@
+[
+  {"id": "q-borrowed", "text": "Which old idea could you borrow today?", "topic": "sample: thinking", "source": "sample question (Helix Velocities)"},
+  {"id": "q-boring", "text": "What would you build if boredom were a tool?", "topic": "sample: thinking", "source": "sample question (Helix Velocities)"},
+  {"id": "q-small", "text": "What small change could make today feel new?", "topic": "sample: thinking", "source": "sample question (Helix Velocities)"},
+  {"id": "q-wrong", "text": "Which of your mistakes turned into an idea?", "topic": "sample: thinking", "source": "sample question (Helix Velocities)"},
+  {"id": "q-combine", "text": "What two unrelated things could you combine?", "topic": "sample: thinking", "source": "sample question (Helix Velocities)"}
+]

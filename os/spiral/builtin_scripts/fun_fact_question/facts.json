@@ -1,0 +1,7 @@
+[
+  {"id": "octopus-hearts", "text": "Octopuses have three hearts.", "topic": "sample: animals", "source": "https://en.wikipedia.org/wiki/Octopus"},
+  {"id": "honey-tombs", "text": "Honey found in ancient Egyptian tombs was still edible.", "topic": "sample: food", "source": "https://en.wikipedia.org/wiki/Honey"},
+  {"id": "venus-day", "text": "A day on Venus is longer than its year.", "topic": "sample: space", "source": "https://en.wikipedia.org/wiki/Venus"},
+  {"id": "banana-berry", "text": "Botanically, a banana is a berry.", "topic": "sample: plants", "source": "https://en.wikipedia.org/wiki/Banana"},
+  {"id": "snail-coil", "text": "Most snail shells coil to the right (dextral).", "topic": "sample: animals", "source": "https://en.wikipedia.org/wiki/Gastropod_shell"}
+]

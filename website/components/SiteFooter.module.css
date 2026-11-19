@@ -1,0 +1,13 @@
+.footer {
+  padding: var(--s4) var(--s2);
+  background: var(--brown-deep);
+  color: var(--paper);
+}
+.footer p { margin: 0 auto var(--s1); max-width: var(--max-width); }
+.footer a { color: var(--paper); }
+.cols { display: grid; gap: var(--s4); max-width: var(--max-width); margin: 0 auto var(--s4); grid-template-columns: 1fr; }
+@media (min-width: 760px) { .cols { grid-template-columns: 2fr 1fr; } }
+.signup { max-width: 520px; }
+.h { margin: 0 0 var(--s1); font-size: 24px; }
+.links { display: flex; flex-direction: column; gap: var(--s1); font-size: 18px; }
+.links a { display: inline-flex; align-items: center; min-height: 44px; }

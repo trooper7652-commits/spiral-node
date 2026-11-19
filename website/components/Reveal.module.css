@@ -1,0 +1,5 @@
+.reveal { height: 100%; transition: opacity 450ms ease-out, transform 450ms steps(4, end); }
+.reveal[data-reveal="waiting"] { opacity: 0; transform: translateY(16px); transition: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal[data-reveal="waiting"] { opacity: 1; transform: none; transition: none; }
+}

@@ -1,0 +1,842 @@
+[
+ {
+  "id": "mercury-year",
+  "text": "Mercury circles the Sun every 88 Earth days, faster than any other planet.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/mercury/facts/",
+  "check": "88 Earth days"
+ },
+ {
+  "id": "mercury-night",
+  "text": "Mercury has no air to hold heat, so nights can drop to about -290 F.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/mercury/facts/",
+  "check": "-290"
+ },
+ {
+  "id": "mercury-width",
+  "text": "Mercury is a little more than one third the width of Earth.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/mercury/facts/",
+  "check": "1/3 the width of Earth"
+ },
+ {
+  "id": "mercury-sunlight",
+  "text": "Sunlight takes about 3.2 minutes to reach Mercury.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/mercury/facts/",
+  "check": "3.2 minutes"
+ },
+ {
+  "id": "venus-hottest",
+  "text": "Venus is the hottest planet, about 872 F at the surface, hot enough to melt lead.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/venus/facts/",
+  "check": "872 degrees Fahrenheit"
+ },
+ {
+  "id": "venus-pressure",
+  "text": "The air pressure at the surface of Venus is about 93 times that at Earth's sea level.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/venus/facts/",
+  "check": "93 times"
+ },
+ {
+  "id": "venus-winds",
+  "text": "Winds at the tops of Venus's clouds have been measured as high as 224 mph.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/venus/facts/",
+  "check": "224 mph"
+ },
+ {
+  "id": "venus-phase-cycle",
+  "text": "Venus takes 584 days to go through all its phases, while our Moon takes about a month.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/venus/facts/",
+  "check": "584 days"
+ },
+ {
+  "id": "earth-orbit-days",
+  "text": "Earth takes 365.25 days to go once around the Sun, so calendars need leap years.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/earth/facts/",
+  "check": "365.25 days"
+ },
+ {
+  "id": "earth-tilt",
+  "text": "Earth's axis is tilted 23.4 degrees from its orbit plane, which gives us seasons.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/earth/facts/",
+  "check": "23.4 degrees"
+ },
+ {
+  "id": "earth-oceans-life",
+  "text": "Earth's oceans gave life a place to begin about 3.8 billion years ago.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/earth/facts/",
+  "check": "3.8 billion years ago"
+ },
+ {
+  "id": "earth-day",
+  "text": "One rotation of Earth takes 23.9 hours, a little less than 24.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/earth/facts/",
+  "check": "23.9 hours"
+ },
+ {
+  "id": "mars-half-earth",
+  "text": "Mars is about half the size of Earth.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/mars/facts/",
+  "check": "about half the size of Earth"
+ },
+ {
+  "id": "mars-sol",
+  "text": "A Martian day is called a sol and lasts 24.6 hours.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/mars/facts/",
+  "check": "24.6 hours"
+ },
+ {
+  "id": "mars-year",
+  "text": "A year on Mars lasts 669.6 sols, the same as 687 Earth days.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/mars/facts/",
+  "check": "669.6 sols"
+ },
+ {
+  "id": "mars-sunlight",
+  "text": "Sunlight needs about 13 minutes to reach Mars.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/mars/facts/",
+  "check": "13 minutes"
+ },
+ {
+  "id": "jupiter-1000",
+  "text": "If Jupiter were a hollow shell, 1,000 Earths could fit inside it.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/jupiter/facts/",
+  "check": "1,000 Earths"
+ },
+ {
+  "id": "jupiter-day",
+  "text": "Jupiter has the shortest day in the solar system, about 9.9 hours.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/jupiter/facts/",
+  "check": "9.9 hours"
+ },
+ {
+  "id": "jupiter-year",
+  "text": "One year on Jupiter is about 12 Earth years.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/jupiter/facts/",
+  "check": "4,333 Earth days"
+ },
+ {
+  "id": "saturn-day",
+  "text": "A day on Saturn lasts only 10.7 hours.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/saturn/facts/",
+  "check": "10.7 hours"
+ },
+ {
+  "id": "saturn-rings-thin",
+  "text": "Saturn's main rings span up to 175,000 miles but are typically only about 30 feet thick.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/saturn/facts/",
+  "check": "30 feet"
+ },
+ {
+  "id": "saturn-year",
+  "text": "Saturn takes about 29.4 Earth years to orbit the Sun once.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/saturn/facts/",
+  "check": "29.4 Earth years"
+ },
+ {
+  "id": "saturn-cassini-gap",
+  "text": "The Cassini Division, a gap 2,920 miles wide, separates Saturn's A and B rings.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/saturn/facts/",
+  "check": "2,920 miles"
+ },
+ {
+  "id": "uranus-sideways",
+  "text": "Uranus spins nearly sideways, at about a 90-degree angle to its orbit.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/uranus/facts/",
+  "check": "90-degree angle"
+ },
+ {
+  "id": "uranus-discovery",
+  "text": "William Herschel found Uranus in 1781 and first thought it was a comet or a star.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/uranus/facts/",
+  "check": "1781"
+ },
+ {
+  "id": "uranus-year",
+  "text": "One year on Uranus is about 84 Earth years.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/uranus/facts/",
+  "check": "84 Earth years"
+ },
+ {
+  "id": "neptune-orbit",
+  "text": "Neptune finished its first orbit since its discovery in 2011, after 165 years.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/neptune/facts/",
+  "check": "165-year orbit"
+ },
+ {
+  "id": "neptune-math",
+  "text": "Neptune was the first planet found by mathematical prediction, not by looking.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/neptune/facts/",
+  "check": "mathematical predictions"
+ },
+ {
+  "id": "neptune-sunlight",
+  "text": "Sunlight takes about 4 hours to reach Neptune, and Earth's daylight is about 900 times brighter.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/neptune/facts/",
+  "check": "900 times as bright"
+ },
+ {
+  "id": "moon-rocks",
+  "text": "Apollo astronauts brought back 842 pounds of lunar rocks and soil.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/moon/facts/",
+  "check": "842 pounds"
+ },
+ {
+  "id": "moon-spacecraft",
+  "text": "More than 105 robotic spacecraft have been launched to explore the Moon.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/moon/facts/",
+  "check": "105 robotic spacecraft"
+ },
+ {
+  "id": "moon-far-side",
+  "text": "Humans first saw the far side of the Moon in 1959, from a Soviet spacecraft.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/moon/facts/",
+  "check": "1959"
+ },
+ {
+  "id": "moon-distance",
+  "text": "The Moon is on average 238,855 miles from Earth.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/moon/facts/",
+  "check": "238,855 miles"
+ },
+ {
+  "id": "moon-orbit-time",
+  "text": "The Moon takes about 27.3 days to orbit Earth.",
+  "topic": "space",
+  "source": "https://spaceplace.nasa.gov/moon-phases/en/",
+  "check": "27.3 days"
+ },
+ {
+  "id": "moon-phase-cycle",
+  "text": "New moon to new moon takes about 29.5 days.",
+  "topic": "space",
+  "source": "https://spaceplace.nasa.gov/moon-phases/en/",
+  "check": "29.5 days"
+ },
+ {
+  "id": "sun-100-wide",
+  "text": "The Sun is about 100 times wider than Earth.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/sun/facts/",
+  "check": "100 times wider than Earth"
+ },
+ {
+  "id": "sun-core",
+  "text": "The Sun's core is about 27 million F, hot enough for nuclear fusion.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/sun/facts/",
+  "check": "27 million"
+ },
+ {
+  "id": "sun-spin",
+  "text": "The Sun spins once in 25 Earth days at its equator but 36 days at its poles.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/sun/facts/",
+  "check": "36 Earth days"
+ },
+ {
+  "id": "sun-age",
+  "text": "The Sun formed about 4.6 billion years ago from a disk of gas and dust.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/sun/facts/",
+  "check": "4.6 billion years ago"
+ },
+ {
+  "id": "iss-orbit",
+  "text": "The International Space Station circles Earth about every 90 minutes.",
+  "topic": "earth",
+  "source": "https://www.nasa.gov/international-space-station/space-station-facts-and-figures/",
+  "check": "about every 90 minutes"
+ },
+ {
+  "id": "iss-sunrises",
+  "text": "The space station makes 16 orbits a day, so its crew sees 16 sunrises and sunsets.",
+  "topic": "earth",
+  "source": "https://www.nasa.gov/international-space-station/space-station-facts-and-figures/",
+  "check": "16 sunrises and sunsets"
+ },
+ {
+  "id": "iss-occupied",
+  "text": "People have lived aboard the space station continuously since November 2000.",
+  "topic": "space",
+  "source": "https://www.nasa.gov/international-space-station/space-station-facts-and-figures/",
+  "check": "continuously occupied since November 2000"
+ },
+ {
+  "id": "iss-wingspan",
+  "text": "The station's solar array wingspan, 356 feet, beats an Airbus A380's 262 feet.",
+  "topic": "space",
+  "source": "https://www.nasa.gov/international-space-station/space-station-facts-and-figures/",
+  "check": "356 feet"
+ },
+ {
+  "id": "gps-count",
+  "text": "GPS is a system of more than 30 navigation satellites circling Earth.",
+  "topic": "earth",
+  "source": "https://spaceplace.nasa.gov/gps/en/",
+  "check": "30+ navigation satellites"
+ },
+ {
+  "id": "first-earth-photo",
+  "text": "The first satellite picture of Earth was taken by Explorer 6 on August 14, 1959.",
+  "topic": "earth",
+  "source": "https://spaceplace.nasa.gov/satellite/en/",
+  "check": "August 14, 1959"
+ },
+ {
+  "id": "tiros-tv",
+  "text": "TIROS-1 sent the first TV picture of Earth from space in 1960.",
+  "topic": "earth",
+  "source": "https://spaceplace.nasa.gov/satellite/en/",
+  "check": "1960"
+ },
+ {
+  "id": "aqua-launch",
+  "text": "NASA's Aqua satellite launched May 4, 2002 with six Earth-observing instruments.",
+  "topic": "earth",
+  "source": "https://science.nasa.gov/mission/aqua/",
+  "check": "May 4, 2002"
+ },
+ {
+  "id": "cloudsat-life",
+  "text": "CloudSat was planned for 22 months of cloud radar but worked for over 17 years.",
+  "topic": "earth",
+  "source": "https://science.nasa.gov/mission/cloudsat/",
+  "check": "more than 17 years"
+ },
+ {
+  "id": "cloudsat-radar",
+  "text": "CloudSat carried a 94-GHz radar to see the vertical structure of clouds from space.",
+  "topic": "earth",
+  "source": "https://science.nasa.gov/mission/cloudsat/",
+  "check": "94-GHz"
+ },
+ {
+  "id": "landsat-1972",
+  "text": "Landsat satellites have imaged Earth's land since 1972.",
+  "topic": "earth",
+  "source": "https://science.nasa.gov/mission/landsat/",
+  "check": "since 1972"
+ },
+ {
+  "id": "landsat-value",
+  "text": "Landsat's free data added an estimated $25.6 billion to the US economy in 2023.",
+  "topic": "earth",
+  "source": "https://science.nasa.gov/mission/landsat/",
+  "check": "$25.6 billion"
+ },
+ {
+  "id": "landsat-cities",
+  "text": "Landsat's archive shows how cities grew, coasts shifted, and forests changed since the 1970s.",
+  "topic": "earth",
+  "source": "https://science.nasa.gov/mission/landsat/",
+  "check": "how cities have grown"
+ },
+ {
+  "id": "cloud-reflect",
+  "text": "About 30 percent of incoming sunlight is reflected back to space.",
+  "topic": "earth",
+  "source": "https://earthobservatory.nasa.gov/features/Clouds",
+  "check": "30 percent"
+ },
+ {
+  "id": "cumulonimbus",
+  "text": "A cumulonimbus cloud can have a top reaching about 10 km (33,000 feet) or more.",
+  "topic": "earth",
+  "source": "https://earthobservatory.nasa.gov/features/Clouds",
+  "check": "33,000 feet"
+ },
+ {
+  "id": "fire-detect",
+  "text": "Satellites only detect about 25 percent of fires burning worldwide, but those are the largest ones.",
+  "topic": "earth",
+  "source": "https://earthobservatory.nasa.gov/features/Fire",
+  "check": "25 percent of the fires"
+ },
+ {
+  "id": "fire-smoke",
+  "text": "In 1998, smoke from fires in southern Mexico cut visibility to 2 km in parts of Texas.",
+  "topic": "earth",
+  "source": "https://earthobservatory.nasa.gov/features/Fire",
+  "check": "2 km"
+ },
+ {
+  "id": "aerosol-natural",
+  "text": "About 90 percent of aerosols, by mass, come from natural sources.",
+  "topic": "earth",
+  "source": "https://earthobservatory.nasa.gov/features/Aerosols",
+  "check": "90 percent by mass"
+ },
+ {
+  "id": "aerosol-dust",
+  "text": "Dust from North Africa can spread across the Atlantic Ocean, as seen in satellite imagery.",
+  "topic": "earth",
+  "source": "https://earthobservatory.nasa.gov/features/Aerosols",
+  "check": "Dust from North Africa"
+ },
+ {
+  "id": "greenhouse-warmth",
+  "text": "Without the greenhouse effect, Earth's average surface would be about 0 F, not 59 F.",
+  "topic": "earth",
+  "source": "https://earthobservatory.nasa.gov/features/GlobalWarming",
+  "check": "59"
+ },
+ {
+  "id": "global-reflect",
+  "text": "Roughly 30 percent of sunlight is reflected into space by clouds and ice.",
+  "topic": "earth",
+  "source": "https://earthobservatory.nasa.gov/features/GlobalWarming",
+  "check": "roughly 30 percent of incoming sunlight"
+ },
+ {
+  "id": "co2-rise",
+  "text": "Carbon dioxide levels rose nearly 38 percent between about 1750 and 2009.",
+  "topic": "earth",
+  "source": "https://earthobservatory.nasa.gov/features/GlobalWarming",
+  "check": "nearly 38 percent"
+ },
+ {
+  "id": "ozone-shield",
+  "text": "Most ozone sits in the stratosphere, 10 to 40 km up, shielding us from ultraviolet rays.",
+  "topic": "earth",
+  "source": "https://earthobservatory.nasa.gov/features/Ozone",
+  "check": "between 10 and 40 km"
+ },
+ {
+  "id": "ozone-atoms",
+  "text": "An ozone molecule is made of three oxygen atoms.",
+  "topic": "earth",
+  "source": "https://earthobservatory.nasa.gov/features/Ozone",
+  "check": "three atoms of oxygen"
+ },
+ {
+  "id": "plankton-pump",
+  "text": "The ocean's biological carbon pump moves about 10 gigatonnes of carbon to the deep sea yearly.",
+  "topic": "earth",
+  "source": "https://earthobservatory.nasa.gov/features/Phytoplankton",
+  "check": "10 gigatonnes"
+ },
+ {
+  "id": "sea-level-20c",
+  "text": "Global sea level rose between 10 and 25 cm during the 20th century.",
+  "topic": "earth",
+  "source": "https://earthobservatory.nasa.gov/features/SeaLevel",
+  "check": "between 10 and 25 cm"
+ },
+ {
+  "id": "coastal-pop",
+  "text": "Coastal populations were about 23 percent of the world's people in 1990.",
+  "topic": "earth",
+  "source": "https://earthobservatory.nasa.gov/features/SeaLevel",
+  "check": "23 percent"
+ },
+ {
+  "id": "pinatubo-cool",
+  "text": "Volcanic sulfate aerosols from Pinatubo in 1991 warmed the tropical stratosphere by 4 kelvin.",
+  "topic": "earth",
+  "source": "https://earthobservatory.nasa.gov/features/Volcano",
+  "check": "4 kelvin"
+ },
+ {
+  "id": "water-ocean",
+  "text": "About 96.5 percent of Earth's water is in the global oceans.",
+  "topic": "earth",
+  "source": "https://earthobservatory.nasa.gov/features/Water",
+  "check": "96.5%"
+ },
+ {
+  "id": "water-vapor",
+  "text": "Only a thousandth of one percent of Earth's water is water vapor in the air.",
+  "topic": "earth",
+  "source": "https://earthobservatory.nasa.gov/features/Water",
+  "check": "thousandth of 1%"
+ },
+ {
+  "id": "water-total",
+  "text": "Earth holds about 1.39 billion cubic kilometers of water.",
+  "topic": "earth",
+  "source": "https://earthobservatory.nasa.gov/features/Water",
+  "check": "1.39 billion cubic kilometers"
+ },
+ {
+  "id": "evaporation",
+  "text": "Evaporation from oceans and lakes supplies nearly 90 percent of the moisture in our air.",
+  "topic": "earth",
+  "source": "https://earthobservatory.nasa.gov/features/Water",
+  "check": "nearly 90%"
+ },
+ {
+  "id": "ice-age-cycles",
+  "text": "In the last 800,000 years there have been eight cycles of ice ages and warm periods.",
+  "topic": "earth",
+  "source": "https://science.nasa.gov/climate-change/evidence/",
+  "check": "eight cycles"
+ },
+ {
+  "id": "ice-age-end",
+  "text": "The last ice age ended about 11,700 years ago.",
+  "topic": "earth",
+  "source": "https://science.nasa.gov/climate-change/evidence/",
+  "check": "11,700 years ago"
+ },
+ {
+  "id": "co2-heat-1800s",
+  "text": "Scientists showed the heat-trapping nature of carbon dioxide in the mid-19th century.",
+  "topic": "earth",
+  "source": "https://science.nasa.gov/climate-change/evidence/",
+  "check": "mid-19th century"
+ },
+ {
+  "id": "titan-size",
+  "text": "Titan is nearly 50 percent wider than Earth's Moon.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/saturn/moons/titan/facts/",
+  "check": "nearly 50 percent wider"
+ },
+ {
+  "id": "titan-found",
+  "text": "Christiaan Huygens discovered Saturn's moon Titan on March 25, 1655.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/saturn/moons/titan/facts/",
+  "check": "March 25, 1655"
+ },
+ {
+  "id": "pluto-reclass",
+  "text": "Pluto was reclassified as a dwarf planet in 2006.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/dwarf-planets/pluto/facts/",
+  "check": "reclassified as a dwarf planet in 2006"
+ },
+ {
+  "id": "pluto-distance",
+  "text": "Pluto is about 3.6 billion miles from the Sun.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/dwarf-planets/pluto/facts/",
+  "check": "3.6 billion miles"
+ },
+ {
+  "id": "ceres-found",
+  "text": "Giuseppe Piazzi spotted Ceres, the first asteroid belt object found, in 1801.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/dwarf-planets/ceres/facts/",
+  "check": "Giuseppe Piazzi spotted it in 1801"
+ },
+ {
+  "id": "ceres-dawn",
+  "text": "When Dawn arrived in 2015, Ceres became the first dwarf planet visited by a spacecraft.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/dwarf-planets/ceres/facts/",
+  "check": "first dwarf planet to receive a visit"
+ },
+ {
+  "id": "comet-age",
+  "text": "Comets are leftovers from the birth of the solar system about 4.6 billion years ago.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/solar-system/comets/facts/",
+  "check": "4.6 billion years ago"
+ },
+ {
+  "id": "asteroid-vesta",
+  "text": "Vesta, the largest asteroid, is about 329 miles across.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/solar-system/asteroids/facts/",
+  "check": "329 miles"
+ },
+ {
+  "id": "asteroid-moons",
+  "text": "More than 150 asteroids are known to have small companion moons.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/solar-system/asteroids/facts/",
+  "check": "More than 150 asteroids"
+ },
+ {
+  "id": "bh-nearest",
+  "text": "The nearest known black hole, Gaia BH1, is about 1,500 light-years away.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/universe/black-holes/",
+  "check": "1,500 light-years"
+ },
+ {
+  "id": "bh-biggest",
+  "text": "The most massive black hole observed, TON 618, weighs 66 billion times the Sun.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/universe/black-holes/",
+  "check": "66 billion times"
+ },
+ {
+  "id": "bh-milkyway",
+  "text": "Stars orbiting near the Milky Way's center proved it holds a supermassive black hole.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/universe/black-holes/",
+  "check": "supermassive black hole"
+ },
+ {
+  "id": "hubble-launch",
+  "text": "Hubble was launched on April 24, 1990.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/mission/hubble/",
+  "check": "Apr 24, 1990"
+ },
+ {
+  "id": "webb-l2",
+  "text": "Webb orbits the Sun 1.5 million kilometers from Earth, at a point called L2.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/mission/webb/",
+  "check": "1.5 million kilometers"
+ },
+ {
+  "id": "webb-sunshield",
+  "text": "Webb has a 5-layer sunshield to block infrared from the Sun, Earth, and Moon.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/mission/webb/",
+  "check": "5-layer sunshield"
+ },
+ {
+  "id": "webb-back",
+  "text": "Webb can see back over 13.5 billion years to the first galaxies after the Big Bang.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/mission/webb/",
+  "check": "13.5 billion years"
+ },
+ {
+  "id": "hubble-altitude",
+  "text": "Hubble orbits 560 kilometers above Earth.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/mission/webb/",
+  "check": "560 kilometers above the Earth"
+ },
+ {
+  "id": "parker-close",
+  "text": "Parker Solar Probe will come within about 3.9 million miles of the Sun.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/mission/parker-solar-probe/",
+  "check": "3.9 million miles"
+ },
+ {
+  "id": "parker-orbits",
+  "text": "Parker Solar Probe was planned to make 24 orbits of the Sun over seven years.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/mission/parker-solar-probe/",
+  "check": "24 orbits"
+ },
+ {
+  "id": "juno-first-orbit",
+  "text": "Juno's first orbit of Jupiter stretched across 53 days.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/mission/juno/",
+  "check": "53 days"
+ },
+ {
+  "id": "cassini-years",
+  "text": "Saturn was Cassini's home for 13 years.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/mission/cassini/",
+  "check": "13 years"
+ },
+ {
+  "id": "newhorizons-arrokoth",
+  "text": "New Horizons reached the Kuiper belt object Arrokoth in 2019.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/mission/new-horizons/",
+  "check": "Arrokoth in 2019"
+ },
+ {
+  "id": "newhorizons-pluto",
+  "text": "New Horizons was the first spacecraft to explore Pluto up close, on July 14, 2015.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/mission/new-horizons/",
+  "check": "July 14, 2015"
+ },
+ {
+  "id": "perseverance-odo",
+  "text": "Perseverance passed Opportunity's Mars driving record of 28.06 miles.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/mission/mars-2020-perseverance/",
+  "check": "28.06 miles"
+ },
+ {
+  "id": "perseverance-launch",
+  "text": "Perseverance launched on July 30, 2020 to look for signs of ancient microbial life on Mars.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/mission/mars-2020-perseverance/",
+  "check": "July 30, 2020"
+ },
+ {
+  "id": "curiosity-1km",
+  "text": "Curiosity climbed 1 kilometer in elevation up Mount Sharp, starting from Gale Crater.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/mission/msl-curiosity/",
+  "check": "elevation gain of 1 kilometer"
+ },
+ {
+  "id": "ingenuity-72",
+  "text": "Ingenuity was meant for five test flights but completed 72 flights over nearly three years.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/mission/mars-2020-perseverance/ingenuity-mars-helicopter/",
+  "check": "72 flights"
+ },
+ {
+  "id": "ingenuity-first",
+  "text": "On April 19, 2021 Ingenuity flew the first powered, controlled flight on Mars.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/mission/mars-2020-perseverance/ingenuity-mars-helicopter/",
+  "check": "April 19, 2021"
+ },
+ {
+  "id": "kepler-launch",
+  "text": "The Kepler space telescope launched on March 6, 2009.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/mission/kepler/",
+  "check": "March 6, 2009"
+ },
+ {
+  "id": "kepler-mirror",
+  "text": "Kepler's telescope had a 1-meter aperture and the largest digital camera sent to space then.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/mission/kepler/",
+  "check": "3-foot (1-meter)"
+ },
+ {
+  "id": "tess-count",
+  "text": "TESS has found nearly 6,000 confirmed or candidate exoplanets as of September 2025.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/mission/tess/",
+  "check": "Nearly 6,000"
+ },
+ {
+  "id": "dart-dimorphos",
+  "text": "DART hit Dimorphos, a moonlet just 530 feet across, on September 26, 2022.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/mission/dart/",
+  "check": "530 feet"
+ },
+ {
+  "id": "dart-didymos",
+  "text": "Dimorphos orbits a larger asteroid called Didymos, which is 2,560 feet across.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/mission/dart/",
+  "check": "2,560-foot"
+ },
+ {
+  "id": "osiris-sample",
+  "text": "OSIRIS-REx collected rocks and dust from asteroid Bennu on October 20, 2020.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/mission/osiris-rex/",
+  "check": "October 20, 2020"
+ },
+ {
+  "id": "europa-clipper-trip",
+  "text": "Europa Clipper is traveling 1.8 billion miles to reach Jupiter in April 2030.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/mission/europa-clipper/",
+  "check": "1.8 billion miles"
+ },
+ {
+  "id": "apollo-11-launch",
+  "text": "Apollo 11 launched on July 16, 1969, carrying Armstrong, Aldrin, and Collins.",
+  "topic": "space",
+  "source": "https://www.nasa.gov/mission/apollo-11/",
+  "check": "July 16, 1969"
+ },
+ {
+  "id": "oort-distance",
+  "text": "The Oort Cloud lies between 5,000 and 100,000 astronomical units from the Sun.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/solar-system/oort-cloud/facts/",
+  "check": "between 5,000 and 100,000 astronomical units"
+ },
+ {
+  "id": "voyager-oort",
+  "text": "At a million miles a day, Voyager 1 will not reach the Oort Cloud for about 300 years.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/solar-system/oort-cloud/facts/",
+  "check": "about 300 years"
+ },
+ {
+  "id": "perseids",
+  "text": "The Perseid meteors are pieces of comet Swift-Tuttle, which swings by the Sun every 135 years.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/solar-system/meteors-meteorites/facts/",
+  "check": "every 135 years"
+ },
+ {
+  "id": "galaxy-orbit",
+  "text": "Our solar system takes about 230 million years to orbit the center of the galaxy.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/solar-system/solar-system-facts/",
+  "check": "230 million years"
+ },
+ {
+  "id": "galaxy-speed",
+  "text": "The solar system moves around the galaxy at about 515,000 mph.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/solar-system/solar-system-facts/",
+  "check": "515,000 mph"
+ },
+ {
+  "id": "voyager-1-interstellar",
+  "text": "Voyager 1 crossed into interstellar space in August 2012.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/mission/voyager/voyager-1/",
+  "check": "August 2012"
+ },
+ {
+  "id": "voyager-2-giants",
+  "text": "Voyager 2 is the only spacecraft to visit Uranus and Neptune.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/mission/voyager/voyager-2/",
+  "check": "only spacecraft to visit Uranus and Neptune"
+ },
+ {
+  "id": "sunspot-cycle",
+  "text": "Sunspot numbers rise and fall in a natural 11-year cycle.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/sun/sunspots/",
+  "check": "11-year cycle"
+ },
+ {
+  "id": "sunspot-size",
+  "text": "Sunspots typically stretch 1,000 to 100,000 miles across.",
+  "topic": "space",
+  "source": "https://science.nasa.gov/sun/sunspots/",
+  "check": "1,000 to 100,000 miles"
+ },
+ {
+  "id": "tide-cycle",
+  "text": "One high tide to the next takes a little over 12 hours.",
+  "topic": "earth",
+  "source": "https://science.nasa.gov/moon/tides/",
+  "check": "a little over 12 hours"
+ }
+]

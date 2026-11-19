@@ -1,0 +1,38 @@
+# Spiral OS welcome messages
+# One message per line, shown in order, one per start-up (position is saved).
+# Keep each under about 40 characters so it fits two lines of the 250x122 screen.
+# Lines starting with # and blank lines are ignored.
+Welcome back, maker.
+Every spiral starts at the center.
+Slow and steady. Let's think.
+A key to ingenuity awaits.
+What will you invent today?
+One idea at a time.
+The snail is awake.
+Turn the key. Open a new thought.
+Create. Invent. Repeat.
+Small steps, big ideas.
+Hello, visionary.
+Wind up your imagination.
+Curiosity loaded.
+Ready when you are.
+Let's open a new door.
+Your ideas missed you.
+Think slow. Think deep.
+Spark something today.
+Unlock a new thought.
+Craft something curious.
+Good to see you again.
+Ideas grow in spirals.
+Wonder is the first step.
+Make it, then make it better.
+Fresh mind, fresh start.
+Every key opens a door.
+Patience builds great things.
+Doers welcome.
+Today is a blank page.
+Follow the spiral inward.
+Dream it. Build it.
+Keep turning, keep learning.
+The shell is home. Ideas roam.
+Begin anywhere.

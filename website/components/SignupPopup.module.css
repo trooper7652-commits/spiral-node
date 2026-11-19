@@ -1,0 +1,19 @@
+.dialog { width: min(480px, calc(100vw - 32px)); padding: 0; border: 4px solid var(--ink); background: var(--paper); color: var(--ink); box-shadow: 8px 8px 0 var(--ink); }
+.dialog::backdrop { background: rgb(29 26 22 / 0.5); }
+/* phones: a small non-modal card at the bottom; the page stays usable */
+@media (max-width: 639px) {
+  .dialog[open] { position: fixed; inset: auto 8px 8px 8px; z-index: 50; width: auto; max-width: none; margin: 0; box-shadow: 0 -4px 0 var(--ink); }
+}
+.inner { position: relative; padding: var(--s3); }
+.title { margin: 0 var(--s4) var(--s1) 0; font-size: 24px; }
+.close { position: absolute; top: 4px; right: 4px; min-width: 44px; min-height: 44px; border: 0; background: none; color: var(--ink); font-size: 32px; line-height: 1; cursor: pointer; }
+.row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s1) var(--s2); }
+.body { transition: opacity 100ms linear; }
+.body[data-phase="fade"] { opacity: 0; }
+/* the pixel dissolve: blocks of paper cover the text in 12 steps, then uncover the new text */
+.cells { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(12, 1fr); grid-template-rows: repeat(4, 1fr); pointer-events: none; }
+.cells span { background: var(--paper); opacity: 0; }
+.cells[data-phase="out"] span { animation: cover 50ms steps(1, end) var(--d) both; }
+.cells[data-phase="in"] span { animation: cover 50ms steps(1, end) var(--d) reverse both; }
+@keyframes cover { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .cells { display: none; } }

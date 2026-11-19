@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+# Vercel CLI link and pulled env files (env files can hold tokens)
+.vercel/
+.env*

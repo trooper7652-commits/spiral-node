@@ -1,0 +1,1 @@
+Facts are written in our own words from NASA web pages, and each one links the page it came from. Questions are original. Rebuild or verify the facts with `python tools/packs/check_sources.py os/spiral/builtin_scripts/space_facts/facts.json`.

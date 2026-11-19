@@ -1,0 +1,272 @@
+/* Colourway tokens (DESIGN.md palette): body, shade, highlight. */
+.sim {
+  --cw-body: #6f7d2c;
+  --cw-deep: #424c19;
+  --cw-hi: #b5c25a;
+}
+.sim :global([data-colourway="brown"]) { --cw-body: #7a5230; --cw-deep: #3e2a1a; --cw-hi: #a8794c; }
+.sim :global([data-colourway="black"]) { --cw-body: #1d1a16; --cw-deep: #0c0b09; --cw-hi: #3a342c; }
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sim { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s3); }
+
+/* The workbench the device sits on. */
+.stage {
+  display: flex;
+  justify-content: center;
+  padding: var(--s5) var(--s2);
+  background:
+    repeating-linear-gradient(0deg, transparent 0 7px, rgba(62, 42, 26, 0.06) 7px 8px),
+    var(--cloud);
+  box-shadow: 0 -4px 0 0 var(--ink), 0 4px 0 0 var(--ink), -4px 0 0 0 var(--ink), 4px 0 0 0 var(--ink);
+  min-height: 120px;
+}
+.stageInner { width: 100%; display: flex; justify-content: center; }
+.stage.phone { padding: var(--s3) var(--s2); }
+
+/* ---------- desktop: full body art ---------- */
+.body {
+  position: relative;
+  width: calc(var(--dw) * var(--k));
+  height: calc(var(--dh) * var(--k));
+  background: var(--cw) 0 0 / 100% 100% no-repeat;
+  image-rendering: pixelated;
+  filter: drop-shadow(calc(3 * var(--k)) calc(3 * var(--k)) 0 rgba(29, 26, 22, 0.35));
+}
+.screenBody {
+  position: absolute;
+  left: calc(var(--sx) * var(--k));
+  top: calc(var(--sy) * var(--k));
+  width: calc(250 * var(--k));
+  height: calc(122 * var(--k));
+}
+
+/* ---------- embedded (hero): the page already shows the art; only the live parts are laid over it ---------- */
+.embedded { position: absolute; left: 0; top: 0; background: none; filter: none; outline-offset: 4px; }
+.embedded .wheelBody .wedge, .embedded .wheelBody .centre { background: transparent; }
+.embedded .wheelBody .wedge[data-pressed], .embedded .wheelBody .centre[data-pressed] { background: rgba(29, 26, 22, 0.35); filter: none; }
+
+/* ---------- phone: screen over wheel ---------- */
+.split {
+  display: grid;
+  justify-items: center;
+  gap: var(--s4);
+  width: 100%;
+}
+.screenSplit {
+  position: relative;
+  padding: 12px;
+  background: var(--ink);
+  box-shadow: 0 0 0 4px var(--cw-body), 6px 6px 0 4px rgba(29, 26, 22, 0.35);
+}
+
+.screenInner { position: relative; line-height: 0; background: var(--paper); }
+/* Very subtle paper grain, pure CSS. Sits over the canvas without touching its pixels. */
+.screenInner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(0deg, rgba(90, 60, 20, 0.035) 0 1px, transparent 1px 3px),
+    radial-gradient(120% 100% at 30% 20%, transparent 55%, rgba(90, 60, 20, 0.05));
+}
+.screenInner img { width: 100%; height: auto; display: block; }
+
+/* ---------- wheel (shared) ---------- */
+.wheelFace {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.wheelFace button, .centre {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.wedge { position: absolute; inset: 0; background: transparent; }
+.centre { position: absolute; border-radius: 50%; left: 50%; top: 50%; transform: translate(-50%, -50%); background: transparent; }
+.ring { position: absolute; inset: -6px; width: calc(100% + 12px); height: calc(100% + 12px); pointer-events: none; transform: rotate(-90deg); overflow: visible; }
+.ring circle {
+  fill: none;
+  stroke: var(--copper);
+  stroke-width: 3;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+.centre[data-pressed] .ring circle { stroke-dashoffset: 0; transition: stroke-dashoffset 600ms linear; }
+@media (prefers-reduced-motion: reduce) {
+  .centre[data-pressed] .ring circle { transition: stroke-dashoffset 600ms linear !important; } /* progress, not decoration */
+}
+.wedge:focus-visible, .centre:focus-visible { outline-offset: -4px; }
+/* clip-path hides most of an outline, so the focused wedge is also tinted from inside */
+.wedge:focus-visible { outline: 3px solid var(--copper); box-shadow: inset 0 0 0 999px rgba(255, 255, 255, 0.35); }
+
+/* desktop: each button repaints its own piece of the body art, so pressing shifts the art 1 art px down */
+.wheelBody {
+  position: absolute;
+  left: calc(var(--wx) * var(--k));
+  top: calc(var(--wy) * var(--k));
+  width: calc(var(--wd) * var(--k));
+  height: calc(var(--wd) * var(--k));
+}
+.wheelBody .wedge {
+  background: var(--cw) calc(var(--wx) * -1 * var(--k)) calc(var(--wy) * -1 * var(--k)) / calc(var(--dw) * var(--k)) calc(var(--dh) * var(--k)) no-repeat;
+  image-rendering: pixelated;
+  background-color: transparent;
+}
+.wheelBody .wedge[data-pressed] {
+  background-position: calc(var(--wx) * -1 * var(--k)) calc((var(--wy) * -1 + 1) * var(--k));
+  filter: brightness(0.78);
+}
+.wheelBody .centre {
+  --cs: max(calc(var(--wcr) * 2 * var(--k)), 32px);
+  width: var(--cs);
+  height: var(--cs);
+  background: var(--cw) calc(var(--cs) / 2 - var(--wcx) * var(--k)) calc(var(--cs) / 2 - var(--wcy) * var(--k)) / calc(var(--dw) * var(--k)) calc(var(--dh) * var(--k)) no-repeat;
+  image-rendering: pixelated;
+}
+.wheelBody .centre[data-pressed] {
+  background-position: calc(var(--cs) / 2 - var(--wcx) * var(--k)) calc(var(--cs) / 2 - (var(--wcy) - 1) * var(--k));
+  filter: brightness(0.78);
+}
+
+/* phone: a CSS-drawn wheel in the colourway colours */
+.wheelSplit {
+  position: relative;
+  width: min(100%, 264px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, transparent 0 56%, var(--cw-deep) 56% 57.5%, var(--cw-body) 57.5% 78%, var(--cw-deep) 78% 79.5%, var(--cw-body) 79.5% 100%);
+  box-shadow: 0 0 0 4px var(--cw-deep), 6px 6px 0 4px rgba(29, 26, 22, 0.35);
+}
+.wheelSplit .wedge[data-pressed] { background: rgba(0, 0, 0, 0.3); transform: translateY(2px); }
+.wheelSplit .centre {
+  width: 38%;
+  height: 38%;
+  background: radial-gradient(circle, var(--cw-deep) 0 6%, var(--cw-hi) 6% 20%, var(--cw-deep) 20% 26%, var(--cw-hi) 26% 40%, var(--cw-deep) 40% 46%, var(--cw-hi) 46% 100%);
+  box-shadow: 0 0 0 4px var(--cw-deep);
+}
+.wheelSplit .centre[data-pressed] { filter: brightness(0.78); transform: translate(-50%, calc(-50% + 2px)); }
+
+/* ---------- e-ink panels on the screen ---------- */
+.panel {
+  box-sizing: border-box;
+  width: var(--screen-w);
+  height: calc(var(--screen-w) * 122 / 250);
+  padding: calc(6 * var(--k)) calc(8 * var(--k));
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-display), monospace;
+  font-size: calc(10 * var(--k));
+  line-height: calc(12 * var(--k));
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.panelTitle { margin: 0 0 calc(3 * var(--k)); max-width: none; font-weight: 700; border-bottom: max(1px, var(--k)) solid var(--ink); }
+.stages { list-style: none; margin: 0; padding: 0; flex: 1; }
+.stages li[data-state="todo"] { opacity: 0.7; } /* 0.45 failed AA (2.7:1); the - marker carries the state too */
+.stages li[data-state="now"] { font-weight: 700; }
+.stages span { display: inline-block; width: calc(8 * var(--k)); }
+.bar { display: flex; gap: var(--k); height: calc(8 * var(--k)); margin-top: calc(4 * var(--k)); }
+.bar i { flex: 1; border: max(1px, calc(var(--k) / 2)) solid var(--ink); }
+.bar i[data-on] { background: var(--ink); }
+.errorText { flex: 1; margin: 0; max-width: none; overflow: hidden; }
+.retry {
+  align-self: flex-start;
+  min-height: 44px;
+  padding: 0 var(--s2);
+  border: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ---------- controls ---------- */
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s3); justify-content: center; }
+.power { min-width: 200px; font-size: 24px; min-height: 56px; }
+.picker { display: flex; flex-wrap: wrap; gap: var(--s2); border: 0; margin: 0; padding: 0; align-items: center; }
+.picker legend { float: left; margin-right: var(--s2); font-family: var(--font-display), monospace; }
+.picker label { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; cursor: pointer; position: relative; }
+.picker input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.swatch { width: 24px; height: 24px; background: var(--cw-body); box-shadow: 0 0 0 3px var(--cw-deep); }
+.picker input:checked ~ .swatch { box-shadow: 0 0 0 3px var(--paper), 0 0 0 6px var(--ink); }
+.picker input:focus-visible ~ .swatch { outline: 3px solid var(--ink); outline-offset: 7px; }
+
+/* Back and Home: real buttons. Desktop: laid over the drawn keys (rects from public/art/device.json). Phone: a row. */
+.pagerOverlay { position: absolute; inset: 0; pointer-events: none; }
+.pagerOverlay .pagerKey { position: absolute; left: calc(var(--kx) * var(--k)); top: calc(var(--ky) * var(--k)); width: calc(var(--kw) * var(--k)); height: calc(var(--kh) * var(--k)); font-size: 0; }
+.pagerRow { display: flex; gap: var(--s3); justify-content: center; }
+.pagerRow .pagerKey { min-width: 88px; min-height: 48px; }
+.pagerKey {
+  appearance: none; pointer-events: auto; cursor: pointer; touch-action: manipulation; user-select: none;
+  -webkit-user-select: none; -webkit-tap-highlight-color: transparent;
+  font-family: var(--font-display), monospace; font-size: 14px; font-weight: 700; color: var(--ink);
+  background: rgba(255, 255, 255, 0.18); border: 3px solid var(--ink); border-radius: 0; padding: 0;
+}
+.pagerOverlay .pagerKey { border: 0; background: transparent; }
+.pagerOverlay .pagerKey[data-pressed] { background: rgba(29, 26, 22, 0.35); }
+.pagerOverlay .pagerKey:focus-visible { outline-offset: 0; }
+.pagerKey[data-pressed] { background: rgba(29, 26, 22, 0.35); }
+.pagerKey:focus-visible { outline: 3px solid var(--copper); outline-offset: 3px; }
+.backKey, .homeKey { z-index: 2; }
+
+.keys { margin: 0 auto; text-align: center; font-size: 16px; color: var(--brown-deep); }
+.hint { margin: 0; color: var(--brown); font-size: 16px; }
+.folds { display: grid; gap: var(--s4); grid-template-columns: 1fr; padding: 0 4px 8px; }
+@media (min-width: 1024px) { .folds { grid-template-columns: 1fr 1fr; align-items: start; } }
+.fold { padding: var(--s2) var(--s3); margin-right: 8px; }
+.fold summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; font-family: var(--font-display), monospace; font-size: 20px; font-weight: 700; }
+.fold p { margin: 0 0 var(--s1); }
+.tools { display: grid; gap: var(--s2); justify-items: start; padding-bottom: var(--s1); }
+.check { display: inline-flex; align-items: center; gap: var(--s1); min-height: 44px; cursor: pointer; }
+.check input { width: 24px; height: 24px; accent-color: var(--olive-deep); }
+.plain, .danger {
+  min-height: 44px;
+  padding: 0 var(--s3);
+  border: 3px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-display), monospace;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.danger { background: var(--apple); }
+.plain:disabled { opacity: 0.5; cursor: not-allowed; }
+.inspector summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; }
+.inspector dl { display: grid; grid-template-columns: max-content 1fr; gap: 4px var(--s2); margin: 0; }
+.inspector dt { font-weight: 700; }
+.inspector dd { margin: 0; }
+.dialog { border: 4px solid var(--ink); background: var(--paper); color: var(--ink); padding: var(--s3); max-width: min(420px, 92vw); }
+.dialog::backdrop { background: rgba(26, 29, 69, 0.6); }
+.dialog p { margin: 0 0 var(--s3); font-size: 20px; }
+.dialogRow { display: flex; gap: var(--s2); justify-content: flex-end; }
+
+/* ---------- static still (before the island loads) ---------- */
+.still { display: flex; justify-content: center; padding: var(--s5) var(--s2); background: var(--cloud); box-shadow: 0 -4px 0 0 var(--ink), 0 4px 0 0 var(--ink), -4px 0 0 0 var(--ink), 4px 0 0 0 var(--ink); }
+.stillInner { position: relative; width: min(100%, 480px); }
+.stillInner > img:first-child { display: block; width: 100%; height: auto; }
+.stillScreen { position: absolute; left: calc(75 / 400 * 100%); top: calc(28 / 264 * 100%); width: calc(250 / 400 * 100%); height: auto; }

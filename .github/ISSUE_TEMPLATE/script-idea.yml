@@ -1,0 +1,27 @@
+name: Script idea
+description: Suggest a script for Spiral Node, or claim one to write.
+title: "Script idea: "
+labels: ["script"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the idea! A script is a small Python loop that shows something to think about. See `scripts/TEMPLATE` and CONTRIBUTING.md.
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would it show?
+      description: One or two sentences, plus an example page (the screen is 250x122 pixels, so keep pages short).
+    validations:
+      required: true
+  - type: textarea
+    id: library
+    attributes:
+      label: Where would the content come from?
+      description: Facts need a source (for example a Wikipedia link). Stories must be your own or in the public domain.
+  - type: checkboxes
+    id: write
+    attributes:
+      label: Would you like to write it?
+      options:
+        - label: Yes, I'd like to write this script.

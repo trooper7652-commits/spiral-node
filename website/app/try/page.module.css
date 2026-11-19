@@ -1,0 +1,8 @@
+.page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--s5) var(--s2) var(--s8);
+}
+@media (max-width: 599px) {
+  .page h1 { font-size: 32px; }
+}

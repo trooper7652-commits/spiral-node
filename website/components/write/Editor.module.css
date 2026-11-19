@@ -1,0 +1,17 @@
+.editor { display: grid; gap: var(--s2); margin-top: var(--s3); }
+.text {
+  width: 100%;
+  min-height: 24rem;
+  padding: var(--s2);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  tab-size: 4;
+  color: var(--ink);
+  background: var(--cloud);
+  border: 3px solid var(--ink);
+  resize: vertical;
+}
+.actions { display: flex; flex-wrap: wrap; gap: var(--s2); align-items: center; }
+.error { margin: 0; padding: var(--s2); white-space: pre-wrap; border: 3px solid var(--ink); font-family: ui-monospace, monospace; font-size: 14px; }
+.sim { margin-top: var(--s4); }

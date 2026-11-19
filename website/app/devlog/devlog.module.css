@@ -1,0 +1,8 @@
+.list { list-style: none; margin: var(--s4) 0 0; padding: 0; display: grid; gap: var(--s4); }
+.item { padding-bottom: var(--s3); border-bottom: 2px solid var(--ink); }
+.title { margin: 0 0 var(--s1); font-size: 28px; }
+.date { margin: 0 0 var(--s1); font-size: 16px; }
+.post { max-width: 65ch; }
+.post h2 { margin-top: var(--s5); }
+.post ul { padding-left: var(--s3); }
+.post li { margin-bottom: var(--s1); }
