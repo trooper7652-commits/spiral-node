@@ -3,7 +3,7 @@
 # Spiral Node
 **Spiral Node: a pocket e-ink device that hands you ideas and leaves the thinking to you. Offline. Open source.**
 
-[Try it in your browser →](https://spiral-node.vercel.app/try)
+[Try it in your browser →](https://spiral-node-helix-velocities.vercel.app/try)
 
 ## What it is
 
