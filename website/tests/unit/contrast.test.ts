@@ -25,4 +25,11 @@ describe("colour contrast (WCAG AA 4.5:1)", () => {
   it("ink text on copper", () => expect(ratio(token("ink"), token("copper"))).toBeGreaterThanOrEqual(4.5));
   it("paper text on copper-deep", () => expect(ratio(token("paper"), token("copper-deep"))).toBeGreaterThanOrEqual(4.5));
   it("olive-deep links on paper", () => expect(ratio(token("olive-deep"), token("paper"))).toBeGreaterThanOrEqual(4.5));
+  it("ink text on paper", () => expect(ratio(token("ink"), token("paper"))).toBeGreaterThanOrEqual(4.5));
+  it("dark olive text on paper", () => expect(ratio(token("olive-deep"), token("paper"))).toBeGreaterThanOrEqual(4.5));
+  it("paper text on ink", () => expect(ratio(token("paper"), token("ink"))).toBeGreaterThanOrEqual(4.5));
+  it("the six interface tokens have the agreed values", () => {
+    expect([token("ink"), token("paper"), token("olive"), token("olive-deep"), token("orange"), token("gold")].map((c) => c.toLowerCase()))
+      .toEqual(["#1c1a14", "#f1e7cc", "#6f7d3c", "#47522a", "#f0762e", "#e9a820"]);
+  });
 });

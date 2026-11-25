@@ -1,6 +1,6 @@
 export type Feature = { id: string; title: string; line: string; detail: string };
 
-/** The home page's feature grid. Each id has a 16x16 icon at /art/icon-<id>.png, drawn by art/make_art.py. */
+/** The features: the home page's scene 3 medallions and the product page's benefit cards. */
 export const FEATURES: Feature[] = [
   {
     id: "offline",

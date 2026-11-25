@@ -9,7 +9,7 @@ export const metadata: Metadata = og("press", "Press | Spiral Node", "The Spiral
 
 export default function PressPage() {
   return (
-    <Page title="Press">
+    <Page band="countryside" title="Press">
       <h2>The story</h2>
       <p>
         Spiral Node is a pocket e-ink device that hands you ideas and leaves the thinking to you. Every 15, 30 or 60 seconds it shows

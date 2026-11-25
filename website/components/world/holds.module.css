@@ -1,0 +1,83 @@
+/* While the world runs, each hold is one paper panel (components/Panel) docked on the quiet side of the art; the rest of its section stays in the page, out of sight. */
+.holds[data-live] [data-hold] {
+  position: fixed;
+  top: 96px; /* TOP in Holds.tsx */
+  width: clamp(300px, 42vw, 560px);
+  opacity: 0;
+  pointer-events: none;
+  transition: none; /* opacity is driven per frame */
+  transform: translateY(calc(var(--push, 0) * -1px)); /* clear of the footer coming up */
+  z-index: 1;
+}
+.holds[data-live] [data-hold][data-dock="left"] { left: 48px; }
+.holds[data-live] [data-hold][data-dock="right"] { right: 48px; }
+.holds[data-live] [data-hold][data-dock="centre"] { left: 0; right: 0; margin-inline: auto; }
+/* a tall screen: every panel is a bottom sheet above the trail bar's strip (SHEET_BOTTOM in Holds.tsx) */
+@media (orientation: portrait) {
+  .holds[data-live] [data-hold][data-dock] { top: auto; bottom: calc(72px + env(safe-area-inset-bottom, 0px)); left: 16px; right: 16px; width: auto; margin: 0; }
+}
+/* a short landscape screen (SHORT_TOP in Holds.tsx): the trail is a bar along the bottom, so the panel goes up to the top edge, wider, and clears the bar */
+@media (max-height: 500px) and (orientation: landscape) {
+  .holds[data-live] [data-hold] { top: 8px; width: min(72vw, 620px); }
+  .holds[data-live] [data-hold][data-dock="left"] { left: 64px; } /* clear of the header's collapsed spiral button (44 px at 8 px) */
+  .holds[data-live] [data-hold][data-dock="right"] { right: 16px; }
+  .holds[data-live] [data-panel] { --edge-pad: 4px 4px 8px; --panel-pad: 4px 14px 8px; --bar-pad: 2px; --bar-gap: 4px; }
+  .holds[data-live] h1, .holds[data-live] h2 { font-size: 24px; margin-bottom: 4px; }
+  .holds [data-panel] :global(.btn) { min-height: 36px; }
+}
+/* what does not fit the panel stays in the page for screen readers and keyboards; its box keeps the panel's width so what lays itself out by width still does */
+.holds[data-live] [data-rest] { position: absolute; top: 0; left: 0; width: 100%; height: 1px; overflow: hidden; clip-path: inset(50%); pointer-events: none; }
+/* a keyboard that lands in it brings it up as a paper overlay on the panel (like a skip link), with the gold focus ring on what has focus */
+.holds[data-live] [data-rest]:focus-within {
+  height: auto;
+  max-height: calc(100vh - 96px - 72px);
+  overflow: auto;
+  clip-path: none;
+  pointer-events: auto;
+  z-index: 2;
+  box-sizing: border-box;
+  padding: 16px;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: inset 0 0 0 2px var(--ink), 6px 6px 0 rgba(28, 26, 20, 0.6);
+}
+/* a tall screen: the overlay grows up from the bottom of the sheet, clear of the header above and the trail strip below, so what has focus is on screen */
+@media (orientation: portrait) {
+  .holds[data-live] [data-rest]:focus-within { top: auto; bottom: 0; max-height: calc(100dvh - 72px - 72px); }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .holds[data-live] [data-rest]:focus-within { max-height: calc(100dvh - 8px - 56px - 8px); }
+}
+/* focus inside a paper panel or the overlay: a 2 px gold ring with a 2 px ink ring outside it, so the pair stands out on paper and the gold stays */
+.holds [data-panel] :focus-visible,
+.holds [data-rest]:focus-within :focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 0;
+  box-shadow: 0 0 0 4px var(--ink);
+}
+.holds [data-panel] :global(.btn):focus-visible,
+.holds [data-rest]:focus-within :global(.btn):focus-visible {
+  box-shadow: inset 0 0 0 2px var(--ink), 4px 4px 0 rgba(28, 26, 20, 0.6), 0 0 0 4px var(--ink);
+}
+/* a panel is there at every moment: it does not pop in (a hold fades as a whole), so nothing is half drawn when it is read or measured */
+.holds [data-panel] > * { animation: none; }
+/* short screens (a phone, or any window under 500 px tall): tighter panel and bar, so every panel fits between the header and the bottom strip; the bar stays 20 px */
+@media (max-height: 700px) and (max-width: 600px), (max-height: 500px) {
+  .holds [data-panel] { --edge-pad: 6px 6px 10px; --panel-pad: 8px 14px 12px; --bar-pad: 3px; --bar-gap: 6px; }
+  .holds h1, .holds h2 { font-size: 26px; margin-bottom: 6px; }
+}
+
+.holds h1, .holds h2 { margin: 0 0 12px; font-family: var(--font-display), system-ui, sans-serif; font-size: clamp(28px, 3.2vw, 44px); line-height: 1.1; }
+.holds p { margin: 0; font-family: var(--font-body), system-ui, sans-serif; font-size: var(--text-s); line-height: 1.5; }
+.holds p + p { margin-top: var(--s1); }
+.holds a:not(:global(.btn)) { color: inherit; padding-block: 2px; } /* buttons keep their own colours; the padding makes a text link's target 24 px tall without moving the lines */
+
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+/* the word is whole by the middle of the hold; --hold-t unset (no JS) falls back to 1 */
+.letter { display: inline-block; clip-path: inset(0 calc((1 - clamp(0, var(--hold-t, 1) * 2 * var(--n) - var(--i), 1)) * 100%) 0 0); }
+
+/* overflow-x: before the box is measured, labels are placed for its default width and can pass its edge */
+.labels { position: relative; width: 100%; overflow-x: clip; font-family: var(--font-label), system-ui, sans-serif; }
+.labels svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.labelText { position: absolute; font-size: 20px; line-height: 24px; text-transform: uppercase; letter-spacing: 0.12em; white-space: nowrap; }
+.labelText button { padding: 0; border: 0; background: none; color: inherit; font: inherit; letter-spacing: inherit; text-transform: inherit; line-height: inherit; cursor: pointer; }

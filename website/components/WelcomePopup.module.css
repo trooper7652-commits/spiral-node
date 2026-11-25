@@ -1,0 +1,103 @@
+.dialog {
+  width: min(520px, calc(100vw - 32px));
+  padding: 0;
+  border: 0;
+  background: none;
+  max-height: calc(100dvh - 16px);
+  overflow-x: hidden;
+  overflow-y: auto; /* taller than a small phone: scrolls inside itself */
+}
+
+.dialog::backdrop {
+  background: rgb(29 26 22 / 0.5);
+}
+
+/* center it */
+.dialog[open] {
+  display: block;
+}
+
+.inner {
+  /* space for the Panel shadow */
+  padding: 0 8px 12px 0;
+}
+
+@media (max-width: 360px) {
+  .dialog {
+    width: calc(100vw - 16px);
+    margin: 8px;
+  }
+}
+
+.title {
+  margin: 0 0 var(--s2);
+  font-size: 32px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  font-family: var(--font-label), monospace;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--olive-deep);
+}
+
+.input, .select {
+  background: var(--paper);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  font-family: inherit;
+  font-size: 20px;
+  padding: var(--s1) var(--s2);
+  border-radius: 0;
+}
+
+.input:focus, .select:focus {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px var(--ink);
+}
+
+.note {
+  font-size: 20px;
+  color: var(--ink);
+  margin: var(--s1) 0;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+}
+
+.thanks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s1) var(--s2);
+}
+
+.error {
+  color: var(--ink);
+  border-left: 6px solid var(--orange);
+  padding-left: var(--s1);
+  margin: 0;
+}

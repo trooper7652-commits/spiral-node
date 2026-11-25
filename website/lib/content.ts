@@ -3,7 +3,7 @@ export const FAQ: { q: string; a: string }[] = [
   { q: "How long does the battery last?", a: "We haven't measured it yet. All day is the goal, and we'll share real numbers once the prototype runs on its battery." },
   { q: "Is it private?", a: "Yes. Spiral Node is fully offline: no account, no cloud and no tracking. Nothing leaves the device." },
   { q: "Why no internet?", a: "So it never turns into another feed. Spiral Node hands you something to think about, then leaves the thinking to you." },
-  { q: "Why not just a phone app?", a: "Your phone is great at a hundred things, which is why it pulls you away. Spiral Node does one: it shows you something to think about. No notifications, no feed." },
+  { q: "Why not just a phone app?", a: "Phones are made for a hundred things. Spiral Node is made for one: it shows you something to think about. No notifications, no feed." },
   { q: "Isn't e-ink slow and black-and-white?", a: "On purpose. It changes every 15, 30 or 60 seconds, reads well in sunlight, is easy on the eyes, holds its picture without using power, and doesn't glow at night." },
   { q: "Why not a Kindle?", a: "A Kindle is wonderful for long reading you choose. Spiral Node hands you short ideas and questions you didn't know to look for." },
   { q: "How much does it cost?", a: "It isn't for sale yet. The hardware is a prototype in progress. Sign up for updates to hear when that changes." },

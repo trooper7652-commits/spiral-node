@@ -1,0 +1,41 @@
+{
+ "s3": [
+  "offline",
+  "eink",
+  "scripts",
+  "connect",
+  "norepeats",
+  "sourced",
+  "wheel",
+  "opensource"
+ ],
+ "s4": [
+  "screen",
+  "wheel",
+  "keys",
+  "body",
+  "port"
+ ],
+ "s6": [
+  "r1",
+  "r2",
+  "r3",
+  "r4",
+  "r5",
+  "r6"
+ ],
+ "s7": [
+  "q1",
+  "q2",
+  "q3",
+  "q4",
+  "q5",
+  "q6",
+  "q7",
+  "q8",
+  "q9",
+  "q10",
+  "q11",
+  "q12"
+ ]
+}

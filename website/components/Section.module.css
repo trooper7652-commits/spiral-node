@@ -1,4 +1,4 @@
-.section { padding: var(--section-pad) var(--s2); background: var(--paper); }
-.cloud { background: var(--cloud); }
+.section { padding: var(--section-pad) var(--s2); background: var(--parchment); }
+.cloud { background: var(--parchment); } /* kept so tone="cloud" still resolves; the panel on top carries the page */
 .inner { max-width: var(--max-width); margin: 0 auto; }
-.inner h2 .badge { font-size: 16px; margin-left: var(--s1); }
+.inner h2 .badge { font-size: 20px; margin-left: var(--s1); }

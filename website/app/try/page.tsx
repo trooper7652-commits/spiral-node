@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import SimulatorLoader from "@/components/sim/SimulatorLoader";
+import PageBand from "@/components/PageBand";
+import Panel from "@/components/Panel";
 import { og } from "@/lib/meta";
 import styles from "./page.module.css";
 
@@ -8,9 +10,15 @@ export const metadata: Metadata = og("try", "Try Spiral Node | Spiral Node", "Th
 export default function TryPage() {
   return (
     <div className={styles.page}>
-      <h1>Try Spiral Node</h1>
-      <p>This is the real Spiral OS, running in your browser. It saves to this browser only.</p>
-      <SimulatorLoader />
+      <PageBand scene="device" />
+      <div className={styles.innerPage} data-shell="">
+        <Panel label="Simulator">
+          <h1>Try Spiral Node</h1>
+          <p>This is the real Spiral OS, running in your browser. It saves to this browser only.</p>
+          <SimulatorLoader />
+          <p>Want one? <a href="/spiral-node#get-updates-h">Join the launch list</a>.</p>
+        </Panel>
+      </div>
     </div>
   );
 }

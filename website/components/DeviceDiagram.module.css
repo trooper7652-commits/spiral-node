@@ -1,11 +1,11 @@
 .root { margin: 0; container-type: inline-size; }
 
-/* ---------- narrow (default): images side by side, numbered markers on them, numbered list below ---------- */
+/* ---------- narrow (default): the top face above the front, numbered markers on them, numbered list below ---------- */
 .stage { display: grid; gap: var(--s3); max-width: 460px; margin: 0 auto; }
-.front, .side { position: relative; min-width: 0; }
-.front { grid-area: 1 / 1; width: 79%; justify-self: end; }
-.side { grid-area: 1 / 1; width: 16.6%; justify-self: start; }
-.front img, .side img { display: block; width: 100%; height: auto; }
+.front, .top { position: relative; min-width: 0; }
+.top { grid-area: 1 / 1; margin-top: 16px; } /* room above it for the numbered markers */
+.front { grid-area: 2 / 1; }
+.front img, .top img { display: block; width: 100%; height: auto; }
 .front .still { position: absolute; height: auto; }
 .badge {
   position: absolute;
@@ -18,11 +18,11 @@
   border-radius: 50%;
   background: var(--paper);
   color: var(--ink);
-  font: 700 14px/1 var(--font-display), monospace;
+  font: 400 20px/1 var(--font-display), system-ui, sans-serif;
 }
 .lines { display: none; }
-.labels { grid-area: 2 / 1; list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s1); counter-reset: callout; }
-.labels li { counter-increment: callout; display: flex; align-items: center; gap: var(--s1); min-height: 32px; color: var(--ink); font-size: 18px; }
+.labels { grid-area: 3 / 1; list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s1); counter-reset: callout; }
+.labels li { counter-increment: callout; display: flex; align-items: center; gap: var(--s1); min-height: 32px; color: var(--ink); font-size: var(--text); line-height: var(--leading); }
 .labels li::before {
   content: counter(callout);
   flex: none;
@@ -33,21 +33,20 @@
   border: 2px solid var(--ink);
   border-radius: 50%;
   background: var(--paper);
-  font: 700 14px/1 var(--font-display), monospace;
+  font: 400 20px/1 var(--font-display), system-ui, sans-serif;
 }
-.caption { margin-top: var(--s2); text-align: center; color: var(--brown-deep); font-size: 16px; }
+.caption { margin-top: var(--s2); text-align: center; color: var(--ink); font-size: var(--text); line-height: var(--leading); }
 
 /* ---------- wide: leader lines and labels around the two images ---------- */
-@container (min-width: 960px) {
-  .stage { display: block; position: relative; width: 940px; max-width: none; height: 360px; }
-  .front { position: absolute; left: 330px; top: 28px; width: 400px; }
-  .side { position: absolute; left: 190px; top: 28px; width: 84px; }
+@container (min-width: 680px) {
+  .stage { display: block; position: relative; width: 620px; max-width: none; height: 480px; margin: 0 auto; }
+  .front { position: absolute; left: 8px; top: 152px; width: 400px; margin: 0; }
+  .top { position: absolute; left: 8px; top: 56px; width: 400px; margin: 0; }
   .badge, .labels li::before { display: none; }
-  .lines { display: block; position: absolute; inset: 0; width: 940px; height: 360px; overflow: visible; }
+  .lines { display: block; position: absolute; inset: 0; width: 620px; height: 480px; overflow: visible; }
   .labels { position: absolute; inset: 0; display: block; }
   .labels li { position: absolute; top: var(--ly); transform: translateY(-50%); min-height: 0; }
-  .labels .left { left: 0; width: 176px; text-align: right; }
-  .labels .right { left: 744px; width: 196px; }
+  .labels .right { left: 422px; width: 196px; }
   .labels .below { top: var(--ly); left: var(--lx); transform: translate(-50%, -50%); text-align: center; }
 }
 .line { fill: none; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 0; }

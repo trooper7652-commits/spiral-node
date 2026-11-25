@@ -1,4 +1,5 @@
 import random
+import shutil
 from datetime import datetime
 from pathlib import Path
 
@@ -26,6 +27,9 @@ class FakeClock:
 
 
 def make_app(tmp_path, clock=None, display=None, welcome_file=WELCOME):
+    dest = Path(tmp_path) / "scripts" / "sample_facts"
+    if not dest.exists():
+        shutil.copytree(HERE / "fixtures" / "scripts" / "sample_facts", dest)
     clock = clock or FakeClock()
     display = display or MemoryDisplay()
     app = App(display, clock, lambda: WALL, tmp_path, BUILTIN, welcome_file,
@@ -92,6 +96,7 @@ def test_right_opens_left_backs_in_menu(tmp_path):
     app, clock, _ = make_app(tmp_path)
     boot_to_home(app, clock)
     open_menu(app)
+    app.handle(Action.DOWN)  # Find
     app.handle(Action.DOWN)  # Chat
     app.handle(Action.RIGHT)
     assert app.screen_name == "chat"
@@ -106,6 +111,7 @@ def test_chat_placeholder(tmp_path):
     boot_to_home(app, clock)
     open_menu(app)
     app.handle(Action.DOWN)
+    app.handle(Action.DOWN)
     app.handle(Action.SELECT)
     assert app.screen_name == "chat"
     assert "Chat is coming in a later version." in app.screen_text()
@@ -113,7 +119,7 @@ def test_chat_placeholder(tmp_path):
 
 def goto_power_off(app):
     open_menu(app)
-    for _ in range(4):
+    for _ in range(5):
         app.handle(Action.DOWN)
     app.handle(Action.SELECT)
     assert app.screen_name == "power_off"
@@ -161,7 +167,7 @@ def test_full_refresh_every_10th(tmp_path):
 
 # ---- Task 9: scripts, prefs, Home timer, history, exhaustion, resume ----
 
-FUN, STORY = "Fun Fact + Question", "Quick Story"  # found by name, so new packs never shift them
+FUN, STORY = "Sample Facts", "Quick Story"  # found by name, so new packs never shift them; Sample Facts is a 5-fact test fixture
 
 
 def open_prefs(app, index):
@@ -230,11 +236,11 @@ def test_ok_starts_script_and_saves_active(tmp_path):
     app.handle(Action.LEFT)  # 15 s
     app.handle(Action.DOWN)
     app.handle(Action.SELECT)
-    assert app.screen_name == "home" and app.active_script_id == "fun_fact_question"
+    assert app.screen_name == "home" and app.active_script_id == "sample_facts"
     assert app.screen_text().startswith("Fun fact\n")
     app.store.flush()
     saved = read_json(tmp_path / "active.json", {})
-    assert saved["script_id"] == "fun_fact_question"
+    assert saved["script_id"] == "sample_facts"
     assert saved["prefs"] == {"interval": 15}
     assert len(saved["history"]) == 1 and saved["paused"] is False
 
@@ -355,13 +361,13 @@ def test_resume_after_reboot_shows_last_page_no_new_entry(tmp_path):
     app.handle(Action.RIGHT)
     text = app.screen_text()
     app.power_off()
-    shown = read_json(tmp_path / "shown" / "fun_fact_question" / "facts.json", {})["ids"]
+    shown = read_json(tmp_path / "shown" / "sample_facts" / "facts.json", {})["ids"]
     app2, clock2, _ = make_app(tmp_path)
     boot_to_home(app2, clock2)
-    assert app2.active_script_id == "fun_fact_question"
+    assert app2.active_script_id == "sample_facts"
     assert app2.screen_text() == text and len(app2.history) == 2
     app2.power_off()
-    assert read_json(tmp_path / "shown" / "fun_fact_question" / "facts.json", {})["ids"] == shown
+    assert read_json(tmp_path / "shown" / "sample_facts" / "facts.json", {})["ids"] == shown
 
 
 def test_missing_active_script_falls_back_to_welcome(tmp_path):
@@ -380,7 +386,7 @@ def test_script_exception_shows_error_page(tmp_path):
     user_script(tmp_path, "broken", "raise ValueError('bad import')\n")
     app, clock, _ = make_app(tmp_path)
     boot_to_home(app, clock)
-    start_script(app, 0)  # "Boom" sorts first
+    start_script(app, "Boom")
     assert app.screen_text().startswith("Script error\n")
     assert "Boom: kaput" in app.screen_text()
     assert "Boom: kaput" in (tmp_path / "logs" / "spiral.log").read_text()
@@ -392,7 +398,8 @@ def test_script_exception_shows_error_page(tmp_path):
     # a script that failed to import
     open_menu(app)
     app.handle(Action.SELECT)
-    app.handle(Action.DOWN)  # "broken (error)"
+    for _ in range([i.name for i in app.stack[-1].infos].index("broken (error)")):
+        app.handle(Action.DOWN)
     app.handle(Action.SELECT)
     assert app.screen_name == "home" and "broken (error)" in app.screen_text()
     assert "bad import" in app.screen_text()
@@ -405,7 +412,7 @@ def test_bad_library_shows_error_page(tmp_path):
                 "def create(ctx):\n    ctx.library('bad.json')\n    return R()\n", {"bad.json": dup})
     app, clock, _ = make_app(tmp_path)
     boot_to_home(app, clock)
-    start_script(app, 0)
+    start_script(app, "Boom")
     assert app.screen_text().startswith("Script error\n")
     assert "bad.json" in app.screen_text() and "duplicate id" in app.screen_text()
     assert app.active_script_id is None
@@ -415,7 +422,7 @@ def test_bad_library_shows_error_page(tmp_path):
 
 def open_settings(app, index):
     open_menu(app)
-    for _ in range(3):
+    for _ in range(4):
         app.handle(Action.DOWN)
     app.handle(Action.SELECT)
     assert app.screen_name == "settings"
@@ -467,8 +474,8 @@ def test_reset_history_clears_only_chosen_library(tmp_path):
     start_script(app)
     open_settings(app, 1)
     assert app.screen_name == "reset_history"
-    assert app.screen_text().startswith("Reset history: Fun Fact + Question / facts.json, "
-                                        "Fun Fact + Question / questions.json")
+    assert app.screen_text().startswith("Reset history: Sample Facts / facts.json, "
+                                        "Sample Facts / questions.json")
     app.handle(Action.SELECT)
     assert app.screen_name == "reset_confirm"
     assert "Reset? Shown entries can appear again." in app.screen_text()
@@ -478,7 +485,7 @@ def test_reset_history_clears_only_chosen_library(tmp_path):
     app.handle(Action.RIGHT)
     app.handle(Action.SELECT)
     assert app.screen_name == "settings"
-    base = "shown/fun_fact_question/"
+    base = "shown/sample_facts/"
     assert app.store.get(base + "facts", {"ids": []})["ids"] == []
     assert len(app.store.get(base + "questions", {"ids": []})["ids"]) == 1
 
@@ -486,7 +493,7 @@ def test_reset_history_clears_only_chosen_library(tmp_path):
 def test_about_shows_version_battery_storage(tmp_path):
     app, clock, _ = make_app(tmp_path)
     boot_to_home(app, clock)
-    open_settings(app, 2)
+    open_settings(app, 3)
     assert app.screen_name == "about"
     lines = app.screen_text().splitlines()
     assert lines[0] == "Spiral OS 0.1.0"
@@ -551,7 +558,7 @@ def test_bad_page_from_script_shows_error_page(tmp_path):
                     "def create(ctx):\n    return R()\n")
         app, clock, _ = make_app(d)
         boot_to_home(app, clock)
-        start_script(app, 0)
+        start_script(app, "Boom")
         assert app.screen_text().startswith("Script error\n"), ret
         assert app.active_script_id is None
 
@@ -570,7 +577,7 @@ def test_bad_picture_shows_script_error(tmp_path):
         user_script(d, "boom", PIC_SCRIPT.replace("PIC", repr(pic)))
         app, clock, _ = make_app(d)
         boot_to_home(app, clock)
-        start_script(app, 0)
+        start_script(app, "Boom")
         assert app.screen_text().startswith("Script error\n"), pic
         assert app.active_script_id is None
 
@@ -579,7 +586,7 @@ def test_history_keeps_picture(tmp_path):
     user_script(tmp_path, "boom", PIC_SCRIPT.replace("PIC", "('#.', '.#')"))
     app, clock, _ = make_app(tmp_path)
     boot_to_home(app, clock)
-    start_script(app, 0)
+    start_script(app, "Boom")
     app.handle(Action.RIGHT)
     assert app.history[0]["picture"] == ["#.", ".#"]
     app.handle(Action.LEFT)
@@ -598,7 +605,7 @@ def test_today_uses_clock_offset(tmp_path):
     app, clock, _ = make_app(tmp_path)
     boot_to_home(app, clock)
     app.store.set("settings", {"clock_offset_s": 86400 * 3})
-    start_script(app, 0)
+    start_script(app, "Boom")
     assert app.history[-1]["body"] == date(2026, 11, 14).isoformat()
 
 
@@ -607,7 +614,7 @@ def test_title_newlines_collapsed(tmp_path):
                 "def create(ctx):\n    return R()\n")
     app, clock, _ = make_app(tmp_path)
     boot_to_home(app, clock)
-    start_script(app, 0)
+    start_script(app, "Boom")
     assert app.history[-1]["title"] == "a b c"
 
 
@@ -622,7 +629,7 @@ def test_system_exit_in_script_is_an_error_not_a_crash(tmp_path):
         user_script(d, "boom", HEAD + body)
         app, clock, _ = make_app(d)
         boot_to_home(app, clock)
-        start_script(app, 0)
+        start_script(app, "Boom")
         assert app.screen_text().startswith("Script error\n")
     # at import time, and when resuming
     d = tmp_path / "imp"

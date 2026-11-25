@@ -7,8 +7,8 @@ import pytest
 import spiral
 from spiral.library import LibraryExhausted
 from spiral.loader import discover
-from spiral.render import picture_max_h
-from spiral.scripts_api import ScriptContext, check_picture
+from spiral.render import page_fits, picture_max_h
+from spiral.scripts_api import Page, ScriptContext, check_picture
 from spiral.storage import Store
 from pathlib import Path
 
@@ -34,44 +34,63 @@ def test_fen_to_picture_is_88_square():
     assert mod.fen_to_picture(start, False, "e4") != mod.fen_to_picture(start, False)
 
 
-def test_puzzle_page_then_one_move_per_refresh(tmp_path):
-    mod, script, store = make(tmp_path)
+def test_step_through_reaches_solution(tmp_path):
+    mod, script, _ = make(tmp_path)
     first = script.next()
-    puzzle = BY_ID[script.ctx.state()["puzzle"]]
-    assert first.title == "Chess Puzzles"
-    assert first.body == f"{puzzle['side']} to move\n{puzzle['goal']}\nRating {puzzle['rating']}"
+    assert first.choices == ("Show",)
+    puzzle = BY_ID[first.key.split("|")[0]]
     flip = puzzle["side"] == "Black"
-    assert first.picture == mod.fen_to_picture(puzzle["fen"], flip)
-    for i, step in enumerate(puzzle["steps"]):
-        page = script.next()
-        assert page.body.split("\n")[0].endswith(step["san"])
+    pages = [script.choose(first.key, 0)]
+    while pages[-1].choices == ("Next",):
+        pages.append(script.choose(pages[-1].key, 0))
+    assert len(pages) == len(puzzle["steps"])
+    for page, step in zip(pages, puzzle["steps"]):
+        assert page.body.startswith(("You: " if step["by"] == "you" else "Reply: ") + step["san"])
         assert page.picture == mod.fen_to_picture(step["fen"], flip, step["from"])
-        white_moved = (step["by"] == "you") == (puzzle["side"] == "White")
-        assert page.body.split()[0].endswith("." if white_moved else "…")
+    last = pages[-1]
+    assert not last.choices and "Solved." in last.body
+    pos = 0
+    for step in puzzle["steps"]:
+        pos = last.body.index(step["san"], pos) + 1
 
 
-def test_last_step_says_solved_then_new_puzzle(tmp_path):
-    _, script, store = make(tmp_path)
-    script.next()
-    first_id = script.ctx.state()["puzzle"]
-    steps = BY_ID[first_id]["steps"]
-    pages = [script.next() for _ in steps]
-    assert all("Solved." not in p.body for p in pages[:-1])
-    assert pages[-1].body.endswith("\nSolved.")
-    nxt = script.next()
-    assert "to move" in nxt.body and script.ctx.state()["puzzle"] != first_id
+def test_chess_timer_does_not_step(tmp_path):
+    from test_app_flow import boot_to_home, make_app
+    app, clock, _ = make_app(tmp_path)
+    boot_to_home(app, clock)
+    app.start_script("chess_puzzles", {"interval": 30})
+    for _ in range(3):
+        clock.advance(30)
+        app.tick()
+    assert len(app.history) == 1 and app.waiting
 
 
-def test_puzzle_position_survives_restart(tmp_path):
-    _, script, store = make(tmp_path)
-    script.next()
-    second = script.next()
-    store.flush()
-    _, script2, _ = make(tmp_path)
-    third = script2.next()
-    puzzle = BY_ID[script2.ctx.state()["puzzle"]]
-    assert second.body.split("\n")[0].endswith(puzzle["steps"][0]["san"])
-    assert third.body.split("\n")[0].endswith(puzzle["steps"][1]["san"]) or len(puzzle["steps"]) == 1
+def test_key_survives_new_runner(tmp_path):
+    p = next(p for p in PUZZLES if len(p["steps"]) >= 3)
+    _, script, _ = make(tmp_path)
+    p1 = script.choose(f"{p['id']}|0", 0)
+    assert p1.choices == ("Next",) and p1.key == f"{p['id']}|1"
+    _, script2, _ = make(tmp_path)  # a fresh runner, as after a reboot
+    step = p["steps"][1]
+    who = "You" if step["by"] == "you" else "Reply"
+    assert script2.choose(p1.key, 0).body == f"{who}: {step['san']}"
+
+
+def test_every_step_page_fits(tmp_path):
+    mod, script, _ = make(tmp_path)
+    for p in PUZZLES:
+        page = Page("Chess Puzzles", f"{p['side']} to move\n{p['goal']}\nRating {p['rating']}",
+                    mod.fen_to_picture(p["fen"], p["side"] == "Black"), choices=("Show",), key=f"{p['id']}|0")
+        assert page_fits(page), p["id"]
+        for n in range(len(p["steps"])):
+            assert page_fits(script.choose(f"{p['id']}|{n}", 0)), (p["id"], n)
+
+
+def test_bad_key_does_not_crash(tmp_path):
+    _, script, _ = make(tmp_path)
+    for key, index in (("nope", 0), ("lichess-05VUp|99", 0), ("lichess-05VUp|0", 3)):
+        page = script.choose(key, index)
+        assert page.title == "Chess Puzzles" and not page.choices
 
 
 def test_exhausted_after_all_puzzles(tmp_path):

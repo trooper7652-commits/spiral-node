@@ -5,31 +5,188 @@
   justify-content: space-between;
   gap: var(--s1) var(--s3);
   padding: var(--s1) var(--s2);
-  background: var(--olive-deep);
-  --focus: var(--olive-bright);
+  background: var(--ink);
+  box-shadow: inset 0 -2px 0 var(--olive);
   color: var(--paper);
 }
 .wordmark {
   font-family: var(--font-display), monospace;
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 32px;
+  font-weight: 400;
   color: var(--paper);
+  text-shadow: 2px 2px 0 var(--olive-deep);
   text-decoration: none;
 }
-.nav { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s1) var(--s3); }
+/* the wrapper adds no box: nav and button are flex items of the header */
+.menu { display: contents; }
+.toggle { display: none; }
+.nav { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: var(--s2) 22px; }
+@media (min-width: 760px) and (max-width: 1099.98px) {
+  .header .nav { gap: 14px 12px; }
+  .header .nav a:not(.cta) { font-size: 20px; padding: 1px 8px 3px; }
+}
 .nav a {
+  position: relative;
   display: inline-flex;
   align-items: center;
   min-height: 44px;
-  color: var(--paper);
+  padding: 1px 12px 3px;
+  background: var(--paper);
+  color: var(--ink);
+  text-decoration: none;
   font-family: var(--font-display), monospace;
-  font-size: 16px;
+  font-size: 22px;
+  box-shadow: 0 0 0 2px var(--ink), 0 0 0 5px var(--olive), 3px 3px 0 5px rgba(28, 26, 20, 0.5);
+  transition: transform 0.15s steps(3);
 }
-.nav a.cta {
+/* gold ring on ink on both sides: the ring sits at 7-9 px, ink fills 5-11 px */
+.nav a:focus-visible {
+  outline-offset: 7px;
+  box-shadow: 0 0 0 2px var(--ink), 0 0 0 5px var(--olive), 0 0 0 11px var(--ink);
+}
+.nav a:not(.cta)::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 6px;
+  height: 2px;
+  background: var(--orange);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s steps(5);
+}
+.nav a:not(.cta):hover { background: #fff8e0; transform: translateY(-3px); }
+.nav a:not(.cta):hover::after, .nav a:not(.cta):focus-visible::after { transform: scaleX(1); }
+.cta, .nav a.cta {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   padding: 0 var(--s2);
   background: var(--orange);
   color: var(--ink);
-  font-weight: 700;
+  font-family: var(--font-display), monospace;
+  font-size: 22px;
+  font-weight: 400;
   text-decoration: none;
-  box-shadow: var(--shadow-hard);
+  border-radius: 0;
+  box-shadow: inset 0 0 0 2px var(--ink), 3px 3px 0 rgba(28, 26, 20, 0.6);
+  animation: bob 2.6s ease-in-out 3; /* a few bobs after load, then still: a button that never rests is hard to click and to read */
+}
+/* the one dark control in the header: ink with gold, so it reads apart from the paper boxes and the orange demo button */
+.launch {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 var(--s2);
+  border: 0;
+  border-radius: 0;
+  background: var(--ink);
+  color: var(--gold);
+  font-family: var(--font-display), monospace;
+  font-size: 22px;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: inset 0 0 0 2px var(--gold), 3px 3px 0 rgba(28, 26, 20, 0.6);
+  transition: transform 0.15s steps(3);
+}
+.launch:hover { transform: translateY(-3px); box-shadow: inset 0 0 0 2px var(--gold), 3px 3px 0 rgba(28, 26, 20, 0.6), 0 0 0 2px var(--gold); }
+.launch:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.cta:focus-visible, .nav a.cta:focus-visible {
+  outline-offset: 2px;
+  box-shadow: inset 0 0 0 2px var(--ink), 3px 3px 0 rgba(28, 26, 20, 0.6), 0 0 0 6px var(--ink);
+}
+.cta::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -20px;
+  width: 10px;
+  z-index: -1;
+  background: rgba(255, 248, 224, 0.7);
+  transform: skewX(-20deg);
+}
+.cta:hover::before { animation: glint 0.45s steps(8) forwards; }
+@keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+@keyframes glint { to { left: calc(100% + 20px); } }
+/* preview cards: only with a real pointer at 760 px and up; the phone Menu shows the hook inline instead */
+.card { display: none; }
+.emblem { display: none; }
+.hook { font-family: var(--font-body), monospace; font-size: 20px; line-height: var(--leading); }
+@media (min-width: 760px) and (hover: hover) {
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s1);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 10;
+    width: 280px;
+    padding: var(--s1) var(--s2);
+    background: var(--paper);
+    color: var(--ink);
+    border: 0;
+    border-radius: 0;
+    box-shadow: inset 0 0 0 2px var(--ink), 0 0 0 5px var(--olive), 6px 6px 0 5px rgba(28, 26, 20, 0.6);
+    opacity: 0;
+    transform: translateY(-4px);
+    pointer-events: none;
+    transition: opacity 160ms ease-out, transform 160ms ease-out;
+  }
+  /* invisible bridge over the 10 px olive frame gap so the pointer never leaves the card's box */
+  .card::before { content: ""; position: absolute; left: 0; right: 0; top: -10px; height: 10px; }
+  .cardEnd { left: auto; right: 0; }
+  .emblem { display: grid; place-items: center; align-self: flex-start; width: 44px; height: 44px; border-radius: 0; border: 2px solid var(--olive); background: var(--paper); color: var(--ink); font-weight: 400; font-size: 26px; }
+  .hook { font-family: var(--font-display), monospace; font-size: 20px; line-height: 1.3; }
+  .nav a:hover .card, .nav a:focus-visible .card {
+    opacity: 1;
+    transform: none;
+    transition-delay: 120ms;
+    pointer-events: auto; /* hoverable: a bridge over the gap keeps hover on the card */
+  }
+  .nav a[data-dismissed="true"] .card { opacity: 0; transition-delay: 0s; pointer-events: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card, .nav a:hover .card, .nav a:focus-visible .card { transform: none; }
+  /* the global reduced-motion rule wipes transitions; keep the show delay so the card does not flash */
+  .nav a:hover .card, .nav a:focus-visible .card { transition: opacity 0s linear 120ms !important; }
+  /* a dismissed card hides at once, as without reduced motion */
+  .nav a[data-dismissed="true"] .card { transition: none !important; }
+}
+/* display: none also keeps the unused copy out of the tab order and the accessibility tree */
+.ctaTop { display: none; }
+
+@media (max-width: 759.98px) {
+  .header { flex-wrap: wrap; gap: var(--s1); }
+  .wordmark { font-size: 26px; margin-right: auto; order: 0; }
+  .ctaTop { display: inline-flex; order: 1; padding: 0 var(--s1); }
+  .nav a.cta { display: none; }
+  .launch { margin: 6px 5px; }
+  .label { text-decoration: underline; }
+  .nav a { flex-direction: column; align-items: flex-start; justify-content: center; padding: var(--s1) 12px; margin: 6px 5px; }
+  .card { display: block; }
+  .emblem { display: none; }
+  .toggle {
+    order: 2;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 var(--s1);
+    background: var(--paper);
+    color: var(--ink);
+    border: 0;
+    border-radius: 0;
+    box-shadow: 0 0 0 2px var(--ink), 0 0 0 5px var(--olive);
+    font-family: var(--font-display), monospace;
+    font-size: 22px;
+    cursor: pointer;
+  }
+  .toggle:focus-visible { outline-offset: 7px; box-shadow: 0 0 0 2px var(--ink), 0 0 0 5px var(--olive), 0 0 0 11px var(--ink); }
+  .nav { order: 3; flex: 0 0 100%; flex-direction: column; align-items: stretch; margin-left: 0; gap: 0; }
+  .menu[data-open="false"] .nav { display: none; }
 }

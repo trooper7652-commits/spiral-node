@@ -8,7 +8,7 @@ Source: the founder's layout for the pager (2026-11-17). The exact numbers live 
 - E-ink screen across the top, 250x122 exactly, at (75, 28), inside a paper page margin (28 px at the sides, 12 px above and below).
 - Bottom right: a subtle round spiral wheel (2-3 loops) with a thin copper ring, centred at (322, 212), radius 36. The select centre has radius 8.
 - Bottom left: a small copper spiral logo, then flat Back (84, 200) and Home (132, 200) keys, each 40x24, with an engraved left arrow and house.
-- Left side face (84x264, drawn face-on): the USB-C port, the charge light and the power button near the top. Nothing else.
+- Top face (400x84, drawn face-on from above): two USB-C ports side by side near the middle, the charge light just right of them, and the power button toward the right end. Its left edge is bare. (Planned; the prototype is still in progress.)
 - Prototype design, may change.
 
 ## Wheel mapping (5 wheel inputs, plus Back and Home keys)
@@ -25,9 +25,9 @@ Olive (default), brown and black, from the palette in `DESIGN.md`. The screen be
 ## Screen
 
 - Shows the real 250x122 1-bit frame, paper `#f4ecd8` for white and ink `#1d1a16` for black, with a very subtle paper texture (CSS, no image request).
-- Hero (on `/`): a static real frame from the OS (a fun fact and question page), rendered by the OS's own code at build time. "Try it right here" swaps in the live OS.
+- Product page (`/spiral-node`): a static real frame from the OS (a fun fact and question page) inside the ink drawing of the device, rendered by the OS's own code at build time.
 - `/try`: the live frame from the worker.
 
 ## Phone layout
 
-The pager is landscape, so phones show the same shape, scaled down to fit. Under 600 px the hero device is about 300 px wide, and "Try it right here" opens `/try` instead. This is a website layout, not a hardware claim.
+The pager is landscape, so phones show the same shape, scaled down to fit. This is a website layout, not a hardware claim.

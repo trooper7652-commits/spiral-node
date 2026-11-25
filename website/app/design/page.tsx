@@ -6,7 +6,7 @@ export const metadata = og("home", "Design explorations | Spiral Node", "Five co
 
 export default function DesignPage() {
   return (
-    <Page title="Design explorations">
+    <Page band="device" title="Design explorations">
       <p>Prototype design, may change. Which shape would you carry?</p>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img

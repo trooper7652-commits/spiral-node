@@ -13,6 +13,7 @@ from .scripts_api import Page
 ASSETS = Path(__file__).parent / "assets"
 PAD = 4
 ROW_H = 14
+PICKER_ROW_H = 20
 BTN_H = 16
 BODY_TOP = TOP_BAR_H + 1
 
@@ -177,13 +178,14 @@ def _inverted_text(d, x0, y0, x1, y1, text, font, invert, outline=False):
     d.text((x0 + (x1 - x0 + 1 - w) / 2, y0 + (y1 - y0 + 1 - h) / 2 - 1), text, font=font, fill=1 if invert else 0)
 
 
-def _buttons(d, labels, selected, y_bottom):
-    """Right-aligned button row; selected index is inverted."""
+def _buttons(d, labels, selected, y_bottom, outlined=None):
+    """Right-aligned button row; selected index is inverted, outlined (default all) get a box."""
     f = _font(12)
     x = SCREEN_W - PAD
     for i in range(len(labels) - 1, -1, -1):
         w = int(_w(f, labels[i])) + 12
-        _inverted_text(d, x - w, y_bottom - BTN_H + 1, x, y_bottom, labels[i], f, i == selected, outline=True)
+        _inverted_text(d, x - w, y_bottom - BTN_H + 1, x, y_bottom, labels[i], f, i == selected,
+                       outline=outlined is None or i in outlined)
         x -= w + 4
 
 
@@ -196,24 +198,55 @@ def picture_max_h() -> int:
     return SCREEN_H - _page_top() - 1
 
 
-def page_screen(page: Page, bar: TopBar):
+def _row_w(labels) -> int:
+    """Width of the button row as _buttons lays it out."""
+    return sum(int(_w(_font(12), c)) + 12 for c in labels) + 4 * max(0, len(labels) - 1)
+
+
+def _page_box(page: Page):
+    """(top, x, width, height, pic_h): body area and the tallest picture, shared by page_screen and page_fits."""
+    top = _page_top()
+    x, width = PAD, SCREEN_W - 2 * PAD
+    height = SCREEN_H - top - 1 - (BTN_H + 5 if page.choices else 0)
+    pic_h = height
+    if page.picture:
+        x = 2 * PAD + len(page.picture[0])
+        width = SCREEN_W - 3 * PAD - len(page.picture[0])
+        if SCREEN_W - PAD - _row_w(page.choices) > x:  # the button row stays right of the picture
+            pic_h = SCREEN_H - top - 1
+    return top, x, width, height, pic_h
+
+
+def page_fits(page: Page) -> bool:
+    """True when page_screen draws the whole page: no ellipsis, no cut-off word or picture, buttons inside the screen."""
+    top, x, width, height, pic_h = _page_box(page)
+    title = " ".join(page.title.split())
+    if not (_w(_font(12), title) <= SCREEN_W - 2 * PAD and len(page.picture) <= pic_h
+            and _row_w(page.choices) <= SCREEN_W - 2 * PAD):
+        return False
+    for size in FONT_SIZES:  # the size fit_text picks: the first that fits the height
+        font = _font(size)
+        if len(_wrap(page.body, font, width)) * _line_h(font) <= height:
+            return all(_w(font, word) <= width for word in page.body.split())
+    return False
+
+
+def page_screen(page: Page, bar: TopBar, cursor=None, picked=None):
+    """cursor: waiting page, that button inverted and the rest boxed; picked: only that button boxed; else plain."""
     im, d = _screen(bar)
     tf = _font(12)
     d.text((PAD, BODY_TOP + 1), _ellipsize(page.title, tf, SCREEN_W - 2 * PAD) if _w(tf, page.title) > SCREEN_W - 2 * PAD else page.title, font=tf, fill=0)
     ty = BODY_TOP + _line_h(tf) + 1
     d.line([(PAD, ty), (SCREEN_W - PAD, ty)], fill=0)
-    top = ty + 3
-    x, width = PAD, SCREEN_W - 2 * PAD
-    pic = page.picture
-    if pic:
-        for y, row in enumerate(pic):
-            for px, c in enumerate(row):
-                if c == "#":
-                    im.putpixel((PAD + px, top + y), 0)
-        x = 2 * PAD + len(pic[0])
-        width = SCREEN_W - 3 * PAD - len(pic[0])
-    font, lines = fit_text(page.body, width, SCREEN_H - top - 1)
+    top, x, width, height, _ = _page_box(page)
+    for y, row in enumerate(page.picture):
+        for px, c in enumerate(row):
+            if c == "#":
+                im.putpixel((PAD + px, top + y), 0)
+    font, lines = fit_text(page.body, width, height)
     _draw_lines(d, lines, font, x, top)
+    if page.choices:
+        _buttons(d, page.choices, cursor, SCREEN_H - 2, None if cursor is not None else {picked})
     return im
 
 
@@ -265,6 +298,25 @@ def dialog_screen(text: str, buttons, selected: int, bar: TopBar):
     font, lines = fit_text(text, SCREEN_W - 2 * PAD, h)
     _centered(d, lines, font, BODY_TOP, h)
     _buttons(d, buttons, selected, SCREEN_H - 2)
+    return im
+
+
+def picker_screen(title: str, typed: str, rows, r: int, c: int, bar: TopBar):
+    """Letter grid: the title and what is typed so far, then the rows of cells; cell (r, c) inverted."""
+    im, d = _screen(bar)
+    f = _font(12)
+    head = f"{title}: {typed}_"
+    d.text((PAD, BODY_TOP + 1), _ellipsize(head, f, SCREEN_W - 2 * PAD) if _w(f, head) > SCREEN_W - 2 * PAD else head,
+           font=f, fill=0)
+    ty = BODY_TOP + _line_h(f) + 1
+    d.line([(PAD, ty), (SCREEN_W - PAD, ty)], fill=0)
+    cw = (SCREEN_W - 2 * PAD) // max(len(row) for row in rows)
+    for ri, row in enumerate(rows):
+        y = ty + 4 + ri * PICKER_ROW_H
+        for ci, cell in enumerate(row):
+            x = PAD + ci * cw
+            _inverted_text(d, x, y, x + cw - 2, y + PICKER_ROW_H - 3, "Spc" if cell == " " else cell, f,
+                           ri == r and ci == c)
     return im
 
 

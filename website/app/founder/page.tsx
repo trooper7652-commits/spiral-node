@@ -17,7 +17,7 @@ const html = markdown(readFileSync(join(process.cwd(), "content/founder.md"), "u
 
 export default function FounderPage() {
   return (
-    <Page title="Why I started Spiral Node">
+    <Page band="countryside" title="Why I started Spiral Node">
       {/* html comes from our own Markdown file, escaped by lib/devlog.ts */}
       <div className={styles.post} dangerouslySetInnerHTML={{ __html: html }} />
     </Page>

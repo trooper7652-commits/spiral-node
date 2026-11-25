@@ -32,6 +32,47 @@ class Page:
     title: str
     body: str
     picture: tuple[str, ...] = ()  # rows of "#" (ink) and "." (paper), all the same length
+    choices: tuple[str, ...] = ()  # up to 4 button labels; the script then needs choose(key, index)
+    key: str = ""  # tells choose() which question was answered; required with choices
+
+
+def check_choices(page: Page) -> None:
+    """Raise ValueError unless the page's choices (if any) are 1-4 distinct short labels and it has a key."""
+    c = page.choices
+    if not isinstance(c, (tuple, list)) or not all(isinstance(s, str) for s in c):
+        raise ValueError("choices must be a tuple of strings")
+    if not c:
+        return
+    if len(c) > 4:
+        raise ValueError("a page can have at most 4 choices")
+    if any(not s.strip() or len(s) > 10 for s in c):
+        raise ValueError("each choice must be 1 to 10 characters")
+    if len(set(c)) != len(c):
+        raise ValueError("choices must be different from each other")
+    if not isinstance(page.key, str) or not 0 < len(page.key) <= 200:
+        raise ValueError("a page with choices needs a key of 1 to 200 characters")
+
+
+def tally_line(t: dict) -> str:
+    return f"{t['score']}/{t['answered']} right, run {t['run']}, {t['streak']}-day streak"
+
+
+LETTERS = ("A", "B", "C", "D")
+
+
+def quiz_page(title: str, question: str, options, key: str):
+    """A multiple-choice Page with letter buttons, or None when it cannot fit the screen.
+
+    Options go one per line ("A: ...") when that fits, else on one line ("A: ... / B: ...")."""
+    from .render import page_fits
+    letters = LETTERS[:len(options)]
+    lines = [f"{l}: {o}" for l, o in zip(letters, options)]
+    # a visible separator: wrapping collapses spaces, which would run "A: No B: Yes" together
+    for body in ("\n".join([question, *lines]), "\n".join([question, " / ".join(lines)])):
+        page = Page(title, body, choices=letters, key=key)
+        if page_fits(page):
+            return page
+    return None
 
 
 def check_picture(picture, max_h: int) -> None:
@@ -73,3 +114,26 @@ class ScriptContext:
 
     def save_state(self, d: dict) -> None:
         self.store.set(f"script-state/{self.script_id}", d)
+
+    def record(self, correct: bool) -> dict:
+        """Count one answer in the script's saved tally and return it; the streak counts days with an answer."""
+        state = self.state()
+        old = state.get("tally") if isinstance(state.get("tally"), dict) else {}
+
+        def num(k):
+            return old[k] if type(old.get(k)) is int and old[k] > 0 else 0
+
+        try:
+            last = date.fromisoformat(old.get("last_day"))
+        except (TypeError, ValueError):
+            last = None
+        today = self.today()
+        gap = (today - last).days if last else None
+        streak = max(num("streak"), 1) if gap == 0 else num("streak") + 1 if gap == 1 else 1
+        run = num("run") + 1 if correct else 0
+        t = {"score": num("score") + bool(correct), "answered": num("answered") + 1, "run": run,
+             "best_run": max(num("best_run"), run), "streak": streak,
+             "best_streak": max(num("best_streak"), streak), "last_day": today.isoformat()}
+        state["tally"] = t
+        self.save_state(state)
+        return dict(t)

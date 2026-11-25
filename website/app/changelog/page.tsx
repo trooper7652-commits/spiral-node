@@ -13,7 +13,7 @@ const html = markdown(src);
 
 export default function ChangelogPage() {
   return (
-    <Page title="Changelog">
+    <Page band="map" title="Changelog">
       {/* html comes from our own Markdown file, escaped by lib/devlog.ts */}
       <div className={styles.post} dangerouslySetInnerHTML={{ __html: html }} />
     </Page>

@@ -2,9 +2,9 @@
 
 The visual system for the Spiral Node website: direction, palette, type, motion and components.
 
-## Direction: "a maker's pixel world at the edge of the day"
+## Direction: "the painted classical world"
 
-A retro pixel-art world, original art only. One quiet place (an apple tree on a hill over a vast forest) seen at sunset and at night. The device is the hero, drawn in the same pixels, and its screen is a real 1-bit Spiral OS frame, so the product's own 250x122 pixel art and the site's art are one language. Ink, paper and wood: the page body is warm paper with near-black ink, like the e-ink screen. Colour lives in the scenes, the device and a few accents. Not a generic SaaS look: no gradients-on-white cards, no stock icons, no glassmorphism.
+The home page is a story told by scrolling: nine calm painted scenes (a countryside at sunset or night, a scholar's study, a library, an antique map, a star atlas, a town square), the way 18th- and 19th-century painters imagined antiquity. The theme is humanity, exploration and creativity. The device is a modern object in that world, and its screen is a real 1-bit Spiral OS frame that is never repainted. Ink, paper and parchment: the page body is warm paper with near-black ink, like the e-ink screen. Colour lives in the paintings, the device and a few accents. Not a generic SaaS look: no stock icons, no glassmorphism.
 
 ## Palette "Helix 16" (original, limited)
 
@@ -12,15 +12,16 @@ Colour roles: olive leads the site (header, links, large areas). Orange marks pr
 
 | Token | Hex | Use |
 |---|---|---|
-| `ink` | `#1d1a16` | text, pixel outlines, e-ink black |
-| `paper` | `#f4ecd8` | page background, e-ink white |
+| `ink` | `#1c1a14` | text, e-ink black, panel lines |
+| `paper` | `#f1e7cc` | panels and page background, e-ink white |
 | `cloud` | `#e9dcc6` | alternate section background, clouds |
-| `olive` | `#6f7d2c` | device body (default colourway), large accents only (3.8:1 on paper: never body text) |
-| `olive-deep` | `#424c19` | links and small accent text on paper (7.8:1) |
+| `olive` | `#6f7d3c` | panel and header-box frames, device body (default colourway); large accents only, never body text |
+| `olive-deep` | `#47522a` | links, panel labels and small accent text on paper (6.8:1) |
+| `gold` | `#e9a820` | focus rings (with an ink ring around them), highlights |
 | `olive-bright` | `#b5c25a` | highlights, focus ring on dark |
 | `brown` | `#7a5230` | secondary buttons (paper text 5.8:1), highlights, brown colourway, wood, borders |
 | `brown-deep` | `#3e2a1a` | tree trunk, footer background |
-| `orange` | `#f0a33a` | primary buttons and the header CTA, ink text on it 8.3:1 (the Helix amber, also used in the sunset art) |
+| `orange` | `#f0762e` | the one primary button ("Try the demo"), ink text on it 6.0:1 |
 | `amber` | `#f0a33a` | sunset art (horizon glow, low sun) |
 | `copper` | `#c97b4a` | accent: badges, highlights, the device's accent ring (ink text on it 5.3:1) |
 | `copper-deep` | `#8a4b23` | accent on paper; paper text on it 5.7:1 |
@@ -40,38 +41,41 @@ The night scene maps the land and sky to a small set of moonlit blues and teals 
 
 ## Type
 
-- **Display (headings, buttons, labels, the header wordmark):** Pixelify Sans (OFL), from `@fontsource/pixelify-sans`, self-hosted at build with `next/font/local`. Sizes on the 8 px grid: 16, 24, 32, 48 px.
-- **Body:** IBM Plex Mono (OFL) from `@fontsource/ibm-plex-mono`, self-hosted. 17 px base, line-height 1.6, max 65ch. A retro-computing monospace that sits with Pixelify Sans.
-- Rejected: Press Start 2P (too wide, tiring), VT323 as body (unreadable in long text).
+- **Type:** VT323 (SIL Open Font License) from `@fontsource/vt323`, self-hosted at build with `next/font/local`, for everything: one weight (400), no faked bold or italic. Body 20 px at 1.3 line height, never under 20 px; labels 20 px uppercase, 0.12em. Tokens: `--text-s`, `--text`, `--text-l`, `--h3`, `--h2`, `--h1`, `--leading`.
+- Rejected: classical serifs. Spiral Node is a modern device; the paintings carry the classical feel.
 - No runtime font requests: no Google Fonts CDN.
 
 ## Spacing, shape, elevation
 
 - 8 px grid: `--s1: 8px` … `--s8: 64px`. Section padding 64 px desktop, 40 px phone.
-- Corners: square pixel corners. "Pixel boxes" use a 4 px stepped border made with `box-shadow` (no `border-radius`), e.g. `box-shadow: 0 -4px 0 0 ink, 0 4px 0 0 ink, -4px 0 0 0 ink, 4px 0 0 0 ink`.
-- Elevation: one hard drop shadow `4px 4px 0 ink` for buttons and framed art. No blur shadows.
+- Corners: softly rounded, 4 px (6 px on dialogs).
+- Cards (`.pixel-box`; the class keeps its earlier name): parchment (`--parchment`), a thin brown rule (`--rule`) and one soft shadow (`--shadow`).
+- Buttons: 4 px corners, a faint top light and a small soft shadow; pressed, they move down 1 px.
+- Header and footer: olive-deep and brown-deep bands with a fine copper line on the inner edge.
+- Small icons: round medallions, a copper ring on parchment with a letter or numeral, in the spirit of engraved emblems.
 
-## Pixel art rules
+## Art
 
-- Each graphic is authored at a fixed base resolution and only scaled by whole numbers with `image-rendering: pixelated`.
-- Scenes: 320x180 base. Device: drawn on the screen's own pixel grid (1 art px = 1 screen px) so the 250x122 frame sits inside at scale 1. Sprites (snail, key, apple, stars): 16x16 or smaller.
-- Art is generated by a committed script (`website/art/make_art.py`, Pillow) into PNGs under `public/art/`, so it can be re-made and reviewed; nothing is traced from any existing game.
+- The home world's scenes are pixel art drawn in code by `art/pixel/` (`python -m art.pixel.build`) into `public/world/<scene>/<wide|tall>/`: depth layers, one sprite atlas and a `manifest.json` each. The world canvas is `aria-hidden`; the words live in the page.
+- Each scene keeps a quiet side where its paper panel docks; tags pinned to the art stay clear of that panel.
+- Outside works the site uses (today only the VT323 font) are listed with source and licence on the credits page.
+- The older pixel drawings (`website/art/make_art.py` into `public/art/`) remain only where they are still the source: the device geometry (`device.json`, `art/device-layout.json`), the simulator's device, the press kit and the mascot.
 - Every image has alt text; decorative layers use `alt=""`/`aria-hidden`.
 
 ## Motion
 
-- Hero: the two scenes slide horizontally (~1.2 s, `cubic-bezier(.65,0,.35,1)`) at a random wait of 3-8 s, drawn fresh each time. Device and button stay still in front.
-- Subtle life: night: a crescent moon, still stars baked in and 3-5 stars that fade; the land is palette-mapped to night colours, no amber. Sunset: a large sun on the horizon in the left third, a warmer ground tint, a drifting cloud (1 px per ~400 ms in steps), a faint horizon glow that pulses slowly and two birds crossing rarely.
-- Steps, not smooth tweening, for sprite motion (`steps()` timing) to keep the pixel feel.
-- `prefers-reduced-motion: reduce`: no auto-slide, no sprite animation, sunset scene shown; the pause/play control switches scenes by hand. E-ink realism off.
+- The home story follows native scroll position, with no scroll-jacking: painted layers move at different depths, the camera zooms and pans a little, scenes blend, and a canvas draws a few particles (fireflies, butterflies).
+- Only `transform`, `opacity` and canvas animate.
+- Cursor parallax: up to 6 px on paintings and 2 px on text, only with a fine pointer.
+- `prefers-reduced-motion: reduce`: no parallax, zoom or particles; scenes simply crossfade. E-ink realism is off on `/try`.
 - No flashing over 3 per second anywhere.
 
 ## Components
 
-- `SiteHeader`: wordmark "Spiral Node" (Pixelify) + nav Product, Scripts, Community, Devlog, ★ GitHub, and a "Try the demo" button (orange), on an olive-deep bar with paper text.
-- `SiteFooter`: an inline email sign-up (the same `SignupForm` as the popup), GitHub, Discussions, Press, Licences, Company.
-- `Hero`: `HeroScenes` (two scene layers + sprites + pause/play button) behind a centred `HeroDevice` + "Try the demo" button.
-- `Section`: heading + body, alternate `paper`/`cloud` backgrounds.
+- `SiteHeader`: wordmark "Spiral Node" (VT323) + nav Product, Scripts, Today, Community, Devlog, Build log, ★ GitHub, and a "Try the demo" button (orange), on the olive-deep band with paper text. Each link has a preview card (a medallion and one line). On the home page the header steps aside during the story and returns at the last scene; a small spiral button opens it meanwhile.
+- `SiteFooter`: an inline email sign-up (the same `SignupForm` as the popup), GitHub, Discussions, Press, Licences, Credits, Company.
+- `Stage` (`components/story/`): the home story's sticky painted stage, with the nine scene sections in story order as real HTML.
+- `Section`: heading + body, alternate parchment/`cloud` backgrounds.
 - `Device` compound component for `/try`: `<Device>`, `<Device.Screen>`, `<Device.Wheel>`, `<Device.TopButtons>` with `colourway` prop.
 - Focus: 3 px solid `ink` outline with 2 px `paper` offset; on dark backgrounds `olive-bright`.
 
@@ -81,5 +85,5 @@ The night scene maps the land and sky to a small set of moonlit blues and teals 
 
 ## Brand principles (2026-11-16)
 
-- Helix Velocities makes tools for human thinking. Public copy never mentions AI and never attacks anything.
+- Helix Velocities makes tools for human thinking. Public copy talks about people and ideas, and never attacks anything.
 - The feel: one plain purpose sentence in large type with the first sentence bold; warm paper, near-black text, muted secondary text; thin rules and soft cards; text links ending in "→"; calm motion with a pause control; imagery from humanity's history of thinking.

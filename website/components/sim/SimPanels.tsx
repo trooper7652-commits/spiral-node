@@ -10,7 +10,8 @@ export function Guide({ open }: { open: boolean }) {
       <p>
         Up, down, left, right: the edges of the wheel (or arrow keys). Select: the centre (Enter or Space). Back: the Back
         button (or Backspace, Esc); holding select for 0.6 s also goes Back. Home: the Home button (or H) jumps to Home from anywhere. On Home, right shows the next entry and left the
-        previous one. Scripts are small programs; pick one, set its refresh time, press OK.
+        previous one. On a question, left and right pick an answer, select answers and down skips. Scripts are small programs;
+        pick one, set its refresh time, press OK.
       </p>
     </details>
   );

@@ -10,8 +10,8 @@ export const COLOURWAYS: Colourway[] = ["olive", "brown", "black"];
 // Geometry from public/art/device.json (art px; 1 art px = 1 screen px).
 const ART = { w: art.width, h: art.height, screen: art.screen, wheel: art.wheel, keys: art.keys };
 
-/** body: the device art is drawn here; split: phone, screen over wheel; embedded: parts only, laid over art the page already shows (hero). */
-type Layout = "body" | "split" | "embedded";
+/** body: the device art is drawn here; split: phone, screen over wheel. */
+type Layout = "body" | "split";
 type Ctx = { colourway: Colourway; layout: Layout };
 const DeviceContext = createContext<Ctx>({ colourway: "olive", layout: "body" });
 
@@ -47,7 +47,7 @@ function Root({ colourway, layout, cssWidth, children, ...rest }: RootProps & Om
         role="group"
         aria-label="Spiral Node simulator"
         {...rest}
-        className={layout === "split" ? styles.split : layout === "embedded" ? `${styles.body} ${styles.embedded}` : styles.body}
+        className={layout === "split" ? styles.split : styles.body}
         data-colourway={colourway}
         style={style}
       >

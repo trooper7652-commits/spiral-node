@@ -1,0 +1,120 @@
+/* A trail down the right edge (a bar along the bottom on a tall, narrow or short screen). Panels dock 48px from the right, so the column stays inside the 44px beside them. */
+.trail {
+  position: fixed;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  box-sizing: border-box;
+  width: 44px;
+  padding: 8px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: inset 0 0 0 2px var(--ink);
+  font-family: var(--font-label), system-ui, sans-serif;
+}
+.chip {
+  writing-mode: vertical-rl;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+/* the walker's dog goes 26px ahead of it (up the column, or down on the way back): the margins keep it off the chip and inside the nav. 260px / 8 steps keeps the 28px buttons apart. */
+.track { position: relative; width: 28px; margin: 24px 0; height: clamp(260px, calc(100vh - 340px), 380px); }
+/* the dotted trail itself: square 2px dots */
+.track::before {
+  content: "";
+  position: absolute;
+  left: calc(50% - 1px);
+  top: 14px;
+  bottom: 14px;
+  width: 2px;
+  background: repeating-linear-gradient(to bottom, var(--ink) 0 2px, transparent 2px 6px);
+}
+
+.stop {
+  position: absolute;
+  left: 0;
+  top: calc(var(--i) * (100% - 28px) / 8);
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  z-index: 1;
+}
+.dot {
+  display: block;
+  box-sizing: border-box;
+  width: 14px;
+  height: 14px;
+  margin: 7px;
+  border: 2px solid var(--ink);
+  background: var(--paper);
+  transition: background-color 200ms steps(2);
+}
+.stop[data-state="done"] .dot { background: var(--olive); }
+.stop[data-state="here"] .dot { background: var(--orange); }
+.stop:not([data-state="here"]):hover .dot { background: var(--gold); }
+
+/* Walker and dog: 12px cells of /world/trail.png at 2x, nearest-neighbour. The crew is a zero-size anchor at the feet; it moves in steps. */
+.crew {
+  position: absolute;
+  left: 50%;
+  top: calc(20px + var(--i) * (100% - 28px) / 8);
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 2;
+  transition: top 480ms steps(6), left 480ms steps(6);
+}
+.sprite {
+  position: absolute;
+  left: -12px;
+  top: -24px;
+  width: 24px;
+  height: 24px;
+  background: url("/world/trail.png") 0 0 / 96px 192px no-repeat;
+  image-rendering: pixelated;
+}
+.walker { background-position-x: 0; background-position-y: calc(var(--row, 0) * -24px); }
+.dog { background-position-x: -48px; transform: translateY(-26px); }
+[data-dir="back"] .walker { transform: scaleX(-1); }
+[data-dir="back"] .dog { transform: translateY(26px) scaleX(-1); }
+/* the opening, before scene 1: the crew stands just before waypoint 1 and the dog is ahead of it, on the trail side, clear of the chip */
+.trail[data-start] .dog { transform: translateY(26px); }
+[data-moving] .walker { animation: walk 360ms steps(2) infinite; }
+[data-moving] .dog { animation: trot 360ms steps(2) infinite; }
+@keyframes walk { to { background-position-x: -48px; } } /* two 24px cells: steps(2) lands on 0 and -24 */
+@keyframes trot { from { background-position-x: -48px; } to { background-position-x: -96px; } }
+
+/* a phone's bottom edge may have a home bar: the strip grows by it (and the footer's padding in globals.css to match) */
+@media (orientation: portrait), (max-width: 600px), (max-height: 500px) {
+  .trail {
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: none;
+    width: auto;
+    height: calc(56px + env(safe-area-inset-bottom, 0px));
+    padding: 2px 12px env(safe-area-inset-bottom, 0px);
+    gap: 0;
+    align-items: stretch;
+    box-shadow: inset 0 2px 0 var(--ink);
+  }
+  .chip { writing-mode: horizontal-tb; height: 20px; }
+  .track { width: 100%; height: 32px; margin: 0; }
+  .track::before { left: 14px; right: 14px; top: calc(50% - 1px); bottom: auto; width: auto; height: 2px; background: repeating-linear-gradient(to right, var(--ink) 0 2px, transparent 2px 6px); }
+  .stop { top: 2px; left: calc(var(--i) * (100% - 28px) / 8); }
+  .crew { top: calc(50% + 6px); left: calc(14px + var(--i) * (100% - 28px) / 8); }
+  .dog { transform: translateX(-22px); }
+  [data-dir="back"] .dog { transform: translateX(22px) scaleX(-1); }
+  .trail[data-start] .dog { transform: translateX(22px); }
+}

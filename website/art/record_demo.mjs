@@ -2,8 +2,8 @@
 //
 // How to run, from website/:
 //   npm run build                                   # writes the static export to out/
-//   npm run start -- --port 3100 --strictPort &     # serves out/ (the same server playwright.config.ts uses)
-//   node art/record_demo.mjs http://localhost:3100
+//   npm run start -- --port 3111 --strictPort &     # serves out/ (the same server playwright.config.ts uses)
+//   node art/record_demo.mjs http://localhost:3111
 // Needs ffmpeg on PATH (to trim the loading screens and re-encode). Layout and moves are deterministic. The page clock is fixed, but the simulator runs in a Web Worker, so the device clock shows the real time.
 import { chromium } from "playwright";
 import { execFileSync } from "node:child_process";
@@ -12,7 +12,7 @@ import { tmpdir } from "node:os";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const base = (process.argv[2] ?? "http://localhost:3100").replace(/\/$/, "");
+const base = (process.argv[2] ?? "http://localhost:3111").replace(/\/$/, "");
 const press = join(dirname(fileURLToPath(import.meta.url)), "..", "public", "press");
 mkdirSync(press, { recursive: true });
 const tmp = mkdtempSync(join(tmpdir(), "demo-"));

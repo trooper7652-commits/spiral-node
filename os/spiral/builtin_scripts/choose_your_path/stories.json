@@ -1,0 +1,155 @@
+[
+  {
+    "id": "theseus-thread",
+    "title": "Theseus and the Thread",
+    "topic": "myth",
+    "source": "Theseus and the Minotaur, Bulfinch's Mythology, 1867 (public domain), retold: https://en.wikipedia.org/wiki/Theseus",
+    "nodes": {
+      "start": {"text": "You are Theseus at the maze gate. Ariadne offers you a ball of thread.", "options": [{"label": "Take thread", "to": "n1"}, {"label": "Go without", "to": "n2"}]},
+      "n1": {"text": "You tie the thread to the gate and walk in. The tunnels split.", "options": [{"label": "Follow a hum", "to": "n3"}, {"label": "Widest tunnel", "to": "e1"}]},
+      "n3": {"text": "The hum leads to the Minotaur, sitting alone behind a stone pillar.", "options": [{"label": "Speak calmly", "to": "e2"}, {"label": "Slip past", "to": "e3"}]},
+      "n2": {"text": "Inside, every wall looks alike. You find a crossing with old chalk marks.", "options": [{"label": "Trust chalk", "to": "e4"}, {"label": "Turn back", "to": "e5"}]},
+      "e1": {"text": "The wide tunnel ends in a dusty hall of statues. You follow the thread back out and try another day, a little wiser. The end.", "options": []},
+      "e2": {"text": "You stand tall and speak calmly. The weary Minotaur backs away, and you lead the young people of Athens out along the thread. The end.", "options": []},
+      "e3": {"text": "You slip past and find a stair up to a sunny garden. You rest there, then follow the thread home, glad you were patient. The end.", "options": []},
+      "e4": {"text": "The chalk leads in circles until Ariadne hears you call and lowers a rope through a skylight. Next time, you promise, you take the thread. The end.", "options": []},
+      "e5": {"text": "You walk back out and thank Ariadne. With the thread in hand you try again the next day, and this time you find your way. The end.", "options": []}
+    }
+  },
+  {
+    "id": "odysseus-cave",
+    "title": "Odysseus and the Giant",
+    "topic": "myth",
+    "source": "Odysseus and Polyphemus, the Odyssey (public domain), retold: https://en.wikipedia.org/wiki/Polyphemus",
+    "nodes": {
+      "start": {"text": "You are Odysseus. Your ship lands by a huge cave full of sheep.", "options": [{"label": "Enter cave", "to": "n1"}, {"label": "Wait on ship", "to": "n2"}]},
+      "n1": {"text": "The giant shepherd, Polyphemus, rolls a stone across the door and asks your name.", "options": [{"label": "Say Nobody", "to": "n3"}, {"label": "Tell the truth", "to": "e1"}]},
+      "n3": {"text": "He chuckles at the odd name. At dawn he lets his sheep out to graze.", "options": [{"label": "Ride a sheep", "to": "e2"}, {"label": "Dig a gap", "to": "e3"}]},
+      "n2": {"text": "Hours pass and your friends have not come back. The night is long.", "options": [{"label": "Go find them", "to": "e4"}, {"label": "Sail away", "to": "e5"}]},
+      "e1": {"text": "Polyphemus listens, tired of loud guests. He grumbles, then shares his cheese and lets you leave if you promise to sail on quietly. The end.", "options": []},
+      "e2": {"text": "Clinging beneath the woolly sheep, you and your friends pass the giant's patting hand unseen. You run to the ship, laughing. The end.", "options": []},
+      "e3": {"text": "While the giant naps, you dig a gap beside the stone. By noon you all squeeze through and hurry to the ship. The end.", "options": []},
+      "e4": {"text": "You find your friends on the far beach, picking figs and lost in a song. Together you sail on, glad you looked for them. The end.", "options": []},
+      "e5": {"text": "You sail until dawn, but the empty deck feels wrong. You turn back, find everyone safe, and all go home together. The end.", "options": []}
+    }
+  },
+  {
+    "id": "pandoras-jar",
+    "title": "Pandora's Jar",
+    "topic": "myth",
+    "source": "Pandora, Hesiod's Works and Days (public domain), retold: https://en.wikipedia.org/wiki/Pandora",
+    "nodes": {
+      "start": {"text": "You are Pandora. A gift from the gods sits at home: a sealed jar.", "options": [{"label": "Leave it", "to": "n1"}, {"label": "Peek inside", "to": "n2"}]},
+      "n1": {"text": "Days pass. The jar hums softly. Your husband Epimetheus is curious too.", "options": [{"label": "Ask him", "to": "n3"}, {"label": "Bury the jar", "to": "e1"}]},
+      "n3": {"text": "He says the jar may hold troubles, and perhaps something good too.", "options": [{"label": "Open together", "to": "e2"}, {"label": "Return it", "to": "e3"}]},
+      "n2": {"text": "You lift the lid a crack. Little grey worries buzz out into the room.", "options": [{"label": "Close the lid", "to": "e4"}, {"label": "Open it wide", "to": "e5"}]},
+      "e1": {"text": "You bury the jar under an olive tree. The world stays calm, though you sometimes wonder what it held. The end.", "options": []},
+      "e2": {"text": "Worries fly out, but Hope rises last and sits on your shoulder. Together you learn to face troubles with hope. The end.", "options": []},
+      "e3": {"text": "You carry the jar to the temple. Pleased with your patience, the gods grant you a garden that never withers. The end.", "options": []},
+      "e4": {"text": "A few worries escape, but Hope stays inside. You let her out gently, and she helps people through hard days. The end.", "options": []},
+      "e5": {"text": "Many worries drift into the world, but Hope floats out last, a small glow that helps everyone cope. The end.", "options": []}
+    }
+  },
+  {
+    "id": "jack-beanstalk",
+    "title": "Jack and the Beanstalk",
+    "topic": "folk tale",
+    "source": "Jack and the Beanstalk, Joseph Jacobs, English Fairy Tales, 1890 (public domain), retold: https://en.wikipedia.org/wiki/Jack_and_the_Beanstalk",
+    "nodes": {
+      "start": {"text": "You are Jack. A stranger at market offers magic beans for your thin cow.", "options": [{"label": "Trade cow", "to": "n1"}, {"label": "Keep cow", "to": "n2"}]},
+      "n1": {"text": "Overnight a beanstalk climbs past the clouds. A castle stands at the top.", "options": [{"label": "Knock", "to": "n3"}, {"label": "Peek in window", "to": "e1"}]},
+      "n3": {"text": "A giant's wife gives you bread. Then thundering footsteps shake the floor.", "options": [{"label": "Hide in bin", "to": "e2"}, {"label": "Run home", "to": "e3"}]},
+      "n2": {"text": "You sell her milk instead. A baker offers you a job beside her warm ovens.", "options": [{"label": "Take the job", "to": "e4"}, {"label": "Find stranger", "to": "e5"}]},
+      "e1": {"text": "Through the window you see a giant counting gold and snoring. You tiptoe back down, glad of your own small, warm home. The end.", "options": []},
+      "e2": {"text": "From the bread bin you watch the giant doze. You take a small golden hen, slide down the stalk, and your family never goes hungry. The end.", "options": []},
+      "e3": {"text": "You slide down the stalk, safe but empty-handed. Next morning the beans sprout again, and you try once more, braver. The end.", "options": []},
+      "e4": {"text": "You learn to bake, and your mother is proud. Years later you plant the last bean, just to see what grows. The end.", "options": []},
+      "e5": {"text": "The stranger is gone, but you find one bean on the road. You plant it, and a small green sprout begins to climb. The end.", "options": []}
+    }
+  },
+  {
+    "id": "pied-piper",
+    "title": "The Piper of Hamelin",
+    "topic": "legend",
+    "source": "The Pied Piper of Hamelin, Grimm, Deutsche Sagen, 1816 (public domain), retold: https://en.wikipedia.org/wiki/Pied_Piper_of_Hamelin",
+    "nodes": {
+      "start": {"text": "You are a piper in Hamelin. The town is full of rats. The mayor promises gold.", "options": [{"label": "Play pipe", "to": "n1"}, {"label": "Build a trap", "to": "n2"}]},
+      "n1": {"text": "Your tune draws the rats to the river. The mayor frowns at the price.", "options": [{"label": "Ask your pay", "to": "n3"}, {"label": "Walk away", "to": "e1"}]},
+      "n3": {"text": "He offers half the gold. Children gather by the gate to hear your pipe.", "options": [{"label": "Take half", "to": "e2"}, {"label": "Play for kids", "to": "e3"}]},
+      "n2": {"text": "Your trap catches a few rats a night. The mayor grows impatient.", "options": [{"label": "Keep at it", "to": "e4"}, {"label": "Fetch pipe", "to": "e5"}]},
+      "e1": {"text": "You leave the gold behind. The town is rat-free, and the ashamed mayor sends the full pay after you with a note of thanks. The end.", "options": []},
+      "e2": {"text": "You take half and the town cheers. Neighbours add the rest and a feast, and you stay a year to teach children music. The end.", "options": []},
+      "e3": {"text": "You play a dancing tune. The children follow you up a green hill, and the sorry mayor hurries to pay in full. All dance home. The end.", "options": []},
+      "e4": {"text": "Week by week the rats thin out and the town learns patience. The mayor thanks you with a cottage and fair pay. The end.", "options": []},
+      "e5": {"text": "You fetch your pipe at last and play a calm tune. The rats follow you to the river, and the mayor pays at once. The end.", "options": []}
+    }
+  },
+  {
+    "id": "momotaro",
+    "title": "Momotaro and the Peach",
+    "topic": "folk tale",
+    "source": "Momotaro, Yei Theodora Ozaki, Japanese Fairy Tales, 1908 (public domain), retold: https://en.wikipedia.org/wiki/Momotar%C5%8D",
+    "nodes": {
+      "start": {"text": "You are Momotaro, born from a peach. Trouble stirs on a far island. You pack dumplings.", "options": [{"label": "Go to coast", "to": "n1"}, {"label": "Ask elder", "to": "n2"}]},
+      "n1": {"text": "A dog begs for a dumpling and offers to join you.", "options": [{"label": "Share one", "to": "n3"}, {"label": "Walk on", "to": "e1"}]},
+      "n3": {"text": "A monkey and a pheasant join too. The island rises ahead.", "options": [{"label": "Plan together", "to": "e2"}, {"label": "Charge ahead", "to": "e3"}]},
+      "n2": {"text": "The elder hands you a banner. Kindness, she says, is your best tool.", "options": [{"label": "Set sail", "to": "e4"}, {"label": "Stay home", "to": "e5"}]},
+      "e1": {"text": "You walk on alone and reach the shore tired. A fisher takes you home, and you decide a friend would have eased the trip. The end.", "options": []},
+      "e2": {"text": "You, the dog, monkey and pheasant arrive at dawn. The surprised demons return the stolen treasure and promise to behave. The end.", "options": []},
+      "e3": {"text": "You rush ahead and the gate slams. Your friends catch up and talk the demons into peace over a shared meal. The end.", "options": []},
+      "e4": {"text": "With the banner raised you sail. The demons see your calm face and agree to talk, and treasure returns to the villages. The end.", "options": []},
+      "e5": {"text": "You stay and help mend the village fences. Word of your kindness spreads, and the demons later send a letter of apology. The end.", "options": []}
+    }
+  },
+  {
+    "id": "king-midas",
+    "title": "King Midas's Wish",
+    "topic": "myth",
+    "source": "King Midas, from Ovid's Metamorphoses, with the daughter from Hawthorne's A Wonder-Book, 1852 (public domain), retold: https://en.wikipedia.org/wiki/Midas",
+    "nodes": {
+      "start": {"text": "You are King Midas. The god Dionysus offers you one wish for your kindness.", "options": [{"label": "Wish for gold", "to": "n1"}, {"label": "Wish for wisdom", "to": "n2"}]},
+      "n1": {"text": "All you touch turns to gold: your chair, your cup, even your breakfast bread.", "options": [{"label": "Try to eat", "to": "n3"}, {"label": "Seek the god", "to": "e1"}]},
+      "n3": {"text": "Your meal is gold. Your daughter runs to hug you, and you stop, afraid to touch her.", "options": [{"label": "Rush to god", "to": "e2"}, {"label": "Use gloves", "to": "e3"}]},
+      "n2": {"text": "Dionysus smiles. Wisdom will show you what to do with good fortune.", "options": [{"label": "Rule fairly", "to": "e4"}, {"label": "Go travelling", "to": "e5"}]},
+      "e1": {"text": "You ask Dionysus to undo the gift. He sends you to wash in the river Pactolus, and the golden touch flows away. The end.", "options": []},
+      "e2": {"text": "You run to Dionysus, who sends you to the river Pactolus. You wash, your touch turns plain again, and you hug your daughter. The end.", "options": []},
+      "e3": {"text": "Your daughter brings thick gloves and guides you to the river Pactolus, where the golden touch washes off. You embrace her. The end.", "options": []},
+      "e4": {"text": "You rule fairly. Fields grow and people thrive, and you are remembered for gentle judgment, not for gold. The end.", "options": []},
+      "e5": {"text": "You travel quietly, learn from farmers and sailors, and bring home simple ideas that help your whole kingdom. The end.", "options": []}
+    }
+  },
+  {
+    "id": "twelve-princesses",
+    "title": "The Dancing Princesses",
+    "topic": "folk tale",
+    "source": "The Twelve Dancing Princesses, Grimms' Fairy Tales (Kinder- und Hausmärchen, 1815, public domain), retold: https://en.wikipedia.org/wiki/The_Twelve_Dancing_Princesses",
+    "nodes": {
+      "start": {"text": "You are a soldier. The king's twelve daughters wear out their shoes each night. Why?", "options": [{"label": "Take the task", "to": "n1"}, {"label": "Ask a maid", "to": "n2"}]},
+      "n1": {"text": "An old woman gives you a cloak that hides you, and warns: sip nothing offered.", "options": [{"label": "Wear cloak", "to": "n3"}, {"label": "Refuse it", "to": "e1"}]},
+      "n3": {"text": "You follow the princesses down secret stairs to a silver forest and boats.", "options": [{"label": "Watch quietly", "to": "e2"}, {"label": "Take a twig", "to": "e3"}]},
+      "n2": {"text": "A maid whispers that stairs under the eldest's bed lead somewhere strange.", "options": [{"label": "Follow stairs", "to": "e4"}, {"label": "Tell the king", "to": "e5"}]},
+      "e1": {"text": "Without the cloak you are noticed and politely sent back up. You thank the princesses for the walk and leave kindly. The end.", "options": []},
+      "e2": {"text": "You watch them dance till dawn, then tell the king. The princesses, relieved that the spell is spotted, thank you. The end.", "options": []},
+      "e3": {"text": "You snap a silver twig and they hear it. Surprised, they agree to show the king, and the spell breaks. All is forgiven. The end.", "options": []},
+      "e4": {"text": "You find the dance hall and join in. Your kindness lifts the spell, and the princesses sleep soundly for the first time. The end.", "options": []},
+      "e5": {"text": "The king laughs, then follows the stairs himself. Together you break the spell with a shared feast instead of a dance. The end.", "options": []}
+    }
+  },
+  {
+    "id": "rumpelstiltskin",
+    "title": "Rumpelstiltskin's Name",
+    "topic": "folk tale",
+    "source": "Rumpelstiltskin, Grimms' Fairy Tales (Kinder- und Hausmärchen, 1812, public domain), retold: https://en.wikipedia.org/wiki/Rumpelstiltskin",
+    "nodes": {
+      "start": {"text": "You are a miller's daughter. A strange little man offers to spin straw into gold.", "options": [{"label": "Trade necklace", "to": "n1"}, {"label": "Decline", "to": "n2"}]},
+      "n1": {"text": "He spins again and asks for your first child as payment. The room goes silent.", "options": [{"label": "Agree", "to": "n3"}, {"label": "Refuse", "to": "e1"}]},
+      "n3": {"text": "Years later he returns. He gives you three days to guess his name.", "options": [{"label": "Ask your maid", "to": "e2"}, {"label": "Search woods", "to": "e3"}]},
+      "n2": {"text": "You tell the king the truth: you cannot spin gold. He listens kindly.", "options": [{"label": "Offer work", "to": "e4"}, {"label": "Leave town", "to": "e5"}]},
+      "e1": {"text": "He bows and vanishes. You tell the king the truth, and he values your honesty above all the gold in the world. The end.", "options": []},
+      "e2": {"text": "Your maid overheard a little man singing his name by a fire. You say it, Rumpelstiltskin, and he leaves, free of the deal. The end.", "options": []},
+      "e3": {"text": "In the woods you hear a little man singing his name, Rumpelstiltskin, by a fire. You say it next day, and he stamps off. The end.", "options": []},
+      "e4": {"text": "You work in the king's mill for honest wages and become its manager. You never need magic gold again. The end.", "options": []},
+      "e5": {"text": "You leave and open a bakery by the river. Customers come from miles away for your warm bread. The end.", "options": []}
+    }
+  }
+]

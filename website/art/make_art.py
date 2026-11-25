@@ -476,7 +476,7 @@ SNAIL = sprite([
 # ------------------------------------------------------------------ device
 # Landscape river-stone pager (~95 x 62 x 20 mm at ~4.2 art px per mm): the page-margin e-ink screen across the top,
 # Back + Home keys and a small spiral logo bottom left, the subtle spiral wheel bottom right.
-# Left side face (USB-C, charge light, power button) is drawn face-on as its own image.
+# The top face (two USB-C ports, charge light, power button; the left side is bare) is drawn face-on as its own image.
 DW, DH = 400, 264
 SCREEN = dict(x=75, y=28, w=250, h=122)  # unchanged size: the simulator renders the OS frame into it
 MARGIN_X, MARGIN_Y = 28, 12  # paper page-margin border around the screen, art px
@@ -484,10 +484,10 @@ WHEEL = dict(cx=322, cy=212, r=36, centerR=8)
 KEY_W, KEY_H = 40, 24
 KEYS = dict(back=dict(x=84, y=200, w=KEY_W, h=KEY_H), home=dict(x=132, y=200, w=KEY_W, h=KEY_H))
 LOGO = dict(cx=62, cy=212, r=8)
-SIDE_W = 84  # 20 mm of thickness, seen face-on
-SIDE_USB = dict(x=42, y=46, w=14, h=36)
-SIDE_LIGHT = dict(x=42, y=84, r=3)
-SIDE_POWER = dict(x=42, y=114, w=12, h=30)
+TOP_H = 84  # 20 mm of thickness, seen face-on from above
+TOP_USB = [dict(x=166, y=42, w=36, h=14), dict(x=214, y=42, w=36, h=14)]  # two USB-C ports side by side near the middle
+TOP_LIGHT = dict(x=262, y=42, r=3)  # the charge light, just right of the ports
+TOP_POWER = dict(x=332, y=42, w=40, h=14)  # the power button, toward the right end
 COLOURWAYS = {  # body, hi, lo, face (wheel), arm (spiral), button fill
     "olive": dict(body="olive", hi="olive_bright", lo="olive_deep", face="olive_deep", arm="olive", btn="olive"),
     "brown": dict(body="brown", hi="brown_hi", lo="brown_deep", face="brown_deep", arm="brown", btn="brown"),
@@ -696,37 +696,37 @@ def device(name, spiral=True):
     return im
 
 
-def device_side(name):
-    """The left side face, seen face-on: USB-C, the charge light and the power button, high up. Nothing else."""
+def device_top(name):
+    """The top face, seen face-on from above: two USB-C ports, the charge light and the power button. Nothing else."""
     cw = COLOURWAYS[name]
-    im = new(SIDE_W, DH)
-    pts = rounded(0, 0, SIDE_W - 1, DH - 1, 22)
+    im = new(DW, TOP_H)
+    pts = rounded(0, 0, DW - 1, TOP_H - 1, 22)
     inner = {(x, y) for (x, y) in pts if all(n in pts for n in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)))}
     for p in pts:
         put(im, *p, "ink")
     for p in inner:
         put(im, *p, cw["body"])
-    for (x, y) in inner:  # the face curves away at both long edges: a light band toward the front, a dark one toward the back
-        if x < 7 and (x < 3 or (x + y) % 2 == 0):
+    for (x, y) in inner:  # the face curves away at both long edges: a light band toward the front (below), a dark one toward the back
+        if y > TOP_H - 8 and (y > TOP_H - 4 or (x + y) % 2 == 0):
             put(im, x, y, cw["hi"])
-        elif x > SIDE_W - 8 and (x > SIDE_W - 4 or (x + y) % 2 == 0):
+        elif y < 7 and (y < 3 or (x + y) % 2 == 0):
             put(im, x, y, cw["lo"])
     edge_shade(im, inner, cw["hi"], cw["lo"])
     lo = cw["lo"] if name != "black" else "ink"
-    u = SIDE_USB  # USB-C: a vertical stadium slot with its tongue
-    cx, w, h = u["x"], u["w"], u["h"]
-    slot = rounded(cx - w // 2, u["y"] - h // 2, cx + w // 2 - 1, u["y"] + h // 2 - 1, w // 2)
-    ins = {(x, y) for (x, y) in slot if all(n in slot for n in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)))}
-    for p in slot:
-        put(im, *p, lo)
-    for p in ins:
-        put(im, *p, "ink")
-    rect(im, cx - 1, u["y"] - h // 2 + 6, cx, u["y"] + h // 2 - 7, "ink_hi")  # the tongue
-    L = SIDE_LIGHT  # charge light: a small amber lens
+    for u in TOP_USB:  # USB-C: a horizontal stadium slot with its tongue
+        cx, cy, w, h = u["x"], u["y"], u["w"], u["h"]
+        slot = rounded(cx - w // 2, cy - h // 2, cx + w // 2 - 1, cy + h // 2 - 1, h // 2)
+        ins = {(x, y) for (x, y) in slot if all(n in slot for n in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)))}
+        for p in slot:
+            put(im, *p, lo)
+        for p in ins:
+            put(im, *p, "ink")
+        rect(im, cx - w // 2 + 6, cy - 1, cx + w // 2 - 7, cy, "ink_hi")  # the tongue
+    L = TOP_LIGHT  # charge light: a small amber lens
     disc(im, L["x"], L["y"], L["r"] + 1, lo)
     disc(im, L["x"], L["y"], L["r"], "amber")
     put(im, L["x"] - 1, L["y"] - 1, "paper")
-    p_ = SIDE_POWER  # power button: a flat oblong key
+    p_ = TOP_POWER  # power button: a flat oblong key
     x0, y0 = p_["x"] - p_["w"] // 2, p_["y"] - p_["h"] // 2
     outer = rounded(x0, y0, x0 + p_["w"] - 1, y0 + p_["h"] - 1, 5)
     inn = {(x, y) for (x, y) in outer if all(n in outer for n in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)))}
@@ -758,8 +758,8 @@ def layout_json():
     }
 
 
-def side_meta():
-    return dict(width=SIDE_W, height=DH, usb=SIDE_USB, light=SIDE_LIGHT, power=SIDE_POWER)
+def top_meta():
+    return dict(width=DW, height=TOP_H, usb=TOP_USB, light=TOP_LIGHT, power=TOP_POWER)
 
 
 # ------------------------------------------------------------------ OS screens
@@ -871,11 +871,11 @@ def main():
     for n, im in devs.items():
         im.save(OUT / f"device-{n}.png")
     for n in COLOURWAYS:
-        device_side(n).save(OUT / f"device-side-{n}.png")
+        device_top(n).save(OUT / f"device-top-{n}.png")
     wheel_sprite("olive").save(OUT / "hero-wheel-olive.png")
     (OUT / "device.json").write_text(json.dumps({"width": DW, "height": DH, "screen": SCREEN, "wheel": WHEEL,
                                                  "keys": KEYS, "logo": LOGO,
-                                                 "side": side_meta(),
+                                                 "top": top_meta(),
                                                  "wheelSprite": dict(size=2 * (SPIRAL_R1 + 3) + 1)}))
     (HERE / "device-layout.json").write_text(json.dumps(layout_json(), indent=1) + "\n")
     hero = os_frames()
@@ -1213,7 +1213,8 @@ def pixel_text(text, scale):
     """Crisp 1-bit text from Pillow's built-in font, scaled up with hard pixel edges."""
     from PIL import ImageDraw, ImageFont
     font = ImageFont.load_default(size=16)
-    im = Image.new("1", (int(font.getlength(text)) + 4, 22), 0)
+    w = ImageDraw.Draw(Image.new("1", (1, 1))).textbbox((2, 1), text, font=font)[2] + 2  # ink width: getlength cut off a final "h"
+    im = Image.new("1", (w, 22), 0)
     ImageDraw.Draw(im).text((2, 1), text, font=font, fill=1)
     return im.resize((im.width * scale, im.height * scale), Image.NEAREST)
 
@@ -1264,7 +1265,8 @@ def make_script_cards():
             if info.error:
                 raise ValueError(info.error)
             with tempfile.TemporaryDirectory() as tmp:
-                ctx = ScriptContext(info.id, info.folder, valid_prefs(info.preferences, {}), Store(Path(tmp), lambda: 0.0),
+                # scripts with a Mode setting show their read page; the product page's captions describe it
+                ctx = ScriptContext(info.id, info.folder, valid_prefs(info.preferences, {"mode": "Read"}), Store(Path(tmp), lambda: 0.0),
                                     random.Random(1), when.date)
                 page = info.module.create(ctx).next()
             assert isinstance(page, Page)
@@ -1277,7 +1279,8 @@ def make_script_cards():
         im.paste(C["ink"][:3], (108, 20, 108 + box.width, 20 + box.height))
         im.paste(box, (100, 12))
         if page:
-            screen = two_colour(page_screen(page, TopBar(when, False, 100))).resize((1000, 488), Image.NEAREST)
+            cursor = 0 if page.choices else None  # a waiting question highlights its first button, as on the device
+            screen = two_colour(page_screen(page, TopBar(when, False, 100), cursor)).resize((1000, 488), Image.NEAREST)
             im.paste(C["ink"][:3], (108, 140, 108 + 1000, 140 + 488))
             im.paste(screen, (100, 132))
         im.save(SITE / "public" / "og" / f"script-{info.id}.png")
@@ -1319,9 +1322,9 @@ def check():
     assert meta["keys"]["back"]["x"] + meta["keys"]["back"]["w"] < meta["keys"]["home"]["x"] and meta["keys"]["back"]["y"] == meta["keys"]["home"]["y"]
     lay = json.loads((HERE / "device-layout.json").read_text())
     assert lay["screen"]["w"] == round(100 * 250 / DW, 2) and lay["back"]["x"] < lay["home"]["x"]
-    assert set(meta["side"]) == {"width", "height", "usb", "light", "power"}  # nothing else on the side face
+    assert set(meta["top"]) == {"width", "height", "usb", "light", "power"} and "side" not in meta and len(meta["top"]["usb"]) == 2  # everything on top, nothing on the left side
     for n in COLOURWAYS:
-        assert Image.open(OUT / f"device-side-{n}.png").size == (SIDE_W, DH), n
+        assert Image.open(OUT / f"device-top-{n}.png").size == (DW, TOP_H), n
     assert Image.open(OUT / "hero-wheel-olive.png").size == (meta["wheelSprite"]["size"],) * 2
     hd = Image.open(OUT / "hero-device-olive.png")
     assert hd.size == (DW, DH)

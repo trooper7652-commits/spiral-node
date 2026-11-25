@@ -6,7 +6,7 @@ export const metadata = og("home", "Today | Spiral Node", "On this day in histor
 
 export default function TodayPage() {
   return (
-    <Page title="Today">
+    <Page band="desk" title="Today">
       <Today />
     </Page>
   );

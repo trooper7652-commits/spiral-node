@@ -1,0 +1,222 @@
+{
+ "id": "desk",
+ "variant": "tall",
+ "w": 240,
+ "h": 480,
+ "layers": [
+  {
+   "id": "sky",
+   "src": "layer-sky.png",
+   "depth": 0.0
+  },
+  {
+   "id": "view",
+   "src": "layer-view.png",
+   "depth": 0.15
+  },
+  {
+   "id": "wall",
+   "src": "layer-wall.png",
+   "depth": 0.35
+  },
+  {
+   "id": "room",
+   "src": "layer-room.png",
+   "depth": 0.8
+  },
+  {
+   "id": "front",
+   "src": "layer-front.png",
+   "depth": 1.0
+  }
+ ],
+ "atlas": "atlas.png",
+ "sprites": [
+  {
+   "id": "stars",
+   "x": 72,
+   "y": 76,
+   "w": 97,
+   "h": 62,
+   "frames": 3,
+   "fps": 2,
+   "depth": 0.0,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 0
+  },
+  {
+   "id": "cloud",
+   "x": 80,
+   "y": 106,
+   "w": 48,
+   "h": 20,
+   "frames": 16,
+   "fps": 2,
+   "depth": 0.0,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 62
+  },
+  {
+   "id": "birds",
+   "x": 84,
+   "y": 116,
+   "w": 72,
+   "h": 36,
+   "frames": 16,
+   "fps": 8,
+   "depth": 0.0,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 82
+  },
+  {
+   "id": "curtain_l",
+   "x": 52,
+   "y": 56,
+   "w": 22,
+   "h": 186,
+   "frames": 4,
+   "fps": 3,
+   "depth": 0.35,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 118
+  },
+  {
+   "id": "curtain_r",
+   "x": 164,
+   "y": 56,
+   "w": 22,
+   "h": 186,
+   "frames": 4,
+   "fps": 3,
+   "depth": 0.35,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 304
+  },
+  {
+   "id": "snail",
+   "x": 150,
+   "y": 214,
+   "w": 26,
+   "h": 22,
+   "frames": 2,
+   "fps": 2,
+   "depth": 0.35,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 490
+  },
+  {
+   "id": "glow",
+   "x": 144,
+   "y": 215,
+   "w": 120,
+   "h": 120,
+   "frames": 4,
+   "fps": 6,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 512
+  },
+  {
+   "id": "motes",
+   "x": 149,
+   "y": 220,
+   "w": 110,
+   "h": 90,
+   "frames": 8,
+   "fps": 4,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 632
+  },
+  {
+   "id": "paper",
+   "x": 24,
+   "y": 229,
+   "w": 120,
+   "h": 84,
+   "frames": 1,
+   "fps": 4,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 722
+  },
+  {
+   "id": "dog",
+   "x": 34,
+   "y": 338,
+   "w": 60,
+   "h": 34,
+   "frames": 4,
+   "fps": 3,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 806
+  },
+  {
+   "id": "candle",
+   "x": 196,
+   "y": 267,
+   "w": 18,
+   "h": 48,
+   "frames": 4,
+   "fps": 8,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 840
+  },
+  {
+   "id": "who",
+   "x": 96,
+   "y": 243,
+   "w": 112,
+   "h": 128,
+   "frames": 4,
+   "fps": 4,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 888
+  }
+ ],
+ "anchors": {
+  "slate": {
+   "x": 84,
+   "y": 269,
+   "depth": 0.8
+  },
+  "page": {
+   "x": 84,
+   "y": 269,
+   "depth": 0.8
+  },
+  "centre": {
+   "x": 204,
+   "y": 275,
+   "depth": 0.8
+  },
+  "sketch_shell": {
+   "x": 82,
+   "y": 292,
+   "depth": 0.8
+  }
+ },
+ "tags": [
+  {
+   "id": "who",
+   "x": 162,
+   "y": 305,
+   "depth": 0.8
+  }
+ ]
+}

@@ -1,0 +1,35 @@
+/* Three e-paper screens: paper face, 2 px ink frame, an olive bezel line inside it. In the panel's flow they stack; pinned (data-pinned) they sit at the art's screen anchors. */
+.screens { list-style: none; margin: var(--s1) 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.item { margin: 0; }
+.screens .item > .screen {  /* wins over the shell's boxed-link rule */
+  display: block;
+  box-sizing: border-box;
+  max-width: 240px;
+  padding: 11px 14px;
+  background: var(--paper);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  outline: 3px solid #6f7d3c;
+  outline-offset: -7px;
+  box-shadow: 3px 3px 0 var(--ink);
+  font-family: var(--font-label), monospace;
+  text-decoration: none;
+}
+.screens .item > .screen:hover { background: var(--paper); }
+.screens .item > .screen:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+.screens .screen:hover .title, .screens .screen:focus-visible .title { text-decoration: underline; text-underline-offset: 3px; }
+.title { display: block; margin: 0 0 2px; font-size: 22px; line-height: 24px; }
+.sample { display: block; margin: 0; font-size: 20px; line-height: 20px; }
+
+/* a short screen (a phone under 700 px tall, or a window under 500 px tall): the panel keeps to the essentials, and "See more scripts" still leads to them.
+   Not merely clipped: a clipped link still takes keyboard focus that nobody can see. */
+@media (max-height: 700px) and (max-width: 600px), (max-height: 500px) {
+  .screens:not([data-pinned]) { display: none; }
+}
+
+/* pinned on the art */
+.screens[data-pinned] { position: fixed; left: 0; top: 0; z-index: 1; margin: 0; display: block; opacity: 0; pointer-events: none; }
+.screens[data-pinned] .item { position: absolute; left: 0; top: 0; }
+.screens[data-pinned] .item > .screen { max-width: none; }
+.screens[data-pinned][data-on="true"] .item > .screen { pointer-events: auto; }
+.screens[data-pinned] .item > .screen:focus-visible { outline-color: var(--gold); }

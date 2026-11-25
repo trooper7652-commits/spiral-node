@@ -20,7 +20,7 @@ export default async function ScriptPage({ params }: { params: Promise<{ id: str
   const s = getScript((await params).id);
   if (!s) notFound();
   return (
-    <Page title={s.name}>
+    <Page band="scroll" title={s.name}>
       <p>{s.description}</p>
       <p>by {s.community ? <a href={`https://github.com/${encodeURIComponent(s.author)}`}>{s.author}</a> : s.author}</p>
       <p>

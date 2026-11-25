@@ -1,0 +1,5 @@
+.slot { margin: 0; max-width: 720px; }
+.frame { display: flex; align-items: center; justify-content: center; aspect-ratio: 4 / 3; max-width: 100%; border: 2px solid var(--ink); border-radius: 0; background: var(--paper); }
+.soon { font-family: var(--font-display), system-ui, sans-serif; font-size: 20px; }
+.img { display: block; width: 100%; max-width: 100%; height: auto; border: 2px solid var(--ink); border-radius: 0; }
+.caption { margin-top: var(--s1); font-size: var(--text); line-height: var(--leading); }

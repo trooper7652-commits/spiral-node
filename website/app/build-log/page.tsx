@@ -8,7 +8,7 @@ export const metadata = og("devlog", "Build log | Spiral Node", "Photos and note
 export default function BuildLogPage() {
   const entries = listEntries();
   return (
-    <Page title="Build log">
+    <Page band="map" title="Build log">
       <p>Photos and notes from building the first Spiral Node prototypes.</p>
       {entries.length === 0 ? (
         <p>First photos coming soon.</p>

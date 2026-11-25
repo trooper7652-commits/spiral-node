@@ -1,0 +1,495 @@
+{
+ "id": "shell",
+ "variant": "wide",
+ "w": 576,
+ "h": 360,
+ "layers": [
+  {
+   "id": "sky",
+   "src": "layer-sky.png",
+   "depth": 0.0
+  },
+  {
+   "id": "sea",
+   "src": "layer-sea.png",
+   "depth": 0.2
+  },
+  {
+   "id": "sand",
+   "src": "layer-sand.png",
+   "depth": 0.6
+  },
+  {
+   "id": "props",
+   "src": "layer-props.png",
+   "depth": 0.8
+  },
+  {
+   "id": "front",
+   "src": "layer-front.png",
+   "depth": 1.0
+  }
+ ],
+ "atlas": "atlas.png",
+ "sprites": [
+  {
+   "id": "cloud1",
+   "x": 40,
+   "y": 14,
+   "w": 92,
+   "h": 40,
+   "frames": 16,
+   "fps": 3,
+   "depth": 0.0,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 0
+  },
+  {
+   "id": "cloud2",
+   "x": 330,
+   "y": 40,
+   "w": 72,
+   "h": 31,
+   "frames": 16,
+   "fps": 2,
+   "depth": 0.0,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 40
+  },
+  {
+   "id": "cloud3",
+   "x": 385,
+   "y": 10,
+   "w": 64,
+   "h": 27,
+   "frames": 16,
+   "fps": 3,
+   "depth": 0.0,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 71
+  },
+  {
+   "id": "gulls",
+   "x": 290,
+   "y": 10,
+   "w": 90,
+   "h": 34,
+   "frames": 8,
+   "fps": 6,
+   "depth": 0.0,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 98
+  },
+  {
+   "id": "sparkles",
+   "x": 0,
+   "y": 76,
+   "w": 576,
+   "h": 18,
+   "frames": 3,
+   "fps": 3,
+   "depth": 0.2,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 132
+  },
+  {
+   "id": "waves1",
+   "x": 0,
+   "y": 98,
+   "w": 288,
+   "h": 20,
+   "frames": 6,
+   "fps": 5,
+   "depth": 0.6,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 150
+  },
+  {
+   "id": "waves2",
+   "x": 288,
+   "y": 97,
+   "w": 288,
+   "h": 20,
+   "frames": 6,
+   "fps": 5,
+   "depth": 0.6,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 170
+  },
+  {
+   "id": "tuft1",
+   "x": 430,
+   "y": 232,
+   "w": 22,
+   "h": 16,
+   "frames": 4,
+   "fps": 4,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 190
+  },
+  {
+   "id": "tuft2",
+   "x": 60,
+   "y": 290,
+   "w": 22,
+   "h": 16,
+   "frames": 4,
+   "fps": 4,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 206
+  },
+  {
+   "id": "glint",
+   "x": 285,
+   "y": 252,
+   "w": 9,
+   "h": 9,
+   "frames": 4,
+   "fps": 3,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 222
+  },
+  {
+   "id": "feat-offline",
+   "x": 93,
+   "y": 124,
+   "w": 23,
+   "h": 29,
+   "frames": 2,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 231
+  },
+  {
+   "id": "glint-offline",
+   "x": 93,
+   "y": 124,
+   "w": 23,
+   "h": 29,
+   "frames": 3,
+   "fps": 4,
+   "depth": 0.81,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 260
+  },
+  {
+   "id": "feat-eink",
+   "x": 91,
+   "y": 156,
+   "w": 26,
+   "h": 29,
+   "frames": 2,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 289
+  },
+  {
+   "id": "glint-eink",
+   "x": 91,
+   "y": 156,
+   "w": 26,
+   "h": 29,
+   "frames": 3,
+   "fps": 4,
+   "depth": 0.81,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 318
+  },
+  {
+   "id": "feat-scripts",
+   "x": 90,
+   "y": 201,
+   "w": 28,
+   "h": 16,
+   "frames": 2,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 347
+  },
+  {
+   "id": "glint-scripts",
+   "x": 90,
+   "y": 201,
+   "w": 28,
+   "h": 16,
+   "frames": 3,
+   "fps": 4,
+   "depth": 0.81,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 363
+  },
+  {
+   "id": "feat-connect",
+   "x": 85,
+   "y": 228,
+   "w": 38,
+   "h": 21,
+   "frames": 2,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 379
+  },
+  {
+   "id": "glint-connect",
+   "x": 85,
+   "y": 228,
+   "w": 38,
+   "h": 21,
+   "frames": 3,
+   "fps": 4,
+   "depth": 0.81,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 400
+  },
+  {
+   "id": "feat-norepeats",
+   "x": 226,
+   "y": 128,
+   "w": 28,
+   "h": 25,
+   "frames": 2,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 421
+  },
+  {
+   "id": "glint-norepeats",
+   "x": 226,
+   "y": 128,
+   "w": 28,
+   "h": 25,
+   "frames": 3,
+   "fps": 4,
+   "depth": 0.81,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 446
+  },
+  {
+   "id": "feat-sourced",
+   "x": 227,
+   "y": 166,
+   "w": 26,
+   "h": 19,
+   "frames": 2,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 471
+  },
+  {
+   "id": "glint-sourced",
+   "x": 227,
+   "y": 166,
+   "w": 26,
+   "h": 19,
+   "frames": 3,
+   "fps": 4,
+   "depth": 0.81,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 490
+  },
+  {
+   "id": "feat-wheel",
+   "x": 226,
+   "y": 188,
+   "w": 28,
+   "h": 29,
+   "frames": 2,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 509
+  },
+  {
+   "id": "glint-wheel",
+   "x": 226,
+   "y": 188,
+   "w": 28,
+   "h": 29,
+   "frames": 3,
+   "fps": 4,
+   "depth": 0.81,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 538
+  },
+  {
+   "id": "feat-opensource",
+   "x": 224,
+   "y": 224,
+   "w": 32,
+   "h": 25,
+   "frames": 2,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 567
+  },
+  {
+   "id": "glint-opensource",
+   "x": 224,
+   "y": 224,
+   "w": 32,
+   "h": 25,
+   "frames": 3,
+   "fps": 4,
+   "depth": 0.81,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 592
+  },
+  {
+   "id": "who",
+   "x": 346,
+   "y": 250,
+   "w": 22,
+   "h": 21,
+   "frames": 4,
+   "fps": 4,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 617
+  },
+  {
+   "id": "dog",
+   "x": 382,
+   "y": 260,
+   "w": 24,
+   "h": 14,
+   "frames": 4,
+   "fps": 6,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 638
+  },
+  {
+   "id": "crab",
+   "x": 404,
+   "y": 269,
+   "w": 26,
+   "h": 8,
+   "frames": 8,
+   "fps": 5,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 652
+  },
+  {
+   "id": "snail",
+   "x": 228,
+   "y": 268,
+   "w": 14,
+   "h": 12,
+   "frames": 2,
+   "fps": 3,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 660
+  }
+ ],
+ "anchors": {
+  "centre": {
+   "x": 288,
+   "y": 180,
+   "depth": 0.2
+  },
+  "spiral": {
+   "x": 300,
+   "y": 268,
+   "depth": 0.8
+  }
+ },
+ "tags": [
+  {
+   "id": "offline",
+   "x": 104,
+   "y": 138,
+   "depth": 0.8
+  },
+  {
+   "id": "eink",
+   "x": 104,
+   "y": 170,
+   "depth": 0.8
+  },
+  {
+   "id": "scripts",
+   "x": 104,
+   "y": 208,
+   "depth": 0.8
+  },
+  {
+   "id": "connect",
+   "x": 104,
+   "y": 238,
+   "depth": 0.8
+  },
+  {
+   "id": "norepeats",
+   "x": 240,
+   "y": 140,
+   "depth": 0.8
+  },
+  {
+   "id": "sourced",
+   "x": 240,
+   "y": 175,
+   "depth": 0.8
+  },
+  {
+   "id": "wheel",
+   "x": 240,
+   "y": 202,
+   "depth": 0.8
+  },
+  {
+   "id": "opensource",
+   "x": 240,
+   "y": 236,
+   "depth": 0.8
+  },
+  {
+   "id": "who",
+   "x": 357,
+   "y": 258,
+   "depth": 0.8
+  }
+ ],
+ "ink": "ink.png"
+}

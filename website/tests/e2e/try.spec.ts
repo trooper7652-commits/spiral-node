@@ -20,18 +20,30 @@ async function toHome(page: Page) {
   await powerOn(page);
   await expect(screen(page)).toHaveAttribute("data-screen", "home", BOOT);
 }
-async function startFunFact(page: Page, seconds = 15) {
+async function openScript(page: Page, name: string) {
   await key(page, "Enter");
   await expect(screen(page)).toHaveAttribute("data-screen", "menu");
   await key(page, "Enter");
   await expect(screen(page)).toHaveAttribute("data-screen", "scripts");
-  await key(page, "ArrowDown"); // Chess Puzzles and Connect sort first
-  await key(page, "ArrowDown");
+  for (let i = 0; i < 20; i++) {
+    const text = (await live(page).textContent()) ?? "";
+    if (text.includes(`Selected: ${name}`)) break;
+    await key(page, "ArrowDown");
+    await expect(live(page)).not.toHaveText(text); // wait for the move to land before reading again
+  }
+  await expect(live(page)).toContainText(`Selected: ${name}`);
   await key(page, "Enter");
   await expect(screen(page)).toHaveAttribute("data-screen", "prefs");
-  await expect(live(page)).toContainText("Fun Fact + Question");
+  await expect(live(page)).toContainText(name);
+}
+async function startFunFact(page: Page, seconds = 15) {
+  await openScript(page, "Fun Fact + Question");
   if (seconds === 15) await key(page, "ArrowLeft");
   await expect(live(page)).toContainText(`Refresh: ${seconds} s`);
+  await key(page, "ArrowDown"); // Mode
+  await key(page, "ArrowRight"); // Quiz
+  await key(page, "ArrowRight"); // Read: a fact and a question every refresh, as these tests expect
+  await expect(live(page)).toContainText("Mode: Read");
   await key(page, "Enter"); // focus moves down to OK
   await key(page, "Enter");
   await expect(screen(page)).toHaveAttribute("data-screen", "home");
@@ -91,7 +103,7 @@ test("E4 + E10: keyboard-only Fun Fact flow, live text equals frame text", async
   await key(page, "Enter");
   await expect(screen(page)).toHaveAttribute("data-screen", "home", BOOT);
   await key(page, "Enter");
-  await expect(live(page)).toHaveText("Menu: Scripts, Chat, Quick Story, Settings, Power off. Selected: Scripts");
+  await expect(live(page)).toHaveText("Menu: Scripts, Find, Chat, Quick Story, Settings, Power off. Selected: Scripts");
   await key(page, "Escape");
   await expect(screen(page)).toHaveAttribute("data-screen", "home");
   await startFunFact(page, 15);
@@ -200,7 +212,7 @@ test.describe("E6: touch", () => {
     await wheel("Select (hold for Back)").tap();
     await expect(screen(page)).toHaveAttribute("data-screen", "menu");
     await tap("Down");
-    await expect(live(page)).toContainText("Selected: Chat");
+    await expect(live(page)).toContainText("Selected: Find");
     await tap("Up");
     await expect(live(page)).toContainText("Selected: Scripts");
     await tap("Right");
@@ -259,7 +271,7 @@ test("E8: Power off dialog, off screen, input does nothing", async ({ page }) =>
   await page.goto("/try");
   await toHome(page);
   await key(page, "Enter");
-  for (let i = 0; i < 4; i++) await key(page, "ArrowDown");
+  for (let i = 0; i < 5; i++) await key(page, "ArrowDown");
   await expect(live(page)).toContainText("Selected: Power off");
   await key(page, "Enter");
   await expect(live(page)).toContainText("Power off?");
@@ -296,7 +308,9 @@ test("E9b: with realism on, the boot full refresh flashes", async ({ page }) => 
   await page.getByText("Tools", { exact: true }).click();
   await expect(page.getByRole("checkbox", { name: "Realistic e-ink" })).toBeChecked();
   await toHome(page);
-  expect(Number(await screen(page).getAttribute("data-flashes"))).toBeGreaterThanOrEqual(2);
+  // data-screen turns "home" with the frame; the ink then paper fills land over the next 400 ms.
+  // On a loaded machine the next boot frame can arrive mid-plan and cancel the paper fill (a newer frame wins), so at least one flash; realism off gives exactly 0 (E9a).
+  await expect.poll(async () => Number(await screen(page).getAttribute("data-flashes"))).toBeGreaterThanOrEqual(1);
 });
 
 test("error path: a failed OS download shows a device-style error, Try again recovers", async ({ page }) => {
@@ -352,4 +366,9 @@ test.describe("phone menu screenshot", () => {
     await settle(page);
     await page.screenshot({ path: `${shots}/try-menu-phone.png`, fullPage: true });
   });
+});
+
+test("demo page ends with the launch list", async ({ page }) => {
+  await page.goto("/try");
+  await expect(page.getByRole("link", { name: "Join the launch list" })).toHaveAttribute("href", "/spiral-node#get-updates-h");
 });

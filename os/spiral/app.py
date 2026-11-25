@@ -7,8 +7,8 @@ from .display import RefreshPolicy
 from .library import LibraryExhausted, ShownLog
 from .loader import discover
 from .render import TopBar, picture_max_h
-from .screens import BootScreen, ExhaustedDialog, HomeScreen, OffScreen
-from .scripts_api import Page, ScriptContext, check_picture, valid_prefs
+from .screens import BootScreen, ExhaustedDialog, HomeScreen, OffScreen, connect_mode_on
+from .scripts_api import Page, ScriptContext, check_choices, check_picture, valid_prefs
 from .storage import Store
 from .welcome import Welcome, load_messages
 
@@ -34,12 +34,14 @@ class App:
         self.scripts = {}
         self.script_id = None
         self.runner = None
-        self.history = []  # [{"title", "body"}], newest last, max HISTORY_MAX
+        self.history = []  # [{"title", "body", "picture", "choices", "key", "picked"}], newest last, max HISTORY_MAX
         self.hpos = -1
+        self.cursor = 0  # highlighted choice on a waiting page; not saved
         self.paused = False
         self.next_due = None
         self.error_page = None
         self._prefs = {}
+        self.connect_count = 0  # new pages asked of the script while it runs
 
     # -- helpers ---------------------------------------------------------
     @property
@@ -89,18 +91,27 @@ class App:
     def interval(self) -> int:
         return self._prefs.get("interval", 30)
 
+    @property
+    def waiting(self) -> bool:
+        """The newest page asks a question that is not answered yet; the timer holds until it is."""
+        return bool(self.history and not self.error_page and self.history[-1]["choices"]
+                    and self.history[-1]["picked"] is None)
+
     def _arm(self) -> None:
-        """(Re)start a full interval; only runs while Home is shown, a script is active and not paused."""
-        self.next_due = self.clock() + self.interval() if self.runner and not self.paused else None
+        """(Re)start a full interval; only runs while Home is shown, a script is active, not paused and not waiting."""
+        run = self.runner and not self.paused and not self.waiting
+        self.next_due = self.clock() + self.interval() if run else None
 
     def _save(self) -> None:
         self.store.set("active", {"script_id": self.script_id, "prefs": self._prefs,
-                                  "history": self.history, "paused": self.paused})
+                                  "history": self.history, "paused": self.paused,
+                                  "connect_count": self.connect_count})
 
     def _clear(self) -> None:
         self.script_id = self.runner = self.next_due = None
         self._prefs = {}
         self.history, self.hpos, self.paused = [], -1, False
+        self.connect_count = 0
 
     def _create(self, script_id, prefs):
         info = self.scripts[script_id]
@@ -121,6 +132,7 @@ class App:
         self._save()
         self.home()
         self.advance()
+        self._arm()
 
     def stop_script(self) -> None:
         self.error_page = None
@@ -128,14 +140,21 @@ class App:
         self.store.set("active", {})
         self.home()
 
-    def advance(self) -> None:
-        """Ask the script for a new page and make it the current one."""
+    def _entry(self, page) -> dict:
+        """Check what the script returned and make the history entry for it."""
+        if not (isinstance(page, Page) and isinstance(page.title, str) and isinstance(page.body, str)):
+            raise TypeError("script returned something that is not a Page of text")
+        check_picture(page.picture, picture_max_h())
+        check_choices(page)
+        if page.choices and not callable(getattr(self.runner, "choose", None)):
+            raise ValueError("page has choices but the script has no choose()")
+        return {"title": " ".join(page.title.split()), "body": page.body, "picture": list(page.picture),
+                "choices": list(page.choices), "key": page.key if page.choices else "", "picked": None}
+
+    def _step(self, call) -> None:
+        """Take the next page from a script call (next or choose) and make it the current one."""
         try:
-            page = self.runner.next()
-            if not (isinstance(page, Page) and isinstance(page.title, str) and isinstance(page.body, str)):
-                raise TypeError("script returned something that is not a Page of text")
-            check_picture(page.picture, picture_max_h())
-            entry = {"title": " ".join(page.title.split()), "body": page.body, "picture": list(page.picture)}
+            entry = self._entry(call())
         except LibraryExhausted as e:
             self.paused = True
             self._save()
@@ -146,7 +165,42 @@ class App:
             return
         self.history = (self.history + [entry])[-HISTORY_MAX:]
         self.hpos = len(self.history) - 1
+        self.cursor = 0
         self._save()
+
+    def _connect_card(self):
+        """A Connect card for Connect mode, or None when the Connect script is missing or fails."""
+        info = self.scripts.get("connect")
+        if info is None or info.error:
+            return None
+        ctx = ScriptContext("connect-mode", info.folder, valid_prefs(info.preferences, {}), self.store, self.rng,
+                            lambda: self.bar().now.date())
+        for _ in range(2):  # used up: start its log over quietly and try once more
+            try:
+                return info.module.create(ctx).next()
+            except LibraryExhausted as e:
+                ctx.shown(e.library or "topics.json").reset()
+            except (Exception, SystemExit) as e:
+                self.log(f"Connect mode: {str(e) or type(e).__name__}")
+                return None
+        return None
+
+    def advance(self) -> None:
+        """Ask the script for a new page and make it the current one; in Connect mode every 5th is a Connect card."""
+        n, self.connect_count = self.connect_count, self.connect_count + 1
+        card = None
+        if n % 5 == 4 and self.script_id != "connect" and connect_mode_on(self):
+            card = self._connect_card()
+        self._step(self.runner.next if card is None else (lambda: card))
+
+    def choose(self, index: int) -> None:
+        """Answer the waiting question with choice `index`; the script's reply becomes the new page."""
+        if not self.waiting or not 0 <= index < len(self.history[-1]["choices"]):
+            return
+        last = self.history[-1]
+        last["picked"] = index
+        self._step(lambda: self.runner.choose(last["key"], index))
+        self._arm()
 
     def restart_library(self, library: str) -> None:
         ShownLog(self.store, f"shown/{self.script_id}/{Path(library).stem}").reset()
@@ -183,6 +237,19 @@ class App:
             return []
         return list(pic)
 
+    @staticmethod
+    def _saved_choices(h) -> dict:
+        """The saved choices, key and pick if still valid (old saves have none), else no choices."""
+        none = {"choices": [], "key": "", "picked": None}
+        c, key, picked = h.get("choices", []), h.get("key", ""), h.get("picked")
+        try:
+            check_choices(Page("", "", choices=c, key=key))
+        except ValueError:
+            return none
+        if not c or not (picked is None or type(picked) is int and 0 <= picked < len(c)):
+            return none
+        return {"choices": list(c), "key": key, "picked": picked}
+
     def _resume(self) -> None:
         saved = self.store.get("active", {})
         sid = saved.get("script_id") if isinstance(saved, dict) else None
@@ -203,12 +270,15 @@ class App:
             self.script_error(info.name, str(e) or type(e).__name__)
             return
         hist = saved.get("history")
-        self.history = [{"title": h["title"], "body": h["body"], "picture": self._saved_picture(h)}
+        self.history = [{"title": h["title"], "body": h["body"], "picture": self._saved_picture(h),
+                         **self._saved_choices(h)}
                         for h in hist if isinstance(h, dict) and isinstance(h.get("title"), str)
                         and isinstance(h.get("body"), str)][-HISTORY_MAX:] if isinstance(hist, list) else []
         self.hpos = len(self.history) - 1
         self.script_id, self._prefs, self.runner = sid, prefs, runner
         self.paused = bool(saved.get("paused"))
+        c = saved.get("connect_count")
+        self.connect_count = c if type(c) is int and c >= 0 else 0
         self._arm()
 
     # -- lifecycle -------------------------------------------------------

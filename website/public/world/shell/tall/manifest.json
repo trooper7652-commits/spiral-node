@@ -1,0 +1,469 @@
+{
+ "id": "shell",
+ "variant": "tall",
+ "w": 240,
+ "h": 480,
+ "layers": [
+  {
+   "id": "sky",
+   "src": "layer-sky.png",
+   "depth": 0.0
+  },
+  {
+   "id": "sea",
+   "src": "layer-sea.png",
+   "depth": 0.2
+  },
+  {
+   "id": "sand",
+   "src": "layer-sand.png",
+   "depth": 0.6
+  },
+  {
+   "id": "props",
+   "src": "layer-props.png",
+   "depth": 0.8
+  },
+  {
+   "id": "front",
+   "src": "layer-front.png",
+   "depth": 1.0
+  }
+ ],
+ "atlas": "atlas.png",
+ "sprites": [
+  {
+   "id": "cloud1",
+   "x": 14,
+   "y": 12,
+   "w": 78,
+   "h": 34,
+   "frames": 16,
+   "fps": 3,
+   "depth": 0.0,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 0
+  },
+  {
+   "id": "cloud2",
+   "x": 120,
+   "y": 40,
+   "w": 64,
+   "h": 27,
+   "frames": 16,
+   "fps": 2,
+   "depth": 0.0,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 34
+  },
+  {
+   "id": "gulls",
+   "x": 70,
+   "y": 20,
+   "w": 90,
+   "h": 34,
+   "frames": 8,
+   "fps": 6,
+   "depth": 0.0,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 61
+  },
+  {
+   "id": "sparkles",
+   "x": 0,
+   "y": 74,
+   "w": 240,
+   "h": 16,
+   "frames": 3,
+   "fps": 3,
+   "depth": 0.2,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 95
+  },
+  {
+   "id": "waves1",
+   "x": 0,
+   "y": 94,
+   "w": 240,
+   "h": 20,
+   "frames": 6,
+   "fps": 5,
+   "depth": 0.6,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 111
+  },
+  {
+   "id": "tuft1",
+   "x": 14,
+   "y": 214,
+   "w": 22,
+   "h": 16,
+   "frames": 4,
+   "fps": 4,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 131
+  },
+  {
+   "id": "tuft2",
+   "x": 196,
+   "y": 236,
+   "w": 22,
+   "h": 16,
+   "frames": 4,
+   "fps": 4,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 147
+  },
+  {
+   "id": "glint",
+   "x": 97,
+   "y": 330,
+   "w": 9,
+   "h": 9,
+   "frames": 4,
+   "fps": 3,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 163
+  },
+  {
+   "id": "feat-offline",
+   "x": 37,
+   "y": 122,
+   "w": 23,
+   "h": 29,
+   "frames": 2,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 172
+  },
+  {
+   "id": "glint-offline",
+   "x": 37,
+   "y": 122,
+   "w": 23,
+   "h": 29,
+   "frames": 3,
+   "fps": 4,
+   "depth": 0.81,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 201
+  },
+  {
+   "id": "feat-eink",
+   "x": 35,
+   "y": 172,
+   "w": 26,
+   "h": 29,
+   "frames": 2,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 230
+  },
+  {
+   "id": "glint-eink",
+   "x": 35,
+   "y": 172,
+   "w": 26,
+   "h": 29,
+   "frames": 3,
+   "fps": 4,
+   "depth": 0.81,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 259
+  },
+  {
+   "id": "feat-scripts",
+   "x": 34,
+   "y": 235,
+   "w": 28,
+   "h": 16,
+   "frames": 2,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 288
+  },
+  {
+   "id": "glint-scripts",
+   "x": 34,
+   "y": 235,
+   "w": 28,
+   "h": 16,
+   "frames": 3,
+   "fps": 4,
+   "depth": 0.81,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 304
+  },
+  {
+   "id": "feat-connect",
+   "x": 29,
+   "y": 280,
+   "w": 38,
+   "h": 21,
+   "frames": 2,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 320
+  },
+  {
+   "id": "glint-connect",
+   "x": 29,
+   "y": 280,
+   "w": 38,
+   "h": 21,
+   "frames": 3,
+   "fps": 4,
+   "depth": 0.81,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 341
+  },
+  {
+   "id": "feat-norepeats",
+   "x": 126,
+   "y": 126,
+   "w": 28,
+   "h": 25,
+   "frames": 2,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 362
+  },
+  {
+   "id": "glint-norepeats",
+   "x": 126,
+   "y": 126,
+   "w": 28,
+   "h": 25,
+   "frames": 3,
+   "fps": 4,
+   "depth": 0.81,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 387
+  },
+  {
+   "id": "feat-sourced",
+   "x": 127,
+   "y": 182,
+   "w": 26,
+   "h": 19,
+   "frames": 2,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 412
+  },
+  {
+   "id": "glint-sourced",
+   "x": 127,
+   "y": 182,
+   "w": 26,
+   "h": 19,
+   "frames": 3,
+   "fps": 4,
+   "depth": 0.81,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 431
+  },
+  {
+   "id": "feat-wheel",
+   "x": 126,
+   "y": 222,
+   "w": 28,
+   "h": 29,
+   "frames": 2,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 450
+  },
+  {
+   "id": "glint-wheel",
+   "x": 126,
+   "y": 222,
+   "w": 28,
+   "h": 29,
+   "frames": 3,
+   "fps": 4,
+   "depth": 0.81,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 479
+  },
+  {
+   "id": "feat-opensource",
+   "x": 124,
+   "y": 276,
+   "w": 32,
+   "h": 25,
+   "frames": 2,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 508
+  },
+  {
+   "id": "glint-opensource",
+   "x": 124,
+   "y": 276,
+   "w": 32,
+   "h": 25,
+   "frames": 3,
+   "fps": 4,
+   "depth": 0.81,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 533
+  },
+  {
+   "id": "who",
+   "x": 40,
+   "y": 334,
+   "w": 22,
+   "h": 21,
+   "frames": 4,
+   "fps": 4,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 558
+  },
+  {
+   "id": "dog",
+   "x": 148,
+   "y": 340,
+   "w": 24,
+   "h": 14,
+   "frames": 4,
+   "fps": 6,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 579
+  },
+  {
+   "id": "crab",
+   "x": 146,
+   "y": 362,
+   "w": 26,
+   "h": 8,
+   "frames": 8,
+   "fps": 5,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 593
+  },
+  {
+   "id": "snail",
+   "x": 182,
+   "y": 338,
+   "w": 14,
+   "h": 12,
+   "frames": 2,
+   "fps": 3,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 601
+  }
+ ],
+ "anchors": {
+  "centre": {
+   "x": 120,
+   "y": 240,
+   "depth": 0.8
+  },
+  "spiral": {
+   "x": 112,
+   "y": 346,
+   "depth": 0.8
+  }
+ },
+ "tags": [
+  {
+   "id": "offline",
+   "x": 48,
+   "y": 136,
+   "depth": 0.8
+  },
+  {
+   "id": "eink",
+   "x": 48,
+   "y": 186,
+   "depth": 0.8
+  },
+  {
+   "id": "scripts",
+   "x": 48,
+   "y": 242,
+   "depth": 0.8
+  },
+  {
+   "id": "connect",
+   "x": 48,
+   "y": 290,
+   "depth": 0.8
+  },
+  {
+   "id": "norepeats",
+   "x": 140,
+   "y": 138,
+   "depth": 0.8
+  },
+  {
+   "id": "sourced",
+   "x": 140,
+   "y": 191,
+   "depth": 0.8
+  },
+  {
+   "id": "wheel",
+   "x": 140,
+   "y": 236,
+   "depth": 0.8
+  },
+  {
+   "id": "opensource",
+   "x": 140,
+   "y": 288,
+   "depth": 0.8
+  },
+  {
+   "id": "who",
+   "x": 51,
+   "y": 342,
+   "depth": 0.8
+  }
+ ],
+ "ink": "ink.png"
+}

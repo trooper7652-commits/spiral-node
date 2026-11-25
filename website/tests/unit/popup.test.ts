@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { DAY_MS, readState, shouldShow, writeState } from "../../lib/popup";
 
-const base = { now: 100 * DAY_MS, visibleMs: 60_000, path: "/", demoRunning: false, forced: false, formUrl: "https://example.com/form" };
+const base = { now: 100 * DAY_MS, visibleMs: 60_000, path: "/", forced: false, formUrl: "https://example.com/form" };
 
 describe("shouldShow", () => {
   it("shows after 60 s of visible-tab time", () => expect(shouldShow(base)).toBe(true));
@@ -16,9 +16,9 @@ describe("shouldShow", () => {
     expect(shouldShow({ ...base, path: "/try" })).toBe(false);
     expect(shouldShow({ ...base, path: "/try", forced: true })).toBe(false);
   });
-  it("never while the hero demo runs, even forced", () => {
-    expect(shouldShow({ ...base, demoRunning: true })).toBe(false);
-    expect(shouldShow({ ...base, demoRunning: true, forced: true })).toBe(false);
+  it("never on the product page", () => {
+    expect(shouldShow({ ...base, path: "/spiral-node" })).toBe(false);
+    expect(shouldShow({ ...base, path: "/spiral-node", forced: true })).toBe(false);
   });
   it("dismissed under 30 days ago stays away; from 30 days it may show again", () => {
     expect(shouldShow({ ...base, dismissedAt: base.now - 29 * DAY_MS })).toBe(false);

@@ -21,7 +21,7 @@ export default async function DevlogPost({ params }: { params: Promise<{ slug: s
   const p = find((await params).slug);
   if (!p) notFound();
   return (
-    <Page title={p.title}>
+    <Page band="map" title={p.title}>
       <p className={styles.date}>
         <time dateTime={p.date}>{p.date}</time>
       </p>

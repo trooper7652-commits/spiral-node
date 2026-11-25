@@ -1,35 +1,57 @@
-import { describe, expect, it } from "vitest";
-import { fetchRepoStats } from "../../lib/github";
+import { describe, expect, test, vi } from "vitest";
+import { fetchStars } from "../../lib/github";
 
-const API = "https://api.github.com/repos/o/r";
-const res = (status: number, body: unknown) => new Response(JSON.stringify(body), { status });
-const fake = (repo: Response | Error, people: Response | Error) =>
-  (async (url: string) => {
-    const r = String(url).includes("/contributors") ? people : repo;
-    if (r instanceof Error) throw r;
-    return r;
-  }) as unknown as typeof fetch;
-const ada = { login: "ada", avatar_url: "https://avatars.githubusercontent.com/u/1", html_url: "https://github.com/ada" };
+describe("fetchStars", () => {
+  test("200 with stargazers_count returns count", async () => {
+    const fetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: () => Promise.resolve({ stargazers_count: 42 }),
+    });
+    const result = await fetchStars("https://api.github.com/repos/x/y", fetch);
+    expect(result).toBe(42);
+    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(fetch).toHaveBeenCalledWith("https://api.github.com/repos/x/y", { headers: { Accept: "application/vnd.github+json" } });
+  });
 
-describe("fetchRepoStats", () => {
-  it("reads the star count and human contributors, without bots", async () => {
-    const bot = { login: "dependabot[bot]", avatar_url: "https://avatars.githubusercontent.com/u/2", html_url: "https://github.com/apps/dependabot" };
-    const s = await fetchRepoStats(API, fake(res(200, { stargazers_count: 42 }), res(200, [ada, bot])));
-    expect(s).toEqual({ stars: 42, contributors: [{ login: "ada", avatar: ada.avatar_url, url: ada.html_url }] });
+  test("403 returns null", async () => {
+    const fetch = vi.fn().mockResolvedValue({
+      ok: false,
+      json: () => Promise.resolve({ message: "API rate limit exceeded" }),
+    });
+    const result = await fetchStars("https://api.github.com/repos/x/y", fetch);
+    expect(result).toBeNull();
   });
-  it("rate limited (403): stars null, no contributors", async () => {
-    const limited = () => res(403, { message: "API rate limit exceeded" });
-    expect(await fetchRepoStats(API, fake(limited(), limited()))).toEqual({ stars: null, contributors: [] });
+
+  test("fetch throws returns null", async () => {
+    const fetch = vi.fn().mockRejectedValue(new TypeError("Failed to fetch"));
+    const result = await fetchStars("https://api.github.com/repos/x/y", fetch);
+    expect(result).toBeNull();
   });
-  it("offline: stars null, no contributors", async () => {
-    const off = () => new TypeError("Failed to fetch");
-    expect(await fetchRepoStats(API, fake(off(), off()))).toEqual({ stars: null, contributors: [] });
+
+  test("200 with empty json returns null", async () => {
+    const fetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: () => Promise.resolve({}),
+    });
+    const result = await fetchStars("https://api.github.com/repos/x/y", fetch);
+    expect(result).toBeNull();
   });
-  it("an empty repo (contributors 204, no body) keeps its star count", async () => {
-    expect(await fetchRepoStats(API, fake(res(200, { stargazers_count: 0 }), new Response(null, { status: 204 })))).toEqual({ stars: 0, contributors: [] });
+
+  test("200 with non-number stargazers_count returns null", async () => {
+    const fetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: () => Promise.resolve({ stargazers_count: "7" }),
+    });
+    const result = await fetchStars("https://api.github.com/repos/x/y", fetch);
+    expect(result).toBeNull();
   });
-  it("drops entries whose links are not GitHub's", async () => {
-    const odd = { login: "x", avatar_url: "https://evil.example/a.png", html_url: "javascript:alert(1)" };
-    expect((await fetchRepoStats(API, fake(res(200, {}), res(200, [odd, ada])))).contributors).toEqual([{ login: "ada", avatar: ada.avatar_url, url: ada.html_url }]);
+
+  test("200 with non-JSON body returns null", async () => {
+    const fetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: () => Promise.reject(new Error("Not JSON")),
+    });
+    const result = await fetchStars("https://api.github.com/repos/x/y", fetch);
+    expect(result).toBeNull();
   });
 });

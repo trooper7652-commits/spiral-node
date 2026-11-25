@@ -1,0 +1,4 @@
+.ink { display: block; width: 100%; height: auto; overflow: visible; fill: none; stroke: var(--ink); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.body { fill: color-mix(in srgb, var(--olive) 18%, var(--paper)); }
+.screen { fill: var(--paper); }
+.ring { stroke: var(--orange); stroke-width: 3; }

@@ -1,6 +1,6 @@
 "use client";
 import { useState, type FormEvent } from "react";
-import { writeState } from "@/lib/popup";
+import { writeWelcome } from "@/lib/welcome";
 import { SITE } from "@/lib/site";
 import styles from "./SignupForm.module.css";
 
@@ -21,7 +21,7 @@ export default function SignupForm({ id, onDone, fake = false }: { id: string; o
         body.set(SITE.newsletterEmailField, email);
         await fetch(SITE.newsletterFormUrl, { method: "POST", mode: "no-cors", body });
       }
-      writeState({ subscribed: true }); // footer or popup: either way the popup never shows again
+      writeWelcome("sent"); // footer or popup: either way the popup never shows again
       setState("done");
       onDone?.();
     } catch {

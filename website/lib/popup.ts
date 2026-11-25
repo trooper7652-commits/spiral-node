@@ -9,14 +9,12 @@ export type ShowInput = PopupState & {
   now: number;
   visibleMs: number;
   path: string;
-  demoRunning: boolean;
   forced: boolean;
   formUrl: string;
 };
 
 export function shouldShow(s: ShowInput): boolean {
-  if (s.path.startsWith("/try")) return false; // never on the simulator page, even when forced
-  if (s.demoRunning) return false; // never while the hero demo runs, even when forced
+  if (s.path.startsWith("/try") || s.path.startsWith("/spiral-node")) return false; // never on the simulator or product page, even when forced
   if (s.forced) return true;
   if (!s.formUrl) return false;
   if (s.subscribed) return false;

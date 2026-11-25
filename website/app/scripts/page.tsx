@@ -9,7 +9,7 @@ export const metadata: Metadata = og("scripts", "Scripts | Spiral Node", "Small 
 
 export default function ScriptsPage() {
   return (
-    <Page title="Scripts">
+    <Page band="scroll" title="Scripts">
       <p>Scripts are small Python loops that show something to think about. Run any of them in the simulator, or write your own.</p>
       <ScriptCards scripts={listScripts()} />
       <h2>Write a script</h2>

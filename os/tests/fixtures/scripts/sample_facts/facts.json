@@ -1,0 +1,7 @@
+[
+  {"id": "s-1", "text": "Sample fact one.", "topic": "sample", "source": "https://example.org/1"},
+  {"id": "s-2", "text": "Sample fact two.", "topic": "sample", "source": "https://example.org/2"},
+  {"id": "s-3", "text": "Sample fact three.", "topic": "sample", "source": "https://example.org/3"},
+  {"id": "s-4", "text": "Sample fact four.", "topic": "sample", "source": "https://example.org/4"},
+  {"id": "s-5", "text": "Sample fact five.", "topic": "sample", "source": "https://example.org/5"}
+]

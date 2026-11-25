@@ -19,6 +19,11 @@ def test_tags_between_words_do_not_break_match():
     assert run("<p>about <b>88</b>\n<i>days</i></p><script>x</script>") == []
 
 
+def test_gt_inside_attribute_does_not_leak_text():
+    assert "leaked" not in c.visible_text('<div data-mw=\'{"a":"x > leaked words"}\' title="a > leaked"><p>shown</p></div>')
+    assert "shown" in c.visible_text('<div data-mw="a > leaked"><p>shown</p></div>')
+
+
 def test_script_text_is_ignored_and_each_url_fetched_once():
     calls = []
 

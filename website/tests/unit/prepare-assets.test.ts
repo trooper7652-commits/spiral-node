@@ -4,7 +4,7 @@ import { join, resolve } from "node:path";
 import { unzipSync } from "fflate";
 import { describe, expect, it } from "vitest";
 // @ts-expect-error plain .mjs script, no types
-import { buildOsZip, verifyWheels, prepare } from "../../scripts/prepare-assets.mjs";
+import { buildOsZip, verifyWheels, prepare, siteIds } from "../../scripts/prepare-assets.mjs";
 
 const site = resolve(__dirname, "../..");
 const osDir = resolve(site, "../os");
@@ -38,6 +38,16 @@ describe("prepare-assets", () => {
     mkdirSync(join(dir, "scripts/connect"));
     writeFileSync(join(dir, "scripts/connect/script.py"), "");
     expect(() => buildOsZip(join(dir, "os"))).toThrow(/built-in/);
+  });
+
+  it("siteIds lists the tags the pixel scenes carry", async () => {
+    const { FEATURES } = await import("../../lib/features");
+    const { ROADMAP, FAQ } = await import("../../lib/content");
+    const ids = siteIds(site);
+    expect(ids.s3).toEqual(FEATURES.map((f) => f.id));
+    expect(ids.s4).toEqual(["screen", "wheel", "keys", "body", "port"]);
+    expect(ids.s6).toHaveLength(ROADMAP.length);
+    expect(ids.s7).toEqual(FAQ.map((_, i) => `q${i + 1}`));
   });
 
   it("is deterministic", () => {

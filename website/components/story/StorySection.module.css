@@ -1,0 +1,11 @@
+/* With scripts the section is only scroll length; the canvas paints the shot and the text shows over it while the camera holds. */
+@media (scripting: enabled) {
+  .section { position: relative; min-height: var(--span); }
+}
+/* Where the section's tags are drawn (components/world/Tags): a place in the DOM, outside the hold, which is transformed. It has no box of its own. */
+.tags { display: contents; }
+/* Without scripts the sections flow on plain paper. */
+@media (scripting: none) {
+  .section { background: var(--paper); padding: 96px 24px; }
+  .section > div { max-width: 720px; margin: 0 auto; padding: 24px; background: color-mix(in srgb, var(--paper) 88%, transparent); color: var(--ink); }
+}

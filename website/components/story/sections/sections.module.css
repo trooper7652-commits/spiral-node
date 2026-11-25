@@ -1,0 +1,20 @@
+/* The sections' own parts; the panel and the placement are in components/world/holds.module.css. */
+.accent { color: var(--olive-deep); }
+[data-hold] p.lede { font-size: var(--text-l); max-width: 40ch; }
+[data-hold] p.note { margin: var(--s2) 0 0; font-size: var(--text-s); max-width: 70ch; }
+.sub { margin: 0 0 var(--s1); font-size: var(--text-l); }
+.roadmap { list-style: none; margin: 0; padding: 0; }
+.roadmap li { display: flex; gap: var(--s1); align-items: baseline; padding: 2px 0; }
+.mark { flex: none; width: 1.2em; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+[data-hold] p.post { margin: 0 0 var(--s1); font-size: var(--text-l); font-weight: 400; }
+/* on a short screen (a phone, or a window under 500 px tall) the panel keeps to the essentials; these lines stay in the page for screen readers */
+@media (max-height: 700px) and (max-width: 600px), (max-height: 500px) {
+  :global([data-live]) .opt, :global([data-live]) p.want { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+}
+[data-hold] p.want { margin: var(--s2) 0 var(--s1); font-size: var(--text-l); font-weight: 400; }
+/* /#community scrolls to the middle of the hold (--at, in vh); without scripts the sections flow, so it sits at the top */
+.anchor { position: absolute; top: 0; }
+@media (scripting: enabled) {
+  .anchor { top: var(--at); }
+}

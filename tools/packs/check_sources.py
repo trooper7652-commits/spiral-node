@@ -28,7 +28,7 @@ def fetch(url):
 
 def visible_text(page):
     page = re.sub(r"(?is)<(script|style)\b.*?</\1\s*>", " ", page)
-    page = re.sub(r"(?s)<[^>]*>", " ", page)
+    page = re.sub(r"""(?s)<(?:[^>"']|"[^"]*"|'[^']*')*>""", " ", page)
     return re.sub(r"\s+", " ", html.unescape(page)).replace("\u00a0", " ").lower()
 
 

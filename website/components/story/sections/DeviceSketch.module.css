@@ -1,0 +1,7 @@
+.sketch { margin: var(--s2) 0 0; max-width: 600px; }
+.board { position: relative; aspect-ratio: 600 / 470; background: radial-gradient(ellipse at 50% 45%, var(--paper), var(--cloud)); border: 1px solid color-mix(in srgb, var(--brown) 45%, transparent); text-shadow: none; color: var(--ink); }
+.ink { position: absolute; inset: 0; width: 100%; height: 100%; fill: none; stroke: var(--brown-deep); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+/* the labels' box lies exactly over the drawing; its leader lines and dots are copper */
+.labels { position: absolute; inset: 0; color: var(--copper-deep); }
+.labels span[data-testid] { color: var(--ink); font-weight: 400; }
+.caption { margin-top: var(--s1); font-size: var(--text-s); }

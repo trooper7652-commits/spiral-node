@@ -1,0 +1,240 @@
+{
+ "id": "scroll",
+ "variant": "wide",
+ "w": 576,
+ "h": 360,
+ "layers": [
+  {
+   "id": "wall",
+   "src": "layer-wall.png",
+   "depth": 0.0
+  },
+  {
+   "id": "shelves",
+   "src": "layer-shelves.png",
+   "depth": 0.25
+  },
+  {
+   "id": "room",
+   "src": "layer-room.png",
+   "depth": 0.5
+  },
+  {
+   "id": "table",
+   "src": "layer-table.png",
+   "depth": 0.7
+  },
+  {
+   "id": "front",
+   "src": "layer-front.png",
+   "depth": 1.0
+  }
+ ],
+ "atlas": "atlas.png",
+ "sprites": [
+  {
+   "id": "snail",
+   "x": 150,
+   "y": 112,
+   "w": 14,
+   "h": 12,
+   "frames": 2,
+   "fps": 3,
+   "depth": 0.25,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 0
+  },
+  {
+   "id": "fire",
+   "x": 470,
+   "y": 223,
+   "w": 60,
+   "h": 44,
+   "frames": 4,
+   "fps": 6,
+   "depth": 0.5,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 12
+  },
+  {
+   "id": "dust_high",
+   "x": 330,
+   "y": 30,
+   "w": 200,
+   "h": 120,
+   "frames": 8,
+   "fps": 3,
+   "depth": 0.6,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 56
+  },
+  {
+   "id": "who",
+   "x": 192,
+   "y": 244,
+   "w": 20,
+   "h": 26,
+   "frames": 4,
+   "fps": 3,
+   "depth": 0.9,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 176
+  },
+  {
+   "id": "devscreen1",
+   "x": 162,
+   "y": 212,
+   "w": 16,
+   "h": 14,
+   "frames": 2,
+   "fps": 1.5,
+   "depth": 0.7,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 202
+  },
+  {
+   "id": "devscreen2",
+   "x": 224,
+   "y": 212,
+   "w": 16,
+   "h": 14,
+   "frames": 2,
+   "fps": 1.8,
+   "depth": 0.7,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 216
+  },
+  {
+   "id": "devscreen3",
+   "x": 292,
+   "y": 212,
+   "w": 16,
+   "h": 14,
+   "frames": 2,
+   "fps": 2.1,
+   "depth": 0.7,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 230
+  },
+  {
+   "id": "flame1",
+   "x": 254,
+   "y": 212,
+   "w": 17,
+   "h": 22,
+   "frames": 4,
+   "fps": 8,
+   "depth": 0.7,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 244
+  },
+  {
+   "id": "flame2",
+   "x": 130,
+   "y": 212,
+   "w": 17,
+   "h": 22,
+   "frames": 4,
+   "fps": 8,
+   "depth": 0.7,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 266
+  },
+  {
+   "id": "scroll_end",
+   "x": 322,
+   "y": 228,
+   "w": 30,
+   "h": 53,
+   "frames": 4,
+   "fps": 6,
+   "depth": 0.9,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 288
+  },
+  {
+   "id": "dog",
+   "x": 296,
+   "y": 266,
+   "w": 30,
+   "h": 14,
+   "frames": 4,
+   "fps": 6,
+   "depth": 0.9,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 341
+  },
+  {
+   "id": "dust",
+   "x": 110,
+   "y": 150,
+   "w": 240,
+   "h": 130,
+   "frames": 8,
+   "fps": 3,
+   "depth": 0.9,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 355
+  },
+  {
+   "id": "lantern",
+   "x": 204,
+   "y": 0,
+   "w": 56,
+   "h": 72,
+   "frames": 8,
+   "fps": 5,
+   "depth": 0.9,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 485
+  }
+ ],
+ "anchors": {
+  "page": {
+   "x": 202,
+   "y": 234,
+   "depth": 0.7
+  },
+  "roller": {
+   "x": 114,
+   "y": 234,
+   "depth": 0.7
+  },
+  "screen1": {
+   "x": 170,
+   "y": 219,
+   "depth": 0.7
+  },
+  "screen2": {
+   "x": 232,
+   "y": 219,
+   "depth": 0.7
+  },
+  "screen3": {
+   "x": 300,
+   "y": 219,
+   "depth": 0.7
+  }
+ },
+ "tags": [
+  {
+   "id": "who",
+   "x": 202,
+   "y": 252,
+   "depth": 0.9
+  }
+ ]
+}

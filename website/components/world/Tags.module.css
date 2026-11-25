@@ -1,0 +1,98 @@
+/* Tags sit over the art, outside the hold's panel (which is transformed): fixed to the screen, each moved by JS to its art point. The layer takes no clicks; only the tags do. */
+.group { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0; font-family: var(--font-label), monospace; }
+.tag {
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  min-width: 24px;
+  min-height: 24px;
+  padding: 0 6px;
+  border: 2px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: 20px;
+  line-height: 20px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 2px 2px 0 rgba(28, 26, 20, 0.6);
+  cursor: pointer;
+  pointer-events: none;
+  transition: none; /* a pick is instant: ink and paper, no tween */
+}
+.group[data-on="true"] .tag { pointer-events: auto; }
+@media (hover: hover) {
+  .tag:hover { background: var(--olive-bright); }
+}
+.tag[aria-pressed="true"] { background: var(--gold); }
+.line { display: block; margin-top: 2px; font-size: 20px; line-height: 20px; letter-spacing: 0.02em; text-transform: none; white-space: normal; text-align: left; }
+
+/* scene 3 on a landscape screen: a paper card beside its object (placed by JS through `translate`; `transform` is the hover lift) */
+.card {
+  display: block;
+  width: max-content;
+  max-width: 220px;
+  padding: 6px 10px 8px;
+  text-align: left;
+  box-shadow: inset 0 0 0 2px var(--paper), inset 0 0 0 3px var(--olive), 3px 3px 0 rgba(28, 26, 20, 0.6);
+  transition: transform 90ms steps(2, end);
+}
+.card:focus-visible, .card:hover { transform: translateY(-3px); box-shadow: inset 0 0 0 2px var(--paper), inset 0 0 0 3px var(--olive), 0 0 0 2px var(--gold), 3px 6px 0 rgba(28, 26, 20, 0.6); }
+@media (hover: hover) {
+  .card:hover { background: var(--paper); } /* a card lifts and gets its gold edge; no green wash */
+}
+.card[aria-pressed="true"] { background: var(--paper); box-shadow: inset 0 0 0 2px var(--paper), inset 0 0 0 3px var(--olive), 0 0 0 2px var(--gold), 3px 3px 0 rgba(28, 26, 20, 0.6); }
+@media (prefers-reduced-motion: reduce) { .card { transition: none; } }
+
+/* a tall or short screen: the tags are one scrolling row of chips inside the panel, under its heading (room around them for the shadow and the focus ring) */
+.group.chips {
+  position: relative;
+  align-items: flex-start;
+  inset: auto;
+  z-index: auto;
+  display: flex;
+  gap: 8px;
+  margin: 0 -6px var(--s1);
+  padding: 4px 6px 8px;
+  overflow-x: auto;
+  opacity: 1;
+  pointer-events: inherit; /* the panel's own: off while it fades */
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+}
+.chips .tag { position: static; flex: none; max-width: 240px; text-align: left; white-space: normal; scroll-snap-align: start; scroll-margin-inline: 8px; pointer-events: inherit; transform: none; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* the picked item, in the hold's panel: it takes the place of the section's lines, under the heading */
+.lines { display: contents; }
+.lines[data-picked="true"] > :not(:first-child):not([data-chips]) { display: none; }
+.pick h3 { margin: 0 0 var(--s1); font-family: var(--font-display), system-ui, sans-serif; font-size: 28px; line-height: 1.1; }
+.back {
+  min-width: 24px;
+  min-height: 24px;
+  margin-top: var(--s1);
+  padding: 0 10px;
+  border: 2px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-family: var(--font-label), monospace;
+  font-size: 20px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.back:hover { background: var(--olive-bright); }
+
+/* scene 7: the picked question's star, a stepped gold square centred on its art point (moved by JS through `translate`) */
+.glow { position: fixed; left: -8px; top: -8px; width: 16px; height: 16px; z-index: 1; box-sizing: border-box; border: 2px solid var(--gold); box-shadow: 0 0 0 2px var(--gold); background: rgba(233, 168, 32, 0.35); pointer-events: none; opacity: 0; }
+.group[data-tagset="s7"] .tag { white-space: normal; text-transform: none; letter-spacing: 0.01em; line-height: 22px; }
+
+/* scene 4: a leader line from each label to its part (hard 2 px ink on a paper edge, whole pixels, no easing) */
+.leaders { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; shape-rendering: crispEdges; }
+.leaders polyline { fill: none; stroke-linecap: butt; stroke-linejoin: miter; }
+.halo { stroke: var(--paper); stroke-width: 6; }
+.ink { stroke: var(--ink); stroke-width: 2; }
+.end { fill: var(--paper); stroke: var(--ink); stroke-width: 2; }

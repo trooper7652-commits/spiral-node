@@ -1,0 +1,18 @@
+/* Full width; the canvas is a whole number of device pixels per art pixel and may run a little past the edge, so it is clipped here. */
+.band {
+  overflow: hidden;
+  line-height: 0;
+  height: 540px; /* 180 art rows at 3 device px on a laptop; exact once drawn */
+  background: var(--paper);
+}
+@media (max-width: 700px) {
+  .band { height: 300px; }
+}
+.canvas {
+  display: block;
+  image-rendering: pixelated;
+  visibility: hidden;
+}
+@media print {
+  .band { display: none; }
+}

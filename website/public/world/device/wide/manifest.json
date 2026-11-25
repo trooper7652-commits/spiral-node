@@ -1,0 +1,208 @@
+{
+ "id": "device",
+ "variant": "wide",
+ "w": 576,
+ "h": 360,
+ "layers": [
+  {
+   "id": "wall",
+   "src": "layer-wall.png",
+   "depth": 0.0
+  },
+  {
+   "id": "back",
+   "src": "layer-back.png",
+   "depth": 0.3
+  },
+  {
+   "id": "lamp",
+   "src": "layer-lamp.png",
+   "depth": 0.5
+  },
+  {
+   "id": "bench",
+   "src": "layer-bench.png",
+   "depth": 0.8
+  },
+  {
+   "id": "device",
+   "src": "layer-device.png",
+   "depth": 0.9
+  },
+  {
+   "id": "front",
+   "src": "layer-front.png",
+   "depth": 1.0
+  }
+ ],
+ "atlas": "atlas.png",
+ "sprites": [
+  {
+   "id": "wrench",
+   "x": 155,
+   "y": 99,
+   "w": 28,
+   "h": 38,
+   "frames": 8,
+   "fps": 8,
+   "depth": 0.3,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 0
+  },
+  {
+   "id": "glow",
+   "x": 200,
+   "y": 64,
+   "w": 253,
+   "h": 130,
+   "frames": 4,
+   "fps": 6,
+   "depth": 0.5,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 38
+  },
+  {
+   "id": "screen",
+   "x": 254,
+   "y": 96,
+   "w": 144,
+   "h": 74,
+   "frames": 10,
+   "fps": 2.5,
+   "depth": 0.9,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 168
+  },
+  {
+   "id": "wheel_spin",
+   "x": 341,
+   "y": 209,
+   "w": 47,
+   "h": 47,
+   "frames": 4,
+   "fps": 5,
+   "depth": 0.9,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 242
+  },
+  {
+   "id": "dust",
+   "x": 216,
+   "y": 48,
+   "w": 220,
+   "h": 150,
+   "frames": 8,
+   "fps": 4,
+   "depth": 0.9,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 289
+  },
+  {
+   "id": "gear",
+   "x": 130,
+   "y": 252,
+   "w": 21,
+   "h": 21,
+   "frames": 4,
+   "fps": 4,
+   "depth": 0.9,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 439
+  },
+  {
+   "id": "who",
+   "x": 371,
+   "y": 221,
+   "w": 27,
+   "h": 26,
+   "frames": 4,
+   "fps": 5,
+   "depth": 0.9,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 460
+  },
+  {
+   "id": "dog",
+   "x": 210,
+   "y": 260,
+   "w": 20,
+   "h": 14,
+   "frames": 4,
+   "fps": 4,
+   "depth": 0.9,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 486
+  },
+  {
+   "id": "snail",
+   "x": 322,
+   "y": 264,
+   "w": 14,
+   "h": 12,
+   "frames": 2,
+   "fps": 3,
+   "depth": 0.9,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 500
+  }
+ ],
+ "anchors": {
+  "wheel": {
+   "x": 364,
+   "y": 232,
+   "depth": 0.9
+  },
+  "page": {
+   "x": 326,
+   "y": 133,
+   "depth": 0.9
+  }
+ },
+ "tags": [
+  {
+   "id": "screen",
+   "x": 372,
+   "y": 156,
+   "depth": 0.9
+  },
+  {
+   "id": "wheel",
+   "x": 358,
+   "y": 232,
+   "depth": 0.9
+  },
+  {
+   "id": "keys",
+   "x": 280,
+   "y": 197,
+   "depth": 0.9
+  },
+  {
+   "id": "body",
+   "x": 266,
+   "y": 248,
+   "depth": 0.9
+  },
+  {
+   "id": "port",
+   "x": 325,
+   "y": 84,
+   "depth": 0.9
+  },
+  {
+   "id": "who",
+   "x": 384,
+   "y": 229,
+   "depth": 0.9
+  }
+ ]
+}

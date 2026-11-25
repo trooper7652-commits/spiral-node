@@ -1,0 +1,92 @@
+{
+ "id": "opening",
+ "variant": "wide",
+ "w": 576,
+ "h": 360,
+ "layers": [
+  {
+   "id": "table",
+   "src": "layer-table.png",
+   "depth": 0.0
+  },
+  {
+   "id": "paper",
+   "src": "layer-paper.png",
+   "depth": 0.35
+  },
+  {
+   "id": "props",
+   "src": "layer-props.png",
+   "depth": 0.5
+  },
+  {
+   "id": "shadow",
+   "src": "layer-shadow.png",
+   "depth": 0.85
+  },
+  {
+   "id": "device",
+   "src": "layer-device.png",
+   "depth": 0.9
+  },
+  {
+   "id": "front",
+   "src": "layer-front.png",
+   "depth": 1.0
+  }
+ ],
+ "atlas": "atlas.png",
+ "sprites": [
+  {
+   "id": "led",
+   "x": 316,
+   "y": 82,
+   "w": 2,
+   "h": 2,
+   "frames": 2,
+   "fps": 1.5,
+   "depth": 0.9,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 0
+  },
+  {
+   "id": "screen",
+   "x": 216,
+   "y": 100,
+   "w": 144,
+   "h": 74,
+   "frames": 13,
+   "fps": 1,
+   "depth": 0.9,
+   "mode": "scrub",
+   "ax": 0,
+   "ay": 2
+  },
+  {
+   "id": "snail",
+   "x": 150,
+   "y": 250,
+   "w": 14,
+   "h": 12,
+   "frames": 2,
+   "fps": 3,
+   "depth": 0.35,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 76
+  }
+ ],
+ "anchors": {
+  "screen": {
+   "x": 288,
+   "y": 137,
+   "depth": 0.9
+  },
+  "centre": {
+   "x": 288,
+   "y": 180
+  }
+ },
+ "tags": []
+}

@@ -1,0 +1,18 @@
+.cards {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--s3);
+}
+
+.card {
+  padding: var(--s3);
+  display: grid;
+  gap: var(--s2);
+  justify-items: start;
+}
+
+.card h3,
+.card p {
+  margin: 0;
+}

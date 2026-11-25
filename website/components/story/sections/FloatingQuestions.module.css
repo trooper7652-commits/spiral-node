@@ -1,0 +1,7 @@
+/* While the hold is shown (data-step 0 or more), hold progress picks the one question the panel shows with its answer; the others stay in the page for screen readers.
+   Without a frame (data-step -1: no script) every question shows with its answer, in flow. */
+.line { list-style: none; margin: var(--s1) 0 0; padding: 0; }
+.line .q h3 { margin: 0 0 4px; font-size: 24px; font-weight: 400; line-height: 1.15; letter-spacing: 0; }
+.line .q p { font-size: var(--text-s); line-height: 1.45; }
+.line[data-step="-1"] .q { padding: 6px 0 var(--s1); }
+.line:not([data-step="-1"]) .q:not([data-current="true"]) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }

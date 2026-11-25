@@ -10,7 +10,7 @@ export const metadata: Metadata = og("scripts", "Write a script | Spiral Node", 
 export default function WritePage() {
   const template = readFileSync(join(process.cwd(), "../scripts/TEMPLATE/script.py"), "utf8"); // read at build time
   return (
-    <Page title="Write a script">
+    <Page band="scroll" title="Write a script">
       <p>Edit the template, press Run to see it on the simulator, then submit it to the gallery as a pull request.</p>
       <Editor template={template} />
     </Page>

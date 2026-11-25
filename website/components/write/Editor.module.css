@@ -1,17 +1,19 @@
-.editor { display: grid; gap: var(--s2); margin-top: var(--s3); }
+.editor { display: grid; gap: var(--s2); margin-top: var(--s3); min-width: 0; }
 .text {
   width: 100%;
   min-height: 24rem;
   padding: var(--s2);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 14px;
+  font-family: var(--font-body), system-ui, sans-serif; /* VT323 is already a fixed-width face */
+  font-size: 20px;
   line-height: 1.5;
   tab-size: 4;
   color: var(--ink);
-  background: var(--cloud);
-  border: 3px solid var(--ink);
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 0;
   resize: vertical;
 }
+.text:focus-visible { outline: 2px solid var(--gold); outline-offset: 0; box-shadow: 0 0 0 4px var(--ink); }
 .actions { display: flex; flex-wrap: wrap; gap: var(--s2); align-items: center; }
-.error { margin: 0; padding: var(--s2); white-space: pre-wrap; border: 3px solid var(--ink); font-family: ui-monospace, monospace; font-size: 14px; }
+.error { margin: 0; padding: var(--s2); white-space: pre-wrap; overflow-wrap: anywhere; border: 2px solid var(--ink); border-radius: 0; background: var(--paper); font-family: var(--font-body), system-ui, sans-serif; font-size: 20px; }
 .sim { margin-top: var(--s4); }

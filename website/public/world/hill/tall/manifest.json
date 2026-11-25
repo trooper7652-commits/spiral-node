@@ -1,0 +1,425 @@
+{
+ "id": "hill",
+ "variant": "tall",
+ "w": 240,
+ "h": 480,
+ "layers": [
+  {
+   "id": "sky",
+   "src": "layer-sky.png",
+   "depth": 0.0
+  },
+  {
+   "id": "far",
+   "src": "layer-far.png",
+   "depth": 0.2
+  },
+  {
+   "id": "mid",
+   "src": "layer-mid.png",
+   "depth": 0.4
+  },
+  {
+   "id": "near",
+   "src": "layer-near.png",
+   "depth": 0.8
+  },
+  {
+   "id": "front",
+   "src": "layer-front.png",
+   "depth": 1.0
+  }
+ ],
+ "atlas": "atlas.png",
+ "sprites": [
+  {
+   "id": "sunrays",
+   "x": 75,
+   "y": 134,
+   "w": 150,
+   "h": 150,
+   "frames": 3,
+   "fps": 3,
+   "depth": 0.0,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 0
+  },
+  {
+   "id": "cloud1",
+   "x": 10,
+   "y": 40,
+   "w": 66,
+   "h": 27,
+   "frames": 20,
+   "fps": 3,
+   "depth": 0.0,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 150
+  },
+  {
+   "id": "cloud2",
+   "x": 140,
+   "y": 70,
+   "w": 54,
+   "h": 22,
+   "frames": 20,
+   "fps": 2,
+   "depth": 0.0,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 177
+  },
+  {
+   "id": "cloud3",
+   "x": 14,
+   "y": 150,
+   "w": 50,
+   "h": 20,
+   "frames": 20,
+   "fps": 3,
+   "depth": 0.0,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 199
+  },
+  {
+   "id": "birds",
+   "x": 110,
+   "y": 40,
+   "w": 72,
+   "h": 36,
+   "frames": 16,
+   "fps": 8,
+   "depth": 0.0,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 219
+  },
+  {
+   "id": "windmill",
+   "x": 197,
+   "y": 194,
+   "w": 36,
+   "h": 40,
+   "frames": 6,
+   "fps": 4,
+   "depth": 0.4,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 255
+  },
+  {
+   "id": "mist1",
+   "x": 4,
+   "y": 224,
+   "w": 162,
+   "h": 24,
+   "frames": 8,
+   "fps": 2,
+   "depth": 0.5,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 295
+  },
+  {
+   "id": "mist2",
+   "x": 70,
+   "y": 232,
+   "w": 162,
+   "h": 24,
+   "frames": 8,
+   "fps": 2,
+   "depth": 0.5,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 319
+  },
+  {
+   "id": "lantern",
+   "x": 30,
+   "y": 103,
+   "w": 21,
+   "h": 28,
+   "frames": 3,
+   "fps": 5,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 343
+  },
+  {
+   "id": "who-newton",
+   "x": 46,
+   "y": 296,
+   "w": 20,
+   "h": 26,
+   "frames": 2,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 371
+  },
+  {
+   "id": "who-leonardo",
+   "x": 88,
+   "y": 306,
+   "w": 20,
+   "h": 26,
+   "frames": 2,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 397
+  },
+  {
+   "id": "who-anning",
+   "x": 130,
+   "y": 294,
+   "w": 20,
+   "h": 26,
+   "frames": 2,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 423
+  },
+  {
+   "id": "who-faraday",
+   "x": 170,
+   "y": 304,
+   "w": 20,
+   "h": 26,
+   "frames": 2,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 449
+  },
+  {
+   "id": "who-lovelace",
+   "x": 62,
+   "y": 334,
+   "w": 20,
+   "h": 26,
+   "frames": 2,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 475
+  },
+  {
+   "id": "who-idrisi",
+   "x": 104,
+   "y": 340,
+   "w": 20,
+   "h": 26,
+   "frames": 2,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 501
+  },
+  {
+   "id": "who-galileo",
+   "x": 146,
+   "y": 332,
+   "w": 20,
+   "h": 26,
+   "frames": 2,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 527
+  },
+  {
+   "id": "who-socrates",
+   "x": 180,
+   "y": 342,
+   "w": 20,
+   "h": 26,
+   "frames": 2,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 553
+  },
+  {
+   "id": "dog",
+   "x": 36,
+   "y": 352,
+   "w": 24,
+   "h": 14,
+   "frames": 4,
+   "fps": 4,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 579
+  },
+  {
+   "id": "snail",
+   "x": 102,
+   "y": 294,
+   "w": 14,
+   "h": 12,
+   "frames": 2,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 593
+  },
+  {
+   "id": "grass",
+   "x": 0,
+   "y": 252,
+   "w": 240,
+   "h": 115,
+   "frames": 4,
+   "fps": 3,
+   "depth": 0.9,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 605
+  },
+  {
+   "id": "grass2",
+   "x": 0,
+   "y": 365,
+   "w": 240,
+   "h": 115,
+   "frames": 4,
+   "fps": 3,
+   "depth": 0.9,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 720
+  },
+  {
+   "id": "butterflies",
+   "x": 140,
+   "y": 250,
+   "w": 90,
+   "h": 50,
+   "frames": 8,
+   "fps": 6,
+   "depth": 0.9,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 835
+  },
+  {
+   "id": "butterflies2",
+   "x": 14,
+   "y": 268,
+   "w": 80,
+   "h": 44,
+   "frames": 8,
+   "fps": 6,
+   "depth": 0.9,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 885
+  },
+  {
+   "id": "dew",
+   "x": 0,
+   "y": 252,
+   "w": 240,
+   "h": 228,
+   "frames": 3,
+   "fps": 2,
+   "depth": 0.9,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 929
+  }
+ ],
+ "anchors": {
+  "sun": {
+   "x": 150,
+   "y": 209,
+   "depth": 0.0
+  },
+  "lantern": {
+   "x": 40,
+   "y": 113,
+   "depth": 0.8
+  },
+  "beam": {
+   "x": 120,
+   "y": 135,
+   "depth": 0.8
+  },
+  "beam_l": {
+   "x": 22,
+   "y": 135,
+   "depth": 0.8
+  },
+  "beam_r": {
+   "x": 218,
+   "y": 135,
+   "depth": 0.8
+  }
+ },
+ "tags": [
+  {
+   "id": "who-newton",
+   "x": 56,
+   "y": 306,
+   "depth": 0.8
+  },
+  {
+   "id": "who-leonardo",
+   "x": 98,
+   "y": 316,
+   "depth": 0.8
+  },
+  {
+   "id": "who-anning",
+   "x": 140,
+   "y": 304,
+   "depth": 0.8
+  },
+  {
+   "id": "who-faraday",
+   "x": 180,
+   "y": 314,
+   "depth": 0.8
+  },
+  {
+   "id": "who-lovelace",
+   "x": 72,
+   "y": 344,
+   "depth": 0.8
+  },
+  {
+   "id": "who-idrisi",
+   "x": 114,
+   "y": 350,
+   "depth": 0.8
+  },
+  {
+   "id": "who-galileo",
+   "x": 156,
+   "y": 342,
+   "depth": 0.8
+  },
+  {
+   "id": "who-socrates",
+   "x": 190,
+   "y": 352,
+   "depth": 0.8
+  }
+ ]
+}

@@ -1,4 +1,5 @@
 import SignupForm from "./SignupForm";
+import { channels } from "@/lib/follow";
 import { SITE } from "@/lib/site";
 import styles from "./SiteFooter.module.css";
 
@@ -15,6 +16,7 @@ export default function SiteFooter() {
           )}
         </div>
         <nav aria-label="Footer" className={styles.links}>
+          {channels().length > 0 && <a href="/follow">Visit us</a>}
           <a href={SITE.repoUrl}>GitHub</a>
           <a href={SITE.discussionsUrl}>Discussions</a>
           <a href="/contest">Script of the Month</a>
@@ -22,6 +24,7 @@ export default function SiteFooter() {
           <a href="/changelog">Changelog</a>
           <a href={`${SITE.repoUrl}/blob/main/LICENSES/README.md`}>Licences</a>
           <a href="/company">Company</a>
+          <a href="/credits">Credits</a>
         </nav>
       </div>
       <p>Spiral Node is a prototype by Helix Velocities.</p>

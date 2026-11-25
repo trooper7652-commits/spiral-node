@@ -1,20 +1,9 @@
 import localFont from "next/font/local";
 
-
-export const display = localFont({
-  src: [
-    { path: "../node_modules/@fontsource/pixelify-sans/files/pixelify-sans-latin-400-normal.woff2", weight: "400", style: "normal" },
-    { path: "../node_modules/@fontsource/pixelify-sans/files/pixelify-sans-latin-700-normal.woff2", weight: "700", style: "normal" },
-  ],
-  variable: "--font-display",
+// One family (VT323, a single 400 weight); globals.css maps --font-display, --font-body and --font-label onto it.
+export const sans = localFont({
+  src: [{ path: "../node_modules/@fontsource/vt323/files/vt323-latin-400-normal.woff2", weight: "400", style: "normal" }],
+  variable: "--font-sans",
   display: "swap",
-});
-
-export const body = localFont({
-  src: [
-    { path: "../node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2", weight: "400", style: "normal" },
-    { path: "../node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-700-normal.woff2", weight: "700", style: "normal" },
-  ],
-  variable: "--font-body",
-  display: "swap",
+  fallback: ["VT323", "ui-monospace", "monospace"],
 });

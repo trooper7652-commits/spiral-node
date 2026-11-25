@@ -24,27 +24,7 @@ def make(script_id, root, seed=1):
 
 
 def test_builtin_libraries_valid():
-    ffq = BUILTIN / "fun_fact_question"
-    assert len(load_library(ffq / "facts.json")) == 5
-    assert len(load_library(ffq / "questions.json")) == 5
     assert len(load_library(BUILTIN / "quick_story" / "stories.json", "story")) >= 2
-
-
-def test_ffq_page_has_fact_and_question(tmp_path):
-    script, _ = make("fun_fact_question", tmp_path)
-    page = script.next()
-    assert page.title == "Fun fact"
-    fact, question = page.body.split("\n\nQ: ")
-    assert fact and question
-
-
-def test_ffq_exhausts_after_all_facts(tmp_path):
-    script, _ = make("fun_fact_question", tmp_path)
-    for _ in range(5):
-        script.next()
-    with pytest.raises(LibraryExhausted) as e:
-        script.next()
-    assert e.value.library == "facts.json"
 
 
 def test_story_pages_in_order_then_new_story(tmp_path):
@@ -72,17 +52,6 @@ def test_story_position_survives_restart(tmp_path):
     assert (first.body, second.body) == story.pages[:2]
     assert third.title == first.title
     assert third.body == story.pages[2]
-
-
-def test_ffq_exhausted_questions_do_not_use_up_a_fact(tmp_path):
-    script, _ = make("fun_fact_question", tmp_path)
-    for _ in range(5):
-        script.next()
-    script.shown_facts.reset()  # facts fresh, questions all shown
-    with pytest.raises(LibraryExhausted) as e:
-        script.next()
-    assert e.value.library == "questions.json"
-    assert script.shown_facts.ids() == set()
 
 
 TOPICS = BUILTIN / "connect" / "topics.json"

@@ -12,7 +12,7 @@ const html = markdown(readFileSync(join(process.cwd(), "content/contest.md"), "u
 
 export default function ContestPage() {
   return (
-    <Page title="Script of the Month">
+    <Page band="square" title="Script of the Month">
       {/* html comes from our own Markdown file, escaped by lib/devlog.ts */}
       <div className={styles.post} dangerouslySetInnerHTML={{ __html: html }} />
     </Page>

@@ -1,0 +1,7 @@
+[
+  {"id": "sq-1", "text": "Sample question one?", "topic": "sample", "source": "test fixture"},
+  {"id": "sq-2", "text": "Sample question two?", "topic": "sample", "source": "test fixture"},
+  {"id": "sq-3", "text": "Sample question three?", "topic": "sample", "source": "test fixture"},
+  {"id": "sq-4", "text": "Sample question four?", "topic": "sample", "source": "test fixture"},
+  {"id": "sq-5", "text": "Sample question five?", "topic": "sample", "source": "test fixture"}
+]

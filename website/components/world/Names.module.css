@@ -1,0 +1,30 @@
+/* Name tags (below the tags, cards, labels, screens and signs, which are z-index 1: a figure's box takes only the clicks nobody else wants): over the art, outside the transformed hold. The layer takes no clicks; only the invisible hit buttons do, and each chip is placed by JS beside its figure. */
+.group { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0; font-family: var(--font-label), monospace; }
+.hit {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: help;
+  pointer-events: none;
+}
+.group[data-on="true"] .hit { pointer-events: auto; }
+.chip {
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  padding: 2px 8px;
+  border: 2px solid var(--ink);
+  background: #f1e7cc;
+  color: var(--ink);
+  font-size: 20px;
+  line-height: 22px;
+  white-space: nowrap;
+  box-shadow: 2px 2px 0 rgba(28, 26, 20, 0.6);
+  pointer-events: none;
+}

@@ -1,12 +1,17 @@
 import shutil
 
-from . import VERSION
+from . import VERSION, find
 from .config import BOOT_FRAMES
 from .input import Action
 from .library import ShownLog
 from .render import (boot_frame, clock_set_screen, dialog_screen, list_screen, message_screen, off_screen,
-                     page_screen, prefs_screen)
+                     page_screen, picker_screen, prefs_screen)
 from .scripts_api import Page, valid_prefs
+
+
+def connect_mode_on(app) -> bool:
+    s = app.store.get("settings", {})
+    return isinstance(s, dict) and s.get("connect_mode") is True
 
 
 class Screen:
@@ -49,24 +54,56 @@ class HomeScreen(Screen):
             return a.error_page
         if 0 <= a.hpos < len(a.history):
             h = a.history[a.hpos]
-            return Page(h["title"], h["body"], tuple(h.get("picture", ())))
+            return Page(h["title"], h["body"], tuple(h.get("picture", ())), tuple(h.get("choices", ())), h.get("key", ""))
         return None
+
+    def _state(self):
+        """(cursor, picked) of the shown page: cursor only on the waiting page, picked only once answered."""
+        a = self.app
+        if a.error_page or not 0 <= a.hpos < len(a.history):
+            return None, None
+        picked = a.history[a.hpos].get("picked")
+        return (a.cursor if a.waiting and a.hpos == len(a.history) - 1 else None), picked
 
     def render(self, bar):
         page = self._page()
-        return page_screen(page, bar) if page else message_screen(self.app.welcome.current, bar)
+        return page_screen(page, bar, *self._state()) if page else message_screen(self.app.welcome.current, bar)
 
     def handle(self, action, app):
-        if action is Action.SELECT:
+        cursor, _ = self._state()
+        if action is Action.BACK:
+            app.push(MenuScreen())
+        elif cursor is not None:
+            self._answer(action, app)
+        elif action is Action.SELECT:
             app.push(MenuScreen())
         elif app.runner and action is Action.RIGHT:
             app.page_forward()
         elif app.runner and action is Action.LEFT:
             app.page_back()
 
+    @staticmethod
+    def _answer(action, app):
+        """Buttons on the waiting question: Left/Right pick a choice (Right past the last skips), Select answers."""
+        if action is Action.LEFT:
+            app.cursor = max(0, app.cursor - 1)
+        elif action is Action.RIGHT and app.cursor < len(app.history[-1]["choices"]) - 1:
+            app.cursor += 1
+        elif action in (Action.RIGHT, Action.DOWN):
+            app.page_forward()
+        elif action is Action.SELECT:
+            app.choose(app.cursor)
+        elif action is Action.UP:
+            app.page_back()
+
     def text(self, app):
         page = self._page()
-        return f"{page.title}\n{page.body}" if page else self.app.welcome.current
+        if not page:
+            return self.app.welcome.current
+        cursor, picked = self._state()
+        mark = cursor if cursor is not None else picked
+        labels = [f"[{c}]" if i == mark else c for i, c in enumerate(page.choices)]
+        return f"{page.title}\n{page.body}" + (f"\nChoices: {', '.join(labels)}" if labels else "")
 
 
 class MessageScreen(Screen):
@@ -119,7 +156,7 @@ class MenuScreen(ListScreen):
     title = "Menu"
 
     def __init__(self):
-        super().__init__(["Scripts", "Chat", "Quick Story", "Settings", "Power off"])
+        super().__init__(["Scripts", "Find", "Chat", "Quick Story", "Settings", "Power off"])
 
     def choose(self, app):
         item = self.items[self.sel]
@@ -131,8 +168,10 @@ class MenuScreen(ListScreen):
             app.push(MessageScreen("chat", "Chat is coming in a later version."))
         elif item == "Power off":
             app.push(PowerOffDialog())
+        elif item == "Find":
+            app.push(LetterPickerScreen("Find", _find_done))
         elif item == "Settings":
-            app.push(SettingsScreen())
+            app.push(SettingsScreen(app))
 
 
 def open_script(app, info):
@@ -252,6 +291,74 @@ class PowerOffDialog(DialogScreen):
         super().__init__("power_off", "Power off?", ["Cancel", "OK"], 0, _power_choice)
 
 
+PICKER_ROWS = [list("ABCDEFGHIJ"), list("KLMNOPQRST"), list("UVWXYZ") + [" ", "Del", "OK"]]
+
+
+class LetterPickerScreen(Screen):
+    """Type a short text: arrows move over the letters (clamped), Select types, Del deletes, OK finishes, Back cancels."""
+    name = "picker"
+
+    def __init__(self, title, on_done, max_len=20):
+        self.title = title
+        self.on_done = on_done  # (app, typed)
+        self.max_len = max_len
+        self.typed = ""
+        self.r = self.c = 0
+
+    def cell(self):
+        return PICKER_ROWS[self.r][self.c]
+
+    def render(self, bar):
+        return picker_screen(self.title, self.typed, PICKER_ROWS, self.r, self.c, bar)
+
+    def handle(self, action, app):
+        if action in (Action.UP, Action.DOWN):
+            self.r = max(0, min(len(PICKER_ROWS) - 1, self.r + (1 if action is Action.DOWN else -1)))
+            self.c = min(self.c, len(PICKER_ROWS[self.r]) - 1)
+        elif action in (Action.LEFT, Action.RIGHT):
+            self.c = max(0, min(len(PICKER_ROWS[self.r]) - 1, self.c + (1 if action is Action.RIGHT else -1)))
+        elif action is Action.SELECT:
+            cell = self.cell()
+            if cell == "Del":
+                self.typed = self.typed[:-1]
+            elif cell == "OK":
+                self.on_done(app, self.typed)
+            elif len(self.typed) < self.max_len:
+                self.typed += cell
+        elif action is Action.BACK:
+            app.pop()
+
+    def text(self, app):
+        cell = "Space" if self.cell() == " " else self.cell()
+        return f"{self.title}: {self.typed}. Selected: {cell}"
+
+
+class FindResultsScreen(ListScreen):
+    name = "find_results"
+    title = "Find"
+
+    def __init__(self, hits):
+        super().__init__([h.title or h.text[:30] for h in hits])
+        self.hits = hits
+
+    def choose(self, app):
+        h = self.hits[self.sel]
+        # two screens so each fits: closing the text shows its source, and one more press returns to the list
+        app.push(MessageScreen("find_source", f"Source: {h.source}"))
+        app.push(MessageScreen("find_hit", h.text))
+
+
+def _find_done(app, typed):
+    if len(typed.strip()) < 2:
+        app.push(MessageScreen("find_empty", "Type at least 2 letters."))
+        return
+    hits = find.search(app, typed)
+    if hits:
+        app.push(FindResultsScreen(hits))
+    else:
+        app.push(MessageScreen("find_empty", f'Nothing found for "{typed.strip()}".'))
+
+
 class OffScreen(Screen):
     name = "off"
 
@@ -266,8 +373,12 @@ class SettingsScreen(ListScreen):
     name = "settings"
     title = "Settings"
 
-    def __init__(self):
-        super().__init__(["Set clock", "Reset history", "About"])
+    def __init__(self, app):
+        super().__init__(["Set clock", "Reset history", self._connect_label(app), "About"])
+
+    @staticmethod
+    def _connect_label(app):
+        return "Connect mode: On" if connect_mode_on(app) else "Connect mode: Off"
 
     def choose(self, app):
         item = self.items[self.sel]
@@ -275,7 +386,12 @@ class SettingsScreen(ListScreen):
             app.push(ClockSetScreen(app))
         elif item == "Reset history":
             app.push(ResetHistoryScreen.create(app))
-        else:
+        elif item.startswith("Connect mode"):
+            settings = dict(s) if isinstance(s := app.store.get("settings", {}), dict) else {}
+            settings["connect_mode"] = not connect_mode_on(app)
+            app.store.set("settings", settings)
+            self.items[self.sel] = self._connect_label(app)
+        elif item == "About":
             app.push(AboutScreen(app))
 
 

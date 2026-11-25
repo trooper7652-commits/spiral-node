@@ -66,6 +66,20 @@ export function buildToday(osDir) {
   };
 }
 
+// Tag ids the pixel scenes must carry (art/pixel/site-ids.json): the design features, the device parts, one per roadmap stop, one per question.
+export function siteIds(siteDir = resolve(here, "..")) {
+  const src = (f) => readFileSync(join(siteDir, f), "utf8");
+  const count = (text, start, re) => (text.slice(text.indexOf("= [", text.indexOf(start))).split("];")[0].match(re) ?? []).length;
+  const content = src("lib/content.ts");
+  const n = (k, len) => Array.from({ length: len }, (_, i) => `${k}${i + 1}`);
+  return {
+    s3: [...src("lib/features.ts").matchAll(/^\s+id: "([a-z]+)"/gm)].map((m) => m[1]),
+    s4: ["screen", "wheel", "keys", "body", "port"],
+    s6: n("r", count(content, "export const ROADMAP", /\{ text:/g)),
+    s7: n("q", count(content, "export const FAQ", /\{ q:/g)),
+  };
+}
+
 export function prepare({
   siteDir = resolve(here, ".."),
   osDir = resolve(here, "../../os"),
@@ -86,6 +100,7 @@ export function prepare({
     writeFileSync(join(publicDir, "today", "facts.json"), JSON.stringify(today.facts));
   } else if (existsSync(zip)) console.log("prepare-assets: ../os not found, using committed public/spiral-os.zip");
   else throw new Error(`OS source not found at ${osDir} and no committed public/spiral-os.zip`);
+  writeFileSync(join(siteDir, "art/pixel/site-ids.json"), JSON.stringify(siteIds(siteDir), null, 1) + "\n");
   for (const f of CORE) cpSync(join(pyDir, f), join(publicDir, "pyodide", f));
   for (const f of readdirSync(vendor).filter((n) => n.endsWith(".whl"))) cpSync(join(vendor, f), join(publicDir, "pyodide", f));
 }

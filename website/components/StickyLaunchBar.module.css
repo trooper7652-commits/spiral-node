@@ -1,0 +1,6 @@
+.bar { display: none; }
+@media (max-width: 759px) {
+  .bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: flex; padding: var(--s1) var(--s2) calc(var(--s1) + env(safe-area-inset-bottom)); background: var(--paper); border-top: 2px solid var(--ink); }
+  .bar[hidden] { display: none; }
+  .bar a { flex: 1; }
+}

@@ -1,16 +1,246 @@
 [
-  {"id": "tortoise-hare", "title": "The Tortoise and the Hare", "topic": "sample: fable", "source": "Aesop (public domain), retold",
+  {"id": "tortoise-hare", "title": "The Tortoise and the Hare", "topic": "fable", "source": "Aesop's Fables (public domain), retold: https://www.gutenberg.org/ebooks/21",
    "pages": [
      "A hare loved to boast about his speed and laughed at a slow tortoise.",
      "\"Race me,\" said the tortoise calmly. The hare grinned and agreed.",
      "The hare dashed far ahead, then lay down for a nap. The tortoise kept walking.",
      "The tortoise crossed the line first. Slow and steady wins the race."
    ]},
-  {"id": "ant-grasshopper", "title": "The Ant and the Grasshopper", "topic": "sample: fable", "source": "Aesop (public domain), retold",
+  {"id": "ant-grasshopper", "title": "The Ant and the Grasshopper", "topic": "fable", "source": "Aesop's Fables (public domain), retold: https://www.gutenberg.org/ebooks/21",
    "pages": [
      "All summer a grasshopper sang while an ant carried grain to her nest.",
      "\"Why work so hard?\" asked the grasshopper. \"Winter is coming,\" said the ant.",
      "Winter came. The grasshopper was cold and hungry, and begged the ant for food.",
-     "The ant shared a little, and he learned to prepare before the cold arrives."
+     "The ant shared a little, and the grasshopper learned to prepare before the cold arrives."
+   ]},
+  {"id": "lion-mouse", "title": "The Lion and the Mouse", "topic": "fable", "source": "Aesop's Fables (public domain), retold: https://www.gutenberg.org/ebooks/21",
+   "pages": [
+     "A little mouse ran across a sleeping lion and woke him. The lion caught her in his big paw.",
+     "\"Please let me go,\" squeaked the mouse. \"Some day I may help you.\"",
+     "The lion laughed at the idea, but he let her go.",
+     "Soon after, the lion was caught in a hunter's net and roared for help.",
+     "The mouse hurried over and gnawed the ropes until they fell apart.",
+     "Even the smallest friend can be a great help. Kindness is never wasted."
+   ]},
+  {"id": "fox-grapes", "title": "The Fox and the Grapes", "topic": "fable", "source": "Aesop's Fables (public domain), retold: https://www.gutenberg.org/ebooks/21",
+   "pages": [
+     "One hot day a fox saw a bunch of ripe grapes hanging high on a vine.",
+     "He jumped, but he could not reach them. He jumped again and again.",
+     "At last he sat down, tired. \"Those grapes are probably sour anyway,\" he said.",
+     "And he walked away with his nose in the air.",
+     "It is easy to dislike what we cannot have. It is braver to say we wanted it."
+   ]},
+  {"id": "north-wind-sun", "title": "The North Wind and the Sun", "topic": "fable", "source": "Aesop's Fables (public domain), retold: https://www.gutenberg.org/ebooks/21",
+   "pages": [
+     "The North Wind and the Sun argued about which of them was stronger.",
+     "They saw a traveler in a warm cloak. \"Whoever makes him take it off wins,\" said the Sun.",
+     "The Wind blew hard, but the traveler only wrapped the cloak tighter.",
+     "Then the Sun shone gently. The traveler grew warm, and soon he took his cloak off.",
+     "Gentleness can do what force cannot."
+   ]},
+  {"id": "crow-pitcher", "title": "The Crow and the Pitcher", "topic": "fable", "source": "Aesop's Fables (public domain), retold: https://www.gutenberg.org/ebooks/21",
+   "pages": [
+     "A thirsty crow found a tall pitcher with a little water at the bottom.",
+     "Her beak was too short to reach it. She tried to tip the pitcher, but it was too heavy.",
+     "Then she had an idea. She picked up a pebble and dropped it in.",
+     "One pebble after another, the water rose higher.",
+     "At last the crow could drink. A clever idea and a little patience can solve a hard problem."
+   ]},
+  {"id": "boy-wolf", "title": "The Boy Who Cried Wolf", "topic": "fable", "source": "Aesop's Fables (public domain), retold: https://www.gutenberg.org/ebooks/21",
+   "pages": [
+     "A shepherd boy watched the village sheep on a quiet hill, and he was bored.",
+     "For fun he shouted, \"Wolf! Wolf!\" The villagers ran up the hill, and found no wolf.",
+     "He did it again. Again they came, and again he laughed at them.",
+     "Then a real wolf appeared. The boy shouted with all his might.",
+     "But nobody came. They thought it was another joke.",
+     "Trust is built slowly. If we use it up for fun, it is hard to get back."
+   ]},
+  {"id": "town-country-mouse", "title": "The Town Mouse and Country Mouse", "topic": "fable", "source": "Aesop's Fables (public domain), retold: https://www.gutenberg.org/ebooks/21",
+   "pages": [
+     "A country mouse invited her cousin from the town to supper. She served plain barley and roots.",
+     "\"Come to town,\" said the town mouse. \"You will eat like a queen.\"",
+     "In a grand house the table was full of cakes and cheese. But a dog barked and a door slammed.",
+     "The mice dashed into a hole, trembling, again and again.",
+     "\"I will go home,\" said the country mouse. \"Plain food in peace is better than a feast in fear.\""
+   ]},
+  {"id": "pandora", "title": "Pandora and the Jar", "topic": "myth", "source": "Bulfinch's Mythology (public domain), retold: https://www.gutenberg.org/ebooks/4928",
+   "pages": [
+     "In the Greek tale, the gods made the first woman, Pandora, and sent her to Earth.",
+     "In her new home stood a sealed jar, and no one would say what was inside.",
+     "Pandora grew more curious each day. At last she lifted the lid just a little.",
+     "Out flew troubles and worries, spreading across the world.",
+     "She shut the lid fast. But one small thing was left inside: Hope.",
+     "Even when the world feels heavy, hope stays with us."
+   ]},
+  {"id": "king-midas", "title": "King Midas and the Golden Touch", "topic": "myth", "source": "Bulfinch's Mythology (public domain), retold: https://www.gutenberg.org/ebooks/4928",
+   "pages": [
+     "King Midas had once been kind to a friend of the god Dionysus. As thanks, the god offered him one wish.",
+     "\"Let everything I touch turn to gold,\" said Midas. The wish was granted.",
+     "He touched a twig, a stone, a rose, and each shone like gold. He was delighted.",
+     "Then he sat down to eat, and his bread turned to gold in his hand. So did his water.",
+     "\"Please take this gift back,\" he begged. The god told him to wash in a river.",
+     "The gold washed away, and Midas learned that simple things matter most."
+   ]},
+  {"id": "arachne", "title": "Arachne the Weaver", "topic": "myth", "source": "Bulfinch's Mythology (public domain), retold: https://www.gutenberg.org/ebooks/4928",
+   "pages": [
+     "Arachne was a young woman in Greece who wove the most beautiful cloth anyone had seen.",
+     "People said she must have been taught by the goddess Athena. Arachne said she had taught herself.",
+     "She even said she could weave better than the goddess. Athena came to see for herself.",
+     "Both wove with great skill. Arachne's cloth was lovely, but she had forgotten to be humble.",
+     "Athena turned her into a spider, so that she could weave forever.",
+     "That is why spiders still spin their fine webs."
+   ]},
+  {"id": "icarus", "title": "Daedalus and Icarus", "topic": "myth", "source": "Bulfinch's Mythology (public domain), retold: https://www.gutenberg.org/ebooks/4928",
+   "pages": [
+     "Daedalus was a clever inventor held on the island of Crete. He wanted to take his son Icarus home.",
+     "He gathered feathers and wax and made two pairs of wings.",
+     "\"Fly in the middle,\" he said. \"Too low, and the sea wets you. Too high, and the sun melts the wax.\"",
+     "They rose over the sea, and Icarus was filled with joy. He flew higher and higher.",
+     "The wax grew soft, and the feathers loosened. Icarus fell gently into the waves.",
+     "Daedalus mourned him, and the sea nearby carries his name. Listen to those who love you."
+   ]},
+  {"id": "persephone", "title": "Persephone and the Seasons", "topic": "myth", "source": "Bulfinch's Mythology (public domain), retold: https://www.gutenberg.org/ebooks/4928",
+   "pages": [
+     "Demeter, the goddess of the harvest, had a daughter named Persephone, who loved to pick flowers.",
+     "One day Persephone went to live in the quiet world below the earth, and Demeter searched everywhere.",
+     "In her sorrow, Demeter let nothing grow. The fields turned bare and cold.",
+     "At last it was agreed that Persephone would spend part of each year with her mother.",
+     "When she returns, spring comes and the fields grow green.",
+     "When she goes back below, the leaves fall, and winter begins."
+   ]},
+  {"id": "thor-hammer", "title": "Thor and the Missing Hammer", "topic": "myth", "source": "The Poetic Edda, the poem Thrymskvida (public domain), retold: https://en.wikipedia.org/wiki/%C3%9Erymskvi%C3%B0a",
+   "pages": [
+     "In the Norse tale, Thor woke one morning to find his mighty hammer gone.",
+     "\"Without it, we have no safety,\" he told the trickster Loki. Together they went to find it.",
+     "The giant Thrym had hidden it. \"I will return it,\" he said, \"if the goddess Freyja marries me.\"",
+     "Freyja refused. So Thor dressed in a bridal veil, and Loki went along as his maid.",
+     "At the feast, the hammer was brought out to bless the bride. Thor seized it with a great laugh.",
+     "The hall was left astonished, and Thor went home with his hammer."
+   ]},
+  {"id": "baucis-philemon", "title": "Baucis and Philemon", "topic": "myth", "source": "Bulfinch's Mythology (public domain), retold: https://www.gutenberg.org/ebooks/4928",
+   "pages": [
+     "Two gods, Zeus and Hermes, walked the earth in disguise. They knocked at many doors, and every door stayed shut.",
+     "At last they came to a tiny cottage where an old couple, Baucis and Philemon, lived.",
+     "The couple welcomed them in and shared all they had: bread, honey and a little wine.",
+     "The jug of wine never ran empty. Then they knew their guests were gods.",
+     "The gods asked what they wished for. \"To stay together always,\" they said.",
+     "They lived long, and at the end they became two trees, side by side."
+   ]},
+  {"id": "three-pigs", "title": "The Three Little Pigs", "topic": "folk tale", "source": "English Fairy Tales by Joseph Jacobs (public domain), retold: https://www.gutenberg.org/ebooks/7439",
+   "pages": [
+     "Three little pigs left home to build their own houses. The first made his of straw, the second of sticks.",
+     "A wolf came to the straw house. \"Let me in, or I will huff and puff!\" The house blew away, and the pig ran off.",
+     "The same happened to the stick house. Both pigs ran to their brother's house.",
+     "The third pig had worked hard and built his house of bricks.",
+     "The wolf huffed and puffed, but the brick house did not move. He gave up and went away.",
+     "Hard work and good building pay off in the end."
+   ]},
+  {"id": "three-bears", "title": "The Three Bears", "topic": "folk tale", "source": "English Fairy Tales by Joseph Jacobs (public domain), retold: https://www.gutenberg.org/ebooks/7439",
+   "pages": [
+     "Three bears shared a house in the woods: a big father bear, a mother bear and a small baby bear.",
+     "One morning they went for a walk while their porridge cooled.",
+     "A girl came by and found the open door. She tasted the porridge, and the little bowl was just right.",
+     "She sat in the little chair, and it broke. Then she found the little bed, and fell asleep.",
+     "The bears came home and saw the signs. \"Someone is asleep in my bed!\" cried the baby bear.",
+     "The girl woke, saw the bears, jumped up and ran home."
+   ]},
+  {"id": "bremen-musicians", "title": "The Bremen Town Musicians", "topic": "folk tale", "source": "Grimms' Fairy Tales (public domain), retold: https://www.gutenberg.org/ebooks/2591",
+   "pages": [
+     "A donkey who had grown old set off for Bremen to be a town musician.",
+     "On the road he met a dog, a cat and a rooster. Each had been told they were no longer needed.",
+     "\"Come with us!\" said the donkey. \"We can make music together.\" So they all walked on.",
+     "At night they saw a lit house in the woods, full of robbers at their supper.",
+     "The four climbed up on each other and sang as loud as they could. The robbers fled in a fright.",
+     "The friends moved in and found a happy home, and never went to Bremen."
+   ]},
+  {"id": "elves-shoemaker", "title": "The Elves and the Shoemaker", "topic": "folk tale", "source": "Grimms' Fairy Tales (public domain), retold: https://www.gutenberg.org/ebooks/2591",
+   "pages": [
+     "A good shoemaker grew poor. One night he cut leather for his last pair of shoes and went to bed.",
+     "In the morning the shoes were finished, perfectly stitched. A buyer paid well for them.",
+     "That helped him buy leather for two pairs. Again they were made overnight.",
+     "One night he and his wife hid to watch. Two tiny elves came in and sewed with nimble fingers.",
+     "The couple made them small clothes and shoes as thanks. The elves danced for joy and left.",
+     "The shoemaker never went hungry again."
+   ]},
+  {"id": "ugly-duckling", "title": "The Ugly Duckling", "topic": "folk tale", "source": "Hans Christian Andersen, 1843 (public domain), retold: https://en.wikipedia.org/wiki/The_Ugly_Duckling",
+   "pages": [
+     "One duckling hatched larger and grayer than the rest, and the other ducks teased him.",
+     "Lonely, he left the farm and spent a cold winter hiding by a frozen lake.",
+     "In spring he saw beautiful white birds on the water. He felt sure they would not want him.",
+     "He bent his head down in shame, and saw his own reflection.",
+     "He was no duckling at all. He was a graceful swan.",
+     "The swans welcomed him, and he was happy at last. He had only been in the wrong nest."
+   ]},
+  {"id": "emperors-clothes", "title": "The Emperor's New Clothes", "topic": "folk tale", "source": "Hans Christian Andersen, 1837 (public domain), retold: https://en.wikipedia.org/wiki/The_Emperor%27s_New_Clothes",
+   "pages": [
+     "An emperor loved fine clothes. Two cheats came and said they could weave cloth that foolish people could not see.",
+     "They pretended to work at empty looms. The emperor sent his ministers, who saw nothing but did not dare say so.",
+     "The emperor himself saw nothing too, but said, \"How splendid!\" He put on the pretend clothes for a parade.",
+     "The crowd cheered, each fearing to look foolish.",
+     "Then a small child said, \"But he has nothing on!\"",
+     "The whisper spread, and soon everyone laughed. Honest eyes are worth more than fine words."
+   ]},
+  {"id": "elephants-child", "title": "The Elephant's Child", "topic": "folk tale", "source": "Kipling's Just So Stories (public domain), retold: https://www.gutenberg.org/ebooks/2781",
+   "pages": [
+     "Long ago, an elephant's child had a short nose and a great many questions.",
+     "\"What does the crocodile have for dinner?\" he asked. Everyone told him to stop asking.",
+     "So he set off to the great river to find the crocodile himself.",
+     "The crocodile took his short nose and pulled. The elephant's child pulled back, and his nose stretched long.",
+     "It turned out a long nose was very useful. He could pick fruit and splash water.",
+     "Curious minds find the best things."
+   ]},
+  {"id": "robin-hood-john", "title": "Robin Hood and Little John", "topic": "legend", "source": "The Merry Adventures of Robin Hood by Howard Pyle (public domain), retold: https://www.gutenberg.org/ebooks/10148",
+   "pages": [
+     "Robin Hood lived in Sherwood Forest with his band of merry men.",
+     "One day he met a tall stranger on a narrow bridge. Neither would step aside.",
+     "They fought with long staffs. The stranger knocked Robin into the stream.",
+     "Robin climbed out laughing. \"You are a fine fighter,\" he said, and blew his horn.",
+     "The stranger was named John Little. The band jokingly called him Little John, for he was so tall.",
+     "He joined them, and was a loyal friend for life."
+   ]},
+  {"id": "arthur-sword", "title": "Arthur and the Sword in the Stone", "topic": "legend", "source": "Bulfinch's Mythology (Age of Chivalry, public domain), retold: https://www.gutenberg.org/ebooks/4928",
+   "pages": [
+     "Long ago in Britain there was no king. A sword stood in a stone, with a message about who could draw it.",
+     "Knights came from far and wide, and none could pull the sword out.",
+     "A young squire named Arthur needed a sword for his brother, and borrowed the one in the stone.",
+     "He pulled it out with ease. No one could believe it.",
+     "Again and again, others tried and failed, while Arthur drew it each time.",
+     "So Arthur became king, and he ruled with fairness."
+   ]},
+  {"id": "urashima-taro", "title": "Urashima Taro", "topic": "legend", "source": "Japanese Fairy Tales (Ozaki, 1908, public domain), retold: https://en.wikipedia.org/wiki/Urashima_Tar%C5%8D",
+   "pages": [
+     "A young fisherman named Urashima Taro saw some children teasing a turtle. He asked them to let it go.",
+     "Later, the turtle came back and carried him beneath the sea, to a palace where a princess welcomed him.",
+     "He stayed there for what seemed a few happy days. Then he felt a longing to see home.",
+     "The princess gave him a small box. \"Do not open it,\" she said.",
+     "At home, he found everything changed. Hundreds of years had passed.",
+     "Sad and alone, he opened the box. In a puff of white smoke, he became an old man."
+   ]},
+  {"id": "alfred-cakes", "title": "King Alfred and the Cakes", "topic": "legend", "source": "Fifty Famous Stories Retold by James Baldwin (1896, public domain), retold: https://en.wikipedia.org/wiki/Alfred_the_Great",
+   "pages": [
+     "King Alfred of England once had to hide from his enemies, disguised as a poor man.",
+     "A farmer's wife let him stay in her cottage. She asked him to watch the cakes by the fire.",
+     "Alfred was lost in thought about his kingdom, and the cakes burned.",
+     "The woman scolded him, not knowing who he was. Alfred said he was sorry.",
+     "Later, he gathered his people and won back his land.",
+     "He never forgot that even a king can learn from a kind host."
+   ]},
+  {"id": "bruce-spider", "title": "Robert the Bruce and the Spider", "topic": "legend", "source": "Fifty Famous Stories Retold by James Baldwin (1896, public domain), retold: https://en.wikipedia.org/wiki/Robert_the_Bruce",
+   "pages": [
+     "Robert the Bruce, king of Scotland, had lost battle after battle. He hid in a small cave, ready to give up.",
+     "He watched a spider trying to swing across to a rock. It failed once, twice, and again.",
+     "The spider tried a seventh time, and reached the rock.",
+     "\"If a spider can keep trying,\" said the king, \"so can I.\"",
+     "He gathered his friends and tried once more. This time he succeeded.",
+     "If at first you do not succeed, try, try again."
+   ]},
+  {"id": "william-tell", "title": "William Tell and the Apple", "topic": "legend", "source": "Swiss legend, as told in Schiller's play Wilhelm Tell (1804, public domain), retold: https://en.wikipedia.org/wiki/William_Tell",
+   "pages": [
+     "In the mountains of Switzerland lived William Tell, the best archer in the land.",
+     "A cruel governor ordered everyone to bow to his hat on a pole. Tell would not bow.",
+     "As a punishment, the governor said Tell must shoot an apple from his son's head.",
+     "Tell took two arrows. With a steady hand he aimed, and split the apple cleanly.",
+     "His son ran into his arms, unharmed. The crowd cheered.",
+     "The tale lives on as a symbol of courage and a steady aim."
    ]}
 ]

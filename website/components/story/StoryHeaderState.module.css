@@ -1,0 +1,47 @@
+.wrap { display: contents; }
+/* fixed from the first paint on any page that holds the story, so hydration never shifts the layout */
+:global(body):has([data-testid="story-text"]) .wrap > header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  transition: opacity 300ms ease-out, visibility 300ms;
+}
+/* same, after hydration, for browsers without :has() (kept as its own rule so one unknown selector can't drop both) */
+.wrap[data-story="true"] > header { position: fixed; top: 0; left: 0; right: 0; z-index: 30; }
+/* on the home page the header lies straight on the painting; summoned by the spiral, it gets its band back */
+:global(body):has([data-testid="story-text"]) .wrap > header { background: none; box-shadow: none; text-shadow: 0 1px 6px color-mix(in srgb, var(--ink) 80%, transparent); }
+:global(body):has([data-testid="story-text"]) .wrap[data-revealed="true"] > header { background: var(--olive-deep); text-shadow: none; }
+/* over the opening's paper the wordmark is ink (the band, when summoned, keeps it paper) */
+:global(body):has([data-testid="story"][data-light-ground]) .wrap:not([data-revealed="true"]) > header > a:first-child { color: var(--ink); text-shadow: none; }
+.wrap[data-hidden="true"] > header { opacity: 0; visibility: hidden; }
+/* a short landscape screen keeps the header behind the spiral (StoryHeaderState): it goes at once, so it is never half over a panel */
+@media (max-height: 500px) and (orientation: landscape) {
+  :global(body):has([data-testid="story-text"]) .wrap > header { transition: none; }
+}
+/* room for the spiral button beside the wordmark while the header is shown on demand */
+.wrap[data-revealed="true"] > header { padding-left: calc(44px + var(--s2)); }
+.spiral {
+  position: fixed;
+  top: var(--s1);
+  left: var(--s1);
+  z-index: 31;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 2px solid var(--paper);
+  border-radius: 50%;
+  background: var(--olive-deep);
+  color: var(--paper);
+  cursor: pointer;
+}
+/* ink ring between two paper rings: visible on light scenes, dark paintings and the header band */
+.spiral:focus-visible { box-shadow: 0 0 0 8px var(--paper); }
+/* the fixed header's phone menu can be taller than a small screen, so it scrolls on its own */
+@media (max-width: 759.98px) {
+  :global(body):has([data-testid="story-text"]) .wrap > header { max-height: 100dvh; overflow-y: auto; }
+  :global(body):has([data-testid="story-text"]) .wrap > header:has([data-open="true"]) { overscroll-behavior: contain; }
+}

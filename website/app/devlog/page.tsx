@@ -8,7 +8,7 @@ export const metadata = og("devlog", "Devlog | Spiral Node", "Notes from buildin
 
 export default function DevlogPage() {
   return (
-    <Page title="Devlog">
+    <Page band="map" title="Devlog">
       <p>Notes from building Spiral Node, about once a week.</p>
       <ul className={styles.list}>
         {listPosts().map((p) => (

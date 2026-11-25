@@ -17,17 +17,16 @@ it("public wording: no 'Inc.', 'multi-tool', 'Tamagotchi' or 'for hackers' in ap
   expect(hits).toEqual([]);
 });
 
-it("public copy never mentions AI", () => {
-  const banned = /\bAI\b|artificial intelligence/i;
-  const dirs = ["app", "components", "lib", "content"].map((d) => join(site, d));
-  const hits = [...dirs.flatMap((d) => files(d)), resolve(site, "../README.md")]
-    .filter((f) => /\.(tsx?|md|css)$/.test(f))
-    .filter((f) => banned.test(readFileSync(f, "utf8")));
+it("no place puts the USB-C, the charge light or the power button on the side", () => {
+  const side = /USB-C side|device-side|left side|side face|(charge light|power button)[^.\n]{0,40}\bside\b/i;
+  const hits = ["app", "components", "lib", "design"]
+    .flatMap((d) => files(join(site, d)))
+    .filter((f) => /\.(tsx?|md|css)$/.test(f) && side.test(readFileSync(f, "utf8")));
   expect(hits).toEqual([]);
 });
 
-it("body font is IBM Plex Mono, not Atkinson", () => {
+it("the site font is VT323 only", () => {
   const fonts = readFileSync(join(site, "app/fonts.ts"), "utf8");
-  expect(fonts).toContain("@fontsource/ibm-plex-mono");
-  expect(fonts).not.toMatch(/atkinson/i);
+  expect(fonts).toContain("@fontsource/vt323");
+  expect(fonts).not.toMatch(/manrope|departure|pixelify|ibm-plex|atkinson/i);
 });

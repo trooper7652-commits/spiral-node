@@ -1,0 +1,17 @@
+[Unit]
+Description=Spiral Node
+After=local-fs.target
+
+[Service]
+WorkingDirectory=/opt/spiral/os
+ExecStart=/opt/spiral/venv/bin/python -m spiral.device --config /etc/spiral/device.json
+Restart=on-failure
+RestartSec=2
+# Exit 2 means a bad device.json; restarting will not fix it.
+RestartPreventExitStatus=2
+# Runs as root for the v1 bench so it can open /dev/spidev1.0 and the GPIO lines.
+# A later version should use a user in the spi and gpio groups instead.
+User=root
+
+[Install]
+WantedBy=multi-user.target

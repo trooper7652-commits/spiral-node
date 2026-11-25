@@ -4,7 +4,7 @@ from spiral.library import pick_unshown
 from spiral.scripts_api import Page, Preference
 
 NAME = "Chess Puzzles"
-DESCRIPTION = "A chess puzzle, then its solution one move at a time. From the Lichess puzzle database (CC0)."
+DESCRIPTION = "A chess puzzle; press Show, then Next, to step through its solution. From the Lichess puzzle database (CC0)."
 PREFERENCES = [Preference("interval", "Refresh", (15, 30, 60), 30, "s")]
 
 SQ = 11  # square size in pixels; 8 squares make the 88x88 picture
@@ -154,22 +154,27 @@ class ChessPuzzles:
         self.shown = ctx.shown("puzzles.json")
 
     def next(self):
-        state = self.ctx.state()
-        pid, n = state.get("puzzle"), state.get("n")
-        if pid not in self.raw or not isinstance(n, int) or not 0 <= n <= len(self.raw[pid]["steps"]):
-            pid = pick_unshown(self.entries, self.shown, self.ctx.rng, library="puzzles.json").id
-            n = 0
+        pid = pick_unshown(self.entries, self.shown, self.ctx.rng, library="puzzles.json").id
         p = self.raw[pid]
-        flip = p["side"] == "Black"
-        self.ctx.save_state({"puzzle": pid, "n": n + 1})
-        if n == 0:
-            return Page("Chess Puzzles", f"{p['side']} to move\n{p['goal']}\nRating {p['rating']}",
-                        fen_to_picture(p["fen"], flip))
-        step = p["steps"][n - 1]
-        body = _move_text(p["fen"], n - 1, step["san"])
-        if n == len(p["steps"]):
-            body += "\nSolved."
-        return Page("Chess Puzzles", body, fen_to_picture(step["fen"], flip, step["from"]))
+        return Page("Chess Puzzles", f"{p['side']} to move\n{p['goal']}\nRating {p['rating']}",
+                    fen_to_picture(p["fen"], p["side"] == "Black"), choices=("Show",), key=f"{pid}|0")
+
+    def choose(self, key, index):
+        try:
+            pid, n = key.rsplit("|", 1)
+            n = int(n)
+            p = self.raw[pid]
+            if not 0 <= n < len(p["steps"]) or index != 0:
+                raise ValueError("bad key")
+        except (ValueError, KeyError):
+            return Page("Chess Puzzles", "That question is no longer here.")
+        step = p["steps"][n]
+        who = "You" if step["by"] == "you" else "Reply"
+        pic = fen_to_picture(step["fen"], p["side"] == "Black", step["from"])
+        if n < len(p["steps"]) - 1:
+            return Page("Chess Puzzles", f"{who}: {step['san']}", pic, choices=("Next",), key=f"{pid}|{n + 1}")
+        line = " ".join(_move_text(p["fen"], i, s["san"]) for i, s in enumerate(p["steps"]))
+        return Page("Chess Puzzles", f"{who}: {step['san']}\nSolved.\n{line}", pic)
 
 
 def create(ctx):

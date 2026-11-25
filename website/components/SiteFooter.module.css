@@ -1,13 +1,28 @@
+/* on the home page it rises over the fixed world: above the art, the panels, tags and signs; under the trail meter and the header */
 .footer {
+  position: relative;
+  z-index: 3;
   padding: var(--s4) var(--s2);
-  background: var(--brown-deep);
+  background: var(--ink);
+  box-shadow: inset 0 2px 0 var(--olive);
   color: var(--paper);
 }
 .footer p { margin: 0 auto var(--s1); max-width: var(--max-width); }
-.footer a { color: var(--paper); }
-.cols { display: grid; gap: var(--s4); max-width: var(--max-width); margin: 0 auto var(--s4); grid-template-columns: 1fr; }
-@media (min-width: 760px) { .cols { grid-template-columns: 2fr 1fr; } }
+/* links boxed like the header's: paper, 2 px ink line, gold and ink focus ring */
+.footer a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 12px 2px;
+  background: var(--paper);
+  color: var(--ink);
+  text-decoration: none;
+  box-shadow: inset 0 0 0 2px var(--ink), 0 0 0 2px var(--olive);
+}
+.footer a:hover { background: var(--gold); }
+.footer a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; box-shadow: inset 0 0 0 2px var(--ink), 0 0 0 6px var(--ink); }
+.cols { display: grid; gap: var(--s4); max-width: var(--max-width); margin: 0 auto var(--s4); grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 760px) { .cols { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); } }
 .signup { max-width: 520px; }
 .h { margin: 0 0 var(--s1); font-size: 24px; }
-.links { display: flex; flex-direction: column; gap: var(--s1); font-size: 18px; }
-.links a { display: inline-flex; align-items: center; min-height: 44px; }
+.links { display: flex; flex-direction: column; align-items: flex-start; gap: var(--s1); font-size: var(--text); line-height: var(--leading); }

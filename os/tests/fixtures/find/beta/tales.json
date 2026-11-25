@@ -1,0 +1,4 @@
+[
+  {"id": "b-1", "title": "The Quokkaplum Tree", "topic": "tale", "source": "https://example.org/b1", "pages": ["Once a quokkaplum tree grew by the sea.", "The end."]},
+  {"id": "b-2", "title": "Night Lights", "topic": "tale", "source": "https://example.org/b2", "pages": ["The quokkaplum glows blue at night, they said.", "The end."]}
+]

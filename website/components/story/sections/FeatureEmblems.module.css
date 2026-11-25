@@ -1,0 +1,4 @@
+/* the opened feature's line and detail show under the labels */
+.body { margin-top: var(--s1); }
+.line { margin: 0 0 4px; font-weight: 400; }
+.detail { margin: 0; font-size: var(--text-s); }

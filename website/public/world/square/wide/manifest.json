@@ -1,0 +1,399 @@
+{
+ "id": "square",
+ "variant": "wide",
+ "w": 576,
+ "h": 360,
+ "layers": [
+  {
+   "id": "sky",
+   "src": "layer-sky.png",
+   "depth": 0.0
+  },
+  {
+   "id": "far",
+   "src": "layer-far.png",
+   "depth": 0.2
+  },
+  {
+   "id": "mid",
+   "src": "layer-mid.png",
+   "depth": 0.45
+  },
+  {
+   "id": "near",
+   "src": "layer-near.png",
+   "depth": 0.8
+  },
+  {
+   "id": "front",
+   "src": "layer-front.png",
+   "depth": 1.0
+  }
+ ],
+ "atlas": "atlas.png",
+ "sprites": [
+  {
+   "id": "stars",
+   "x": 0,
+   "y": 0,
+   "w": 576,
+   "h": 60,
+   "frames": 3,
+   "fps": 2,
+   "depth": 0.0,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 0
+  },
+  {
+   "id": "cloud1",
+   "x": 336,
+   "y": 62,
+   "w": 86,
+   "h": 36,
+   "frames": 20,
+   "fps": 3,
+   "depth": 0.0,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 60
+  },
+  {
+   "id": "cloud2",
+   "x": 452,
+   "y": 54,
+   "w": 66,
+   "h": 27,
+   "frames": 20,
+   "fps": 2,
+   "depth": 0.0,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 96
+  },
+  {
+   "id": "cloud3",
+   "x": 130,
+   "y": 84,
+   "w": 70,
+   "h": 29,
+   "frames": 20,
+   "fps": 3,
+   "depth": 0.0,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 123
+  },
+  {
+   "id": "bunting",
+   "x": 210,
+   "y": 126,
+   "w": 295,
+   "h": 44,
+   "frames": 4,
+   "fps": 3,
+   "depth": 0.45,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 152
+  },
+  {
+   "id": "window",
+   "x": 316,
+   "y": 150,
+   "w": 9,
+   "h": 10,
+   "frames": 10,
+   "fps": 2,
+   "depth": 0.45,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 196
+  },
+  {
+   "id": "glow2",
+   "x": 232,
+   "y": 174,
+   "w": 36,
+   "h": 36,
+   "frames": 4,
+   "fps": 5,
+   "depth": 0.45,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 206
+  },
+  {
+   "id": "lantern2",
+   "x": 246,
+   "y": 187,
+   "w": 9,
+   "h": 11,
+   "frames": 4,
+   "fps": 5,
+   "depth": 0.45,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 242
+  },
+  {
+   "id": "lantern_rise",
+   "x": 402,
+   "y": 62,
+   "w": 94,
+   "h": 150,
+   "frames": 20,
+   "fps": 1,
+   "depth": 0.8,
+   "mode": "scrub",
+   "ax": 0,
+   "ay": 253
+  },
+  {
+   "id": "moths",
+   "x": 443,
+   "y": 162,
+   "w": 50,
+   "h": 44,
+   "frames": 8,
+   "fps": 6,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 403
+  },
+  {
+   "id": "fountain",
+   "x": 276,
+   "y": 206,
+   "w": 108,
+   "h": 91,
+   "frames": 4,
+   "fps": 6,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 447
+  },
+  {
+   "id": "folk1",
+   "x": 438,
+   "y": 277,
+   "w": 11,
+   "h": 21,
+   "frames": 6,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 538
+  },
+  {
+   "id": "folk2",
+   "x": 486,
+   "y": 280,
+   "w": 11,
+   "h": 21,
+   "frames": 6,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 559
+  },
+  {
+   "id": "folk3",
+   "x": 262,
+   "y": 238,
+   "w": 11,
+   "h": 21,
+   "frames": 6,
+   "fps": 3,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 580
+  },
+  {
+   "id": "folk-visionary",
+   "x": 376,
+   "y": 208,
+   "w": 22,
+   "h": 24,
+   "frames": 4,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 601
+  },
+  {
+   "id": "folk-artisan",
+   "x": 398,
+   "y": 208,
+   "w": 22,
+   "h": 24,
+   "frames": 4,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 625
+  },
+  {
+   "id": "folk-crafter",
+   "x": 420,
+   "y": 208,
+   "w": 22,
+   "h": 24,
+   "frames": 4,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 649
+  },
+  {
+   "id": "folk-maker",
+   "x": 442,
+   "y": 208,
+   "w": 22,
+   "h": 24,
+   "frames": 4,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 673
+  },
+  {
+   "id": "folk-doer",
+   "x": 420,
+   "y": 232,
+   "w": 22,
+   "h": 24,
+   "frames": 4,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 697
+  },
+  {
+   "id": "folk-designer",
+   "x": 440,
+   "y": 232,
+   "w": 22,
+   "h": 24,
+   "frames": 4,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 721
+  },
+  {
+   "id": "folk-innovator",
+   "x": 426,
+   "y": 252,
+   "w": 22,
+   "h": 24,
+   "frames": 4,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 745
+  },
+  {
+   "id": "folk-operator",
+   "x": 442,
+   "y": 252,
+   "w": 22,
+   "h": 24,
+   "frames": 4,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 769
+  },
+  {
+   "id": "who",
+   "x": 394,
+   "y": 254,
+   "w": 24,
+   "h": 26,
+   "frames": 4,
+   "fps": 3,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 793
+  },
+  {
+   "id": "dog",
+   "x": 206,
+   "y": 266,
+   "w": 24,
+   "h": 14,
+   "frames": 4,
+   "fps": 5,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 819
+  },
+  {
+   "id": "dog2",
+   "x": 231,
+   "y": 266,
+   "w": 24,
+   "h": 14,
+   "frames": 4,
+   "fps": 5,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 833
+  },
+  {
+   "id": "snail",
+   "x": 292,
+   "y": 268,
+   "w": 14,
+   "h": 12,
+   "frames": 2,
+   "fps": 2,
+   "depth": 0.8,
+   "mode": "loop",
+   "ax": 0,
+   "ay": 847
+  }
+ ],
+ "anchors": {
+  "cloud": {
+   "x": 379,
+   "y": 80,
+   "depth": 0.0
+  },
+  "lantern": {
+   "x": 468,
+   "y": 184,
+   "depth": 0.8
+  },
+  "lantern_up": {
+   "x": 430,
+   "y": 90,
+   "depth": 0.8
+  }
+ },
+ "tags": [
+  {
+   "id": "who",
+   "x": 404,
+   "y": 266,
+   "depth": 0.8
+  }
+ ]
+}
