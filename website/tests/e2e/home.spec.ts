@@ -240,18 +240,28 @@ for (const [width, height] of [[360, 800], [390, 844]]) {
   });
 }
 
-test("at 800 px Try the demo sits on the GitHub row", async ({ page }) => {
+test("at 800 px Try the demo sits on the launch list button's row", async ({ page }) => {
   await page.setViewportSize({ width: 800, height: 800 });
   await page.goto("/");
   const demo = await rect(page.locator("header").getByRole("link", { name: "Try the demo" }));
-  const github = await rect(page.locator("header").getByRole("link", { name: /GitHub/ }));
-  expect(Math.abs(demo.y + demo.h / 2 - (github.y + github.h / 2))).toBeLessThan(8);
+  const launch = await rect(page.locator("header").getByRole("button", { name: "Join the launch list" }));
+  expect(Math.abs(demo.y + demo.h / 2 - (launch.y + launch.h / 2))).toBeLessThan(8);
 });
 
-test("desktop: Tab goes from GitHub to Try the demo", async ({ page }) => {
+test("desktop: header is one row at 1280 and 1400", async ({ page }) => {
+  for (const width of [1280, 1400]) {
+    await page.setViewportSize({ width, height: 800 });
+    await page.goto("/");
+    expect((await rect(page.locator("header"))).h, `header at ${width}`).toBeLessThanOrEqual(64);
+  }
+});
+
+test("desktop: Tab goes from GitHub to the launch list to Try the demo", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 800 });
   await page.goto("/");
   await page.locator("header").getByRole("link", { name: /GitHub/ }).focus();
+  await page.keyboard.press("Tab");
+  await expect(page.locator("header").getByRole("button", { name: "Join the launch list" })).toBeFocused();
   await page.keyboard.press("Tab");
   await expect(page.locator("header").getByRole("link", { name: "Try the demo" })).toBeFocused();
 });

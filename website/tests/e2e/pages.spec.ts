@@ -78,8 +78,8 @@ test('build log shows "First photos coming soon" with no entries', async ({ page
 test("changelog lists v0.1.0", async ({ page }) => {
   await page.goto("/changelog");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Changelog");
-  await expect(page.getByRole("heading", { name: "v0.1.0 (2026-11-16)" })).toBeVisible();
-  await expect(page.locator("main")).toContainText("open hardware files");
+  await expect(page.getByRole("heading", { name: "v0.1.0 (2026-11-21)" })).toBeVisible();
+  await expect(page.locator("main")).toContainText("open hardware notes");
 });
 
 test("home links to the script gallery and the latest devlog entry", async ({ page }) => {

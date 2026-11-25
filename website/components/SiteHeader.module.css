@@ -21,7 +21,8 @@
 .menu { display: contents; }
 .toggle { display: none; }
 .nav { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: var(--s2) 22px; }
-@media (min-width: 760px) and (max-width: 1099.98px) {
+/* compact up to 1400 px so the header (with the launch list button) stays one row at 1280 */
+@media (min-width: 760px) and (max-width: 1399.98px) {
   .header .nav { gap: 14px 12px; }
   .header .nav a:not(.cta) { font-size: 20px; padding: 1px 8px 3px; }
 }
