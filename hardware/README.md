@@ -18,6 +18,12 @@
 * The LX-LBC3.1 module and exact battery cell are still to be measured.
 * There is no enclosure CAD yet.
 
+## Build it
+* [build-docs/](build-docs/README.md): parts list with quantities, pin-by-pin wiring, build stages.
+* [pcb/backbone-v1/](pcb/backbone-v1/): the button backbone board. KiCad files, the script that draws it, factory files and a 1:1 paper test print.
+* [bring-up.md](bring-up.md): set up the board step by step.
+* [compatibility-findings.md](compatibility-findings.md): research notes on how the parts fit together, with sources.
+
 ## Form factor
 See [form-factor.md](form-factor.md) for design details.
 
